@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { NavigationProvider } from './context/navigation';
 import './styles/index.css'
 import './styles/navMenu.css'
 
@@ -9,7 +10,9 @@ import './styles/navMenu.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <NavigationProvider>
+      <App/>
+    </NavigationProvider>
   </React.StrictMode>
 );
 

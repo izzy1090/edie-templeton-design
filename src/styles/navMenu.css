@@ -27,5 +27,11 @@
     justify-content: center;
     align-items: center;
     background-color: #0D0D0E;
+}
+
+.activeMenu a {
+    margin: 5px;
+    cursor: pointer;
+    text-decoration: none;
     color: #F1F1EF;
 }

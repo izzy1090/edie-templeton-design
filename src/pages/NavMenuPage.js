@@ -1,5 +1,4 @@
-import NavMenu from "../components/NavMenu.js";
-
+import NavMenu from "../components/NavMenu"
 
 function NavMenuPage(){
 
@@ -7,10 +6,10 @@ function NavMenuPage(){
     const invertedHamburger = <div className="invertedHamburger"></div>
 
     const activeMenu = <div className="activeMenu">
-        <div>home</div>
-        <div>work</div>
-        <div>about</div>
-        <div>contact</div>
+        <a href="/">home</a>
+        <a href="/work">work</a>
+        <a href="/about">about</a>
+        <a href="/contact">contact</a>
     </div>
 
     return <NavMenu 
