@@ -1,26 +1,31 @@
 .hamburger {
+    position: fixed;
+    right: 0;
+    margin: 10px;
     cursor: pointer;
     border-radius: 2rem;
     height: 20px;
     width: 20px;
     background-color: #0D0D0E;
-    margin-left: auto;
 }
 
 .invertedHamburger {
+    position: fixed;
+    right: 0;
+    margin: 10px;
     cursor: pointer;
     border-radius: 2rem;
     height: 20px;
     width: 20px;
-    margin-left: auto;
     background-color: #F1F1EF;
 }
 
 .activeMenu {
+    height: 100vh;
     display: flex;
-    top: 50%;
-    bottom: 50%;
     flex-direction: column;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
+    background-color: #0D0D0E;
+    color: #F1F1EF;
 }
