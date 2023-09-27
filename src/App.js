@@ -1,6 +1,6 @@
 import Route from './components/Route';
 import NavMenuPage from "./pages/NavMenuPage";
-import Work from "./pages/Contact";
+import Work from "./pages/Work";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
