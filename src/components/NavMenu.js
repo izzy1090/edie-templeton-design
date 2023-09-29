@@ -15,8 +15,9 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
                     setIsOpen(false)
                 }
             }
-            
+
             document.addEventListener('click', handler)
+            
             return ()=>{
                 document.removeEventListener('click', handler)
             }
@@ -27,16 +28,12 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
         setIsOpen(!isOpen);  
     }
 
-    if (isOpen) {
-        return <>
-            <div onClick={handleClick}>{invertedHamburger}</div>
-            {activeMenu}
-        </>
-    } else if (!isOpen) {
-        return <>
-            <div onClick={handleClick}>{hamburger}</div>
-        </>
-    }
+    const activatedMenu = <><div onClick={handleClick}>{invertedHamburger}</div>{activeMenu}</>
+    const inactiveMenu = <div onClick={handleClick}>{hamburger}</div>
+
+    return <>
+        {isOpen ? activatedMenu : inactiveMenu}
+    </>
 }
 
 export default NavMenu;
