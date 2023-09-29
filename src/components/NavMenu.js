@@ -23,7 +23,7 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
                 document.removeEventListener('click', handler)
             }
             
-        },[])
+        }, [setIsOpen])
 
     const handleClick = () => {
         setIsOpen(!isOpen);  
