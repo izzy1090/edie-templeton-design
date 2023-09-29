@@ -1,8 +1,8 @@
 import Route from './components/Route';
 import NavMenuPage from "./pages/NavMenuPage";
-import Work from "./pages/Work";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import WorkPage from "./pages/WorkPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -12,15 +12,15 @@ function App() {
     </Route>
     <Route path="/work">
       <NavMenuPage/>
-      <Work/>
+      <WorkPage/>
     </Route>
     <Route path="/about">
       <NavMenuPage/>
-      <About/>
+      <AboutPage/>
     </Route>
     <Route path="/contact">
       <NavMenuPage/>
-      <Contact/>
+      <ContactPage/>
     </Route>
   </>
   );

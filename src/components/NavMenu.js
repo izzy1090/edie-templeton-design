@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useGlobalStates from "../hooks/use-globalStates";
 
 function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
-    const [isOpen, setIsOpen] = useState(false);
+    const { isOpen, setIsOpen } = useGlobalStates();
 
         // useEffect so that the web page is always looking for the click event
         useEffect(()=>{
