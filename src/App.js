@@ -11,12 +11,15 @@ function App() {
       <NavMenuPage/>
     </Route>
     <Route path="/work">
+      <NavMenuPage/>
       <Work/>
     </Route>
     <Route path="/about">
+      <NavMenuPage/>
       <About/>
     </Route>
     <Route path="/contact">
+      <NavMenuPage/>
       <Contact/>
     </Route>
   </>
