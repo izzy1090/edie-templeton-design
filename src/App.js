@@ -1,8 +1,8 @@
 import Route from './components/Route';
 import NavMenuPage from "./pages/NavMenuPage";
-import Work from "./pages/Work";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import WorkPage from "./pages/WorkPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -11,13 +11,16 @@ function App() {
       <NavMenuPage/>
     </Route>
     <Route path="/work">
-      <Work/>
+      <NavMenuPage/>
+      <WorkPage/>
     </Route>
     <Route path="/about">
-      <About/>
+      <NavMenuPage/>
+      <AboutPage/>
     </Route>
     <Route path="/contact">
-      <Contact/>
+      <NavMenuPage/>
+      <ContactPage/>
     </Route>
   </>
   );
