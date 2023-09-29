@@ -35,3 +35,31 @@
     text-decoration: none;
     color: #F1F1EF;
 }
+
+.menuTransitionIn {
+    animation-name: transitionIn;
+    animation-duration: 500ms;
+}
+
+@keyframes transitionIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.menuTransitionOut {
+    animation-name: transitionOut;
+    animation-duration: 500ms;
+}
+
+@keyframes transitionOut {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
