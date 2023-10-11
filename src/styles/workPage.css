@@ -1,0 +1,12 @@
+.photoContainer :nth-child(odd) {
+    display: flex;
+    flex-direction: column;
+    justify-items: end;
+    align-items: end;
+    margin: auto;
+
+}
+
+.photoContainer img {
+    width: 500px;
+}

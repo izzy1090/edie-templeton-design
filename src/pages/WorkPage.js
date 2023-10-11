@@ -20,6 +20,7 @@ function Work () {
     const imageWidth = 500;
 
     const workContent = <>
+    <div className="photoContainer">
         <img src={grammieKitchen} width={imageWidth} alt="Kitchen island with pots and pans hanging over a sunflower."></img>
         <img src={chineseCabinet} width={imageWidth}></img>
         <img src={livingRoom1} width={imageWidth}></img>
@@ -34,6 +35,7 @@ function Work () {
         <img src={nightstand1} width={imageWidth}></img>
         <img src={nightstand2} width={imageWidth}></img>
         <img src={NYT} width={imageWidth}></img>
+    </div>
     </>
 
     return <>{ isOpen ? null : workContent }</>
