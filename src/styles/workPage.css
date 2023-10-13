@@ -6,6 +6,7 @@
 .imagesContainer img {
     width: 80%;
     padding-bottom: 20px;
+    cursor: pointer;
 }
 
 .imageContainerColumn1 {
