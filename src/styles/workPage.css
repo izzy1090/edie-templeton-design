@@ -1,12 +1,21 @@
-.photoContainer :nth-child(odd) {
+.imagesContainer {
     display: flex;
-    flex-direction: column;
-    justify-items: end;
-    align-items: end;
-    margin: auto;
-
+    padding: 50px;
 }
 
-.photoContainer img {
-    width: 500px;
+.imagesContainer img {
+    width: 80%;
+    padding-bottom: 20px;
+}
+
+.imageContainerColumn1 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.imageContainerColumn2 {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
 }

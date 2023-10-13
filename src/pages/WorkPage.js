@@ -17,24 +17,28 @@ import NYT from '../images/NYT.jpg';
 function Work () {
     const { isOpen } = useGlobalStates();
 
-    const imageWidth = 500;
+    const imageWidth = 1000;
 
     const workContent = <>
-    <div className="photoContainer">
-        <img src={grammieKitchen} width={imageWidth} alt="Kitchen island with pots and pans hanging over a sunflower."></img>
-        <img src={chineseCabinet} width={imageWidth}></img>
-        <img src={livingRoom1} width={imageWidth}></img>
-        <img src={livingRoom2} width={imageWidth}></img>
-        <img src={livingRoom3} width={imageWidth}></img>
-        <img src={bathroom1} width={imageWidth}></img>
-        <img src={bathroom2} width={imageWidth}></img>
-        <img src={flowers} width={imageWidth}></img>
-        <img src={diningRoom} width={imageWidth}></img>
-        <img src={bedroom1} width={imageWidth}></img>
-        <img src={bedroom2} width={imageWidth}></img>
-        <img src={nightstand1} width={imageWidth}></img>
-        <img src={nightstand2} width={imageWidth}></img>
-        <img src={NYT} width={imageWidth}></img>
+    <div className="imagesContainer">
+        <div className="imageContainerColumn1">
+            <img src={grammieKitchen} width={imageWidth} alt=""></img>
+            <img src={chineseCabinet} width={imageWidth} alt=""></img>
+            <img src={livingRoom1} width={imageWidth} alt=""></img>
+            <img src={livingRoom2} width={imageWidth} alt=""></img>
+            <img src={livingRoom3} width={imageWidth} alt=""></img>
+            <img src={bathroom1} width={imageWidth} alt=""></img>
+            <img src={bathroom2} width={imageWidth} alt=""></img>
+        </div>
+        <div className="imageContainerColumn2">
+            <img src={flowers} width={imageWidth} alt=""></img>
+            <img src={diningRoom} width={imageWidth} alt=""></img>
+            <img src={bedroom1} width={imageWidth} alt=""></img>
+            <img src={bedroom2} width={imageWidth} alt=""></img>
+            <img src={nightstand1} width={imageWidth} alt=""></img>
+            <img src={nightstand2} width={imageWidth} alt=""></img>
+            <img src={NYT} width={imageWidth} alt=""></img>
+        </div>
     </div>
     </>
 
