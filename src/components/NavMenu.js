@@ -5,7 +5,7 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
     const [ isOpen, setIsOpen ] = useState(false);
 
         // useEffect so the web page is always looking for a click event
-        useEffect(()=>{
+        useEffect(()=> {
             // sets up a click handler and passes in a click event
             const handler = (event) => {
                 // init. a var to look for the click event target's className

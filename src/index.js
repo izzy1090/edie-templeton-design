@@ -1,6 +1,6 @@
 import './styles/index.css'
 import './styles/navMenu.css'
-import './styles/workPage.css'
+import './styles/images.css'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

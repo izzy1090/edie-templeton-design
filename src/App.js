@@ -1,6 +1,6 @@
-import Route from './components/Route';
+import Route from './components/route';
 import NavMenuPage from "./pages/NavMenuPage";
-import WorkPage from "./pages/WorkPage";
+import ImagesPage from "./pages/ImagesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 
@@ -9,10 +9,7 @@ function App() {
   <>
     <Route path="/">
       <NavMenuPage/>
-    </Route>
-    <Route path="/work">
-      <NavMenuPage/>
-      <WorkPage/>
+      <ImagesPage/>
     </Route>
     <Route path="/about">
       <NavMenuPage/>
