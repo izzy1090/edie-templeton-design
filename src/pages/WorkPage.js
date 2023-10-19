@@ -1,4 +1,3 @@
-import useGlobalStates from "../hooks/use-globalStates";
 import grammieKitchen from '../images/grammies-kitchen.jpg';
 import chineseCabinet from '../images/chinese-cabinet.jpg';
 import livingRoom1 from '../images/living-room1.jpg';
@@ -15,7 +14,6 @@ import nightstand2 from '../images/nightstand2.jpg';
 import NYT from '../images/NYT.jpg';
 
 function Work () {
-    const { isOpen } = useGlobalStates();
 
     const imageWidth = 1000;
 
@@ -42,7 +40,7 @@ function Work () {
     </div>
     </>
 
-    return <>{ isOpen ? null : workContent }</>
+    return <>{ workContent }</>
 }
 
 export default Work;
