@@ -1,12 +1,8 @@
 .imagesContainer {
     display: flex;
     padding: 50px;
-}
-
-.imagesContainer img {
-    width: 80%;
-    margin-bottom: 20px;
-    cursor: pointer;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 .imageContainerColumn1 {
@@ -21,6 +17,17 @@
     flex-direction: column;
 }
 
+.imagesContainer img {
+    width: 80%;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transform: translateY(0px); /* Start from -2px when hovered */
+    transition: transform 400ms ease-in;
+    z-index: 998;
+}
+
 .imagesContainer img:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    transform: translateY(-2px); /* Start from -2px when hovered */
+    transition: transform 400ms ease-in;
 }
