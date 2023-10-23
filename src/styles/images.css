@@ -21,13 +21,10 @@
     width: 80%;
     margin-bottom: 40px;
     cursor: pointer;
-    transform: translateY(0px); /* Start from -2px when hovered */
-    transition: transform 400ms ease-in;
-    z-index: 998;
 }
 
 .imagesContainer img:hover {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    transform: translateY(-2px); /* Start from -2px when hovered */
-    transition: transform 400ms ease-in;
+    transform: translateY(-2px);
+    transition: transform 200ms ease-in;
 }
