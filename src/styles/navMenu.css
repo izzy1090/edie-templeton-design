@@ -58,6 +58,7 @@
 .menuTransitionOut {
     animation-name: transitionOut;
     animation-duration: 500ms;
+
 }
 
 @keyframes transitionOut {
