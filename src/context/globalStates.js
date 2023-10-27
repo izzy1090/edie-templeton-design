@@ -2,13 +2,13 @@ import { createContext, useState } from "react";
 
 const GlobalStatesContext = createContext();
 
-function GlobalStatesProvider ( { children } ){
+function GlobalStatesProvider({ children }){
+    const [isOpen, setIsOpen] = useState(false);
 
-    const [ isOpen, setIsOpen ] = useState(false);
-
-    return <GlobalStatesContext.Provider value={ { isOpen, setIsOpen } }>
-        { children }
+    return <GlobalStatesContext.Provider value={{isOpen, setIsOpen}}>
+        {children}
     </GlobalStatesContext.Provider>
+
 }
 
 export { GlobalStatesProvider };

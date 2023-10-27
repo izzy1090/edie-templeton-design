@@ -23,10 +23,7 @@
     cursor: pointer;
 }
 
-.beforeHover {
-    width: 80%;
-    margin-bottom: 40px;
-    cursor: pointer;
+.beforeHover img{
     transform: translateY(0px);
     transition: transform 200ms ease-in;
 }
@@ -36,6 +33,3 @@
     transform: translateY(-2px);
     transition: transform 200ms ease-in;
 }
-
-/* transform: translateY(0px);
-transition: transform 200ms ease-in; */

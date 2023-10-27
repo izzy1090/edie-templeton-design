@@ -6,13 +6,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { NavigationProvider } from './context/navigation';
+import { GlobalStatesProvider } from './context/globalStates';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <NavigationProvider>
-        <App/>
-    </NavigationProvider>
+    <GlobalStatesProvider>
+      <NavigationProvider>
+          <App/>
+      </NavigationProvider>
+    </GlobalStatesProvider>
   </React.StrictMode>
 );
 

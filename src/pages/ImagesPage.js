@@ -12,16 +12,17 @@ import bedroom2 from '../images/bedroom2.jpg';
 import nightstand1 from '../images/nightstand1.jpg';
 import nightstand2 from '../images/nightstand2.jpg';
 import NYT from '../images/NYT.jpg';
-import GlobalStatesContext from '../context/globalStates';
+import useGlobalStates from '../hooks/use-globalStates';
+
 
 function ImagesPage () {
 
-    const { isOpen } = GlobalStatesContext;
+    const { isOpen } = useGlobalStates();
 
     const imageWidth = 1000;
 
     const images = <>
-        <div className={"beforeHover"}> 
+        <div className={isOpen ? "imagesContainer" : "imagesContainer beforeHover"}> 
             <div className="imageContainerColumn1">
                 <img src={grammieKitchen} width={imageWidth} alt=""></img>
                 <img src={chineseCabinet} width={imageWidth} alt=""></img>

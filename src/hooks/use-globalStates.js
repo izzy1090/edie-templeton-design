@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import GlobalStatesContext from "../context/globalStates";
 
-function useNavigation(){
+function useGlobalStates(){
     return useContext(GlobalStatesContext);
 }
 
-export default useNavigation;
+export default useGlobalStates;
