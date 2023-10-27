@@ -21,6 +21,12 @@
     width: 80%;
     margin-bottom: 40px;
     cursor: pointer;
+}
+
+.beforeHover {
+    width: 80%;
+    margin-bottom: 40px;
+    cursor: pointer;
     transform: translateY(0px);
     transition: transform 200ms ease-in;
 }

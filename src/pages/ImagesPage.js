@@ -12,13 +12,16 @@ import bedroom2 from '../images/bedroom2.jpg';
 import nightstand1 from '../images/nightstand1.jpg';
 import nightstand2 from '../images/nightstand2.jpg';
 import NYT from '../images/NYT.jpg';
+import GlobalStatesContext from '../context/globalStates';
 
 function ImagesPage () {
+
+    const { isOpen } = GlobalStatesContext;
 
     const imageWidth = 1000;
 
     const images = <>
-        <div className="imagesContainer">
+        <div className={"beforeHover"}> 
             <div className="imageContainerColumn1">
                 <img src={grammieKitchen} width={imageWidth} alt=""></img>
                 <img src={chineseCabinet} width={imageWidth} alt=""></img>
@@ -40,7 +43,7 @@ function ImagesPage () {
         </div>
     </>
 
-    return <>{images}</>
+    return <>{ images }</>
 }
 
 export default ImagesPage;
