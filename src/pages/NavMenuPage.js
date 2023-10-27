@@ -1,4 +1,4 @@
-import NavMenu from "../components/NavMenu"
+import NavMenu from "../components/navMenu";
 
 function NavMenuPage(){
 
@@ -7,7 +7,6 @@ function NavMenuPage(){
 
     const activeMenu = <div className="activeMenu">
         <a href="/">home</a>
-        <a href="/work">work</a>
         <a href="/about">about</a>
         <a href="/contact">contact</a>
     </div>

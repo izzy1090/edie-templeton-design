@@ -7,6 +7,7 @@
     height: 20px;
     width: 20px;
     background-color: #0D0D0E;
+    z-index: 1000;
 }
 
 .invertedHamburger {
@@ -18,7 +19,7 @@
     height: 20px;
     width: 20px;
     background-color: #F1F1EF;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .activeMenu {
@@ -30,7 +31,7 @@
     align-items: center;
     flex-direction: column;
     background-color: #0D0D0E;
-    z-index: 0;
+    z-index: 999;
 }
 
 .activeMenu a {
@@ -57,6 +58,7 @@
 .menuTransitionOut {
     animation-name: transitionOut;
     animation-duration: 500ms;
+
 }
 
 @keyframes transitionOut {

@@ -1,0 +1,35 @@
+.imagesContainer {
+    display: flex;
+    padding: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.imageContainerColumn1 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.imageContainerColumn2 {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.imagesContainer img {
+    width: 80%;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.beforeHover img{
+    transform: translateY(0px);
+    transition: transform 200ms ease-in;
+}
+
+.imagesContainer img:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    transform: translateY(-2px);
+    transition: transform 200ms ease-in;
+}
