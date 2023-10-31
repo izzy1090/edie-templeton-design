@@ -36,9 +36,9 @@ function Images ( {images} ) {
         event.stopPropagation();
         for (let i = 0; i < images.length; i++){
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key){
-                setImageToShow(images[i+1])
+                setImageToShow(images[i+1]);
             } else if (imageToShow.key === images[images.length - 1].key){
-                setImageToShow(images[0])
+                setImageToShow(images[0]);
             }
         }
     }
