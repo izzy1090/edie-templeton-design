@@ -3,7 +3,7 @@ import useGlobalStates from "../hooks/use-globalStates";
 
 function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
 
-    const { isOpen, setIsOpen } = useGlobalStates();
+    const { isNavOpen, setIsOpen } = useGlobalStates();
 
         // useEffect so the web page is always looking for a click event
         useEffect(()=> {
@@ -27,7 +27,7 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
         }, [setIsOpen])
 
     const handleClick = () => {
-        setIsOpen(!isOpen);  
+        setIsOpen(!isNavOpen);  
     }
 
     const openMenu = 
@@ -44,7 +44,7 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
         </div>
 
     return <>
-        { isOpen ? openMenu : closedMenu }
+        { isNavOpen ? openMenu : closedMenu }
     </>
 }
 

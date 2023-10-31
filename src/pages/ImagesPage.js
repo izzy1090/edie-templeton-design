@@ -1,3 +1,4 @@
+import Images from '../components/images';
 import grammieKitchen from '../images/grammies-kitchen.jpg';
 import chineseCabinet from '../images/chinese-cabinet.jpg';
 import livingRoom1 from '../images/living-room1.jpg';
@@ -12,39 +13,26 @@ import bedroom2 from '../images/bedroom2.jpg';
 import nightstand1 from '../images/nightstand1.jpg';
 import nightstand2 from '../images/nightstand2.jpg';
 import NYT from '../images/NYT.jpg';
-import useGlobalStates from '../hooks/use-globalStates';
-
 
 function ImagesPage () {
 
-    const { isOpen } = useGlobalStates();
+    const imageArray = [ 
+        {key: 0, value: grammieKitchen, alt: "Edie's grandma's kitchen."}, 
+        {key: 1, value: chineseCabinet, alt: 'Ornate black and gold chinese cabinet.'}, 
+        {key: 2, value: livingRoom1, alt: '72 Clermont Ave shot # 1.'}, 
+        {key: 3, value: livingRoom2, alt: '72 Clermont Ave shot # 2.'}, 
+        {key: 4, value: livingRoom3, alt: '72 Clermont Ave shot # 3.'}, 
+        {key: 5, value: bathroom1, alt: 'Bathroom shot 1.'}, 
+        {key: 6, value: bathroom2, alt: 'Bathroom shot 2.'}, 
+        {key: 7, value: flowers, alt: 'Bouquet of flowers.'}, 
+        {key: 8, value: diningRoom, alt: "Edie's parent's living room."}, 
+        {key: 9, value: bedroom1, alt: 'Dog sitting on bed in front of portrait in the background.'}, 
+        {key: 10, value: bedroom2, alt: 'Empty bedroom with chair and fur rug draped over the chair.'}, 
+        {key: 11, value: nightstand1, alt: 'Nightstand photo 1.'}, 
+        {key: 12, value: nightstand2, alt: 'Nightstand photo 2.'}, 
+        {key: 13, value: NYT, alt: 'Copy of the NYT laid out on a dining room table.'} ];
 
-    const imageWidth = 1000;
-
-    const images = <>
-        <div className={isOpen ? "imagesContainer" : "imagesContainer beforeHover"}> 
-            <div className="imageContainerColumn1">
-                <img src={grammieKitchen} width={imageWidth} alt=""></img>
-                <img src={chineseCabinet} width={imageWidth} alt=""></img>
-                <img src={livingRoom1} width={imageWidth} alt=""></img>
-                <img src={livingRoom2} width={imageWidth} alt="" loading='lazy'></img>
-                <img src={livingRoom3} width={imageWidth} alt="" loading='lazy'></img>
-                <img src={bathroom1} width={imageWidth} alt="" loading='lazy'></img>
-                <img src={bathroom2} width={imageWidth} alt="" loading='lazy'></img>
-            </div>
-            <div className="imageContainerColumn2">
-                <img src={flowers} width={imageWidth} alt=""></img>
-                <img src={diningRoom} width={imageWidth} alt=""></img>
-                <img src={bedroom1} width={imageWidth} alt=""></img>
-                <img src={bedroom2} width={imageWidth} alt="" loading='lazy'></img>
-                <img src={nightstand1} width={imageWidth} alt="" loading='lazy'></img>
-                <img src={nightstand2} width={imageWidth} alt="" loading='lazy'></img>
-                <img src={NYT} width={imageWidth} alt="" loading='lazy'></img>
-            </div>
-        </div>
-    </>
-
-    return <>{ images }</>
+    return <Images images={imageArray}/>
 }
 
 export default ImagesPage;

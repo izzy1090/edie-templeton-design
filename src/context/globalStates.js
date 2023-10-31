@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 const GlobalStatesContext = createContext();
 
 function GlobalStatesProvider({ children }){
-    const [isOpen, setIsOpen] = useState(false);
+    const [isNavOpen, setIsOpen] = useState(false);
 
-    return <GlobalStatesContext.Provider value={{isOpen, setIsOpen}}>
+    return <GlobalStatesContext.Provider value={{isNavOpen, setIsOpen}}>
         {children}
     </GlobalStatesContext.Provider>
 
