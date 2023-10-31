@@ -17,7 +17,7 @@ import NYT from '../images/NYT.jpg';
 function ImagesPage () {
 
     const imageArray = [ 
-        {key: 0, value: grammieKitchen, alt: 'Edie\'s grandma\'s kitchen.'}, 
+        {key: 0, value: grammieKitchen, alt: "Edie's grandma's kitchen."}, 
         {key: 1, value: chineseCabinet, alt: 'Ornate black and gold chinese cabinet.'}, 
         {key: 2, value: livingRoom1, alt: '72 Clermont Ave shot # 1.'}, 
         {key: 3, value: livingRoom2, alt: '72 Clermont Ave shot # 2.'}, 
@@ -25,7 +25,7 @@ function ImagesPage () {
         {key: 5, value: bathroom1, alt: 'Bathroom shot 1.'}, 
         {key: 6, value: bathroom2, alt: 'Bathroom shot 2.'}, 
         {key: 7, value: flowers, alt: 'Bouquet of flowers.'}, 
-        {key: 8, value: diningRoom, alt: 'Edie\'s parent\s living room.'}, 
+        {key: 8, value: diningRoom, alt: "Edie's parent's living room."}, 
         {key: 9, value: bedroom1, alt: 'Dog sitting on bed in front of portrait in the background.'}, 
         {key: 10, value: bedroom2, alt: 'Empty bedroom with chair and fur rug draped over the chair.'}, 
         {key: 11, value: nightstand1, alt: 'Nightstand photo 1.'}, 
