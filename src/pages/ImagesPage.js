@@ -16,7 +16,21 @@ import NYT from '../images/NYT.jpg';
 
 function ImagesPage () {
 
-    const imageArray = [grammieKitchen, chineseCabinet, livingRoom1, livingRoom2, livingRoom3, bathroom1, bathroom2, flowers, diningRoom, bedroom1, bedroom2, nightstand1, nightstand2, NYT]
+    const imageArray = [ 
+        {key: 0, value: grammieKitchen}, 
+        {key: 1, value: chineseCabinet}, 
+        {key: 2, value: livingRoom1}, 
+        {key: 3, value: livingRoom2}, 
+        {key: 4, value: livingRoom3}, 
+        {key: 5, value: bathroom1}, 
+        {key: 6, value: bathroom2}, 
+        {key: 7, value: flowers}, 
+        {key: 8, value: diningRoom}, 
+        {key: 9, value: bedroom1}, 
+        {key: 10, value: bedroom2}, 
+        {key: 11, value: nightstand1}, 
+        {key: 12, value: nightstand2}, 
+        {key: 13, value: NYT} ];
 
     return <Images images={imageArray}/>
 }
