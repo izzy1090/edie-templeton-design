@@ -43,7 +43,7 @@ function Images ( {images} ) {
         }
     }
 
-    // In here to prevent the user from clicking out of the gallery by clicking on the iamge itself
+    // In here to prevent the user from clicking out of the gallery by clicking on the image itself
     const enlargeImage = (event) => {
         event.stopPropagation()
     }

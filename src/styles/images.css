@@ -18,7 +18,7 @@
 }
 
 .imagesContainer img {
-    width: 80%;
+    width: 50%;
     margin-bottom: 40px;
     cursor: pointer;
 }
@@ -48,7 +48,7 @@
 }
 
 .lightBox img {
-    width: 50%;
+    width: 20%;
     height: auto;
 }
 
