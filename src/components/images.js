@@ -19,7 +19,7 @@ function Images ( {images} ) {
     }
 
     const renderedGallery = <>
-        <div className='lightBox' onClick={handleCloseGallery}>
+        <div className={!isNavOpen ? 'lightBox' : 'hideLightBox'} onClick={handleCloseGallery}>
             <img src={imageToShow.value} alt={imageToShow.alt}/>
         </div>
     </>
