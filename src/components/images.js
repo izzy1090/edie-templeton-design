@@ -43,17 +43,12 @@ function Images ( {images} ) {
         }
     }
 
-    // In here to prevent the user from clicking out of the gallery by clicking on the image itself
-    const enlargeImage = (event) => {
-        event.stopPropagation()
-    }
-
     const renderedGallery = <>
         <div className={'lightBox'} onClick={handleCloseGallery}>
             <div onClick={handlePrevGalleryImage}>
                 prev
             </div>
-            <img src={imageToShow.value} alt={imageToShow.alt} onClick={enlargeImage}/>
+            <img src={imageToShow.value} alt={imageToShow.alt} onClick={(event)=>event.stopPropagation()}/>
             <div onClick={handleNextGalleryImage}>
                 forward
             </div>
