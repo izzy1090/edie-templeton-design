@@ -24,10 +24,10 @@ function Images ( {images} ) {
         for (let i = 0; i < images.length; i++){
             // handles selecting the image that's directly behind the current image
             if (images[i].key === imageToShow.key & imageToShow.key !== images[0].key){
-                setImageToShow(images[i-1])
+                setImageToShow(images[i - 1]);
             // handles the situation if the current image selected is the first in the gallery
             } else if (imageToShow.key === 0){
-                setImageToShow(images[images.length - 1])
+                setImageToShow(images[images.length - 1]);
             } 
         }
     }
@@ -48,7 +48,9 @@ function Images ( {images} ) {
             <div onClick={handlePrevGalleryImage}>
                 prev
             </div>
-            <img src={imageToShow.value} alt={imageToShow.alt} onClick={(event)=>event.stopPropagation()}/>
+            <img src={imageToShow.value} 
+                alt={imageToShow.alt} 
+                onClick={(event)=>event.stopPropagation()}/>
             <div onClick={handleNextGalleryImage}>
                 forward
             </div>
@@ -57,20 +59,31 @@ function Images ( {images} ) {
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
-        return <img src={image.value} key={image.key} width={imageWidth} onClick={()=>handleOpenGallery(image)} alt={image.alt}></img>
+        return <img src={image.value}               
+                key={image.key} 
+                width={imageWidth} 
+                onClick={()=>handleOpenGallery(image)} 
+                alt={image.alt}>
+            </img>
+
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
-        return <img src={image.value} key={image.key} width={imageWidth} onClick={()=>handleOpenGallery(image)} alt={image.alt}></img>
+        return <img src={image.value} 
+                    key={image.key} 
+                    width={imageWidth} 
+                    onClick={()=>handleOpenGallery(image)} 
+                    alt={image.alt}>
+                </img>
     })
 
     const imageSpread = <>
-        <div className={isNavOpen ? "imagesContainer" : "imagesContainer beforeHover"}>
-            <div className="imageContainerColumn1">
+        <div className={isNavOpen ? "imagesSpreadContainer" : "imagesSpreadContainer beforeHover"}>
+            <div className="imagesSpreadColumn1">
                 {imageContainerColumn1}
             </div>
-            <div className="imageContainerColumn2">
+            <div className="imagesSpreadColumn2">
                 {imageContainerColumn2}
             </div>
         </div>
