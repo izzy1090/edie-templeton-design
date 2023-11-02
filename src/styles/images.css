@@ -1,4 +1,44 @@
-.imagesSpreadContainer {
+.imageContainer {
+    position: relative;
+    width:  fit-content;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.imageMask {
+    position: absolute;
+    background-color: #3e3ed2;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.imageMask:hover {
+    animation-fill-mode: forwards;
+    animation-name: imageHoverAnimation;
+    animation-duration: 500ms;
+    opacity: 1;
+}
+
+@keyframes imageHoverAnimation {
+    0% {
+        clip-path: circle(0%);
+    }
+    100% {
+        clip-path: circle(50%);
+    }
+}
+
+/* transition: -webkit-clip-path .5s;
+transition: clip-path .5s;
+clip-path: circle(85%);
+transition: clip-path var(--quickTransition);
+transition: clip-path .5s,-webkit-clip-path .5s;
+transition: -webkit-clip-path var(--quickTransition);
+
+transition: clip-path var(--quickTransition),-webkit-clip-path var(--quickTransition); */
+
+/* .imagesSpreadContainer {
     display: flex;
     justify-content: space-between;
     padding-top: 7rem;
@@ -35,4 +75,4 @@
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     transform: translateY(-2px);
     transition: transform 200ms ease-in;
-}
+} */

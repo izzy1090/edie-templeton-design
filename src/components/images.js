@@ -7,7 +7,7 @@ function Images ( {images} ) {
     const [ isGalleryOpen, setIsGalleryOpen ] = useState(false);
     const [ imageToShow, setImageToShow ] = useState({})
 
-    const imageWidth = 800;
+    const imageWidth = 1000;
 
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
@@ -59,23 +59,24 @@ function Images ( {images} ) {
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
-        return <img src={image.value}               
-                key={image.key} 
+        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
+            <div className='imageMask'></div>
+            <img src={image.value}               
                 width={imageWidth} 
-                onClick={()=>handleOpenGallery(image)} 
                 alt={image.alt}>
             </img>
-
+        </div>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
-        return <img src={image.value} 
-                    key={image.key} 
-                    width={imageWidth} 
-                    onClick={()=>handleOpenGallery(image)} 
-                    alt={image.alt}>
-                </img>
+        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
+            {/* <div className='imageMask'></div> */}
+            <img src={image.value} 
+                width={imageWidth} 
+                alt={image.alt}>
+            </img>
+        </div>
     })
 
     const imageSpread = <>

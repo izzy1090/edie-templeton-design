@@ -6,7 +6,7 @@
     border-radius: 2rem;
     height: 20px;
     width: 20px;
-    background-color: #0D0D0E;
+    background-color: #ffcba4;
     z-index: 1000;
 }
 
@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #0D0D0E;
+    background-color: #ffcba4;
     z-index: 999;
 }
 
