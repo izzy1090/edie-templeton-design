@@ -30,21 +30,13 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
         setIsOpen(!isNavOpen);  
     }
 
-    const openMenu = 
-        <div className="menuTransitionIn">
-        <span onClick={handleClick}>
-            {invertedHamburger}
-        </span>
-            {activeMenu}
-        </div>
-
-    const closedMenu = 
-        <div className={"menuTransitionOut"} onClick={handleClick}>
-            {hamburger}
-        </div>
-
     return <>
-        { isNavOpen ? openMenu : closedMenu }
+        <div className={isNavOpen ? "menuTransitionIn" : "menuTransitionOut"}>
+        <span onClick={handleClick}>
+            {isNavOpen ? invertedHamburger : hamburger}
+        </span>
+            {isNavOpen ? activeMenu : null}
+        </div>
     </>
 }
 

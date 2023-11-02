@@ -7,7 +7,8 @@ function Images ( {images} ) {
     const [ isGalleryOpen, setIsGalleryOpen ] = useState(false);
     const [ imageToShow, setImageToShow ] = useState({})
 
-    const imageWidth = 1000;
+    const imageWidth = '1000';
+    const imageHeight = '';
 
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
@@ -63,6 +64,7 @@ function Images ( {images} ) {
             <div className='imageMask'></div>
             <img src={image.value}               
                 width={imageWidth} 
+                height={imageHeight}
                 alt={image.alt}>
             </img>
         </div>
@@ -71,17 +73,18 @@ function Images ( {images} ) {
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            {/* <div className='imageMask'></div> */}
+            <div className='imageMask'></div>
             <img src={image.value} 
                 width={imageWidth} 
+                height={imageHeight}
                 alt={image.alt}>
             </img>
         </div>
     })
 
     const imageSpread = <>
-        <div className={isNavOpen ? "imagesSpreadContainer" : "imagesSpreadContainer beforeHover"}>
-            <div className="imagesSpreadColumn1">
+        <div className={"imagesSpreadContainer"}>
+            <div className={"imagesSpreadColumn1"}>
                 {imageContainerColumn1}
             </div>
             <div className="imagesSpreadColumn2">
