@@ -1,9 +1,20 @@
 .imagesSpreadContainer {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     padding-top: 10%;
     padding-left: 5%;
     padding-right: 5%;
+}
+
+.hideImagesSpreadContainer {
+    animation: fadeImages 500ms ease-in;
+    background-color: #ffcba4;
+}
+
+@keyframes fadeImages {
+    0%{
+
+    }
 }
 
 .beforeHover img {
@@ -66,20 +77,3 @@
         clip-path: circle(100%);
     }
 } 
-
-.circleMask:hover {
-    animation-fill-mode: forwards;
-    animation-name: circleShrinkAnimation;
-    animation-duration: 800ms;
-}
-
-@keyframes circleShrinkAnimation {
-    0% {
-        clip-path: circle(100%);
-        opacity: 1;
-    }
-    100% {
-        clip-path: circle(0%);
-        opacity: 0;
-    }
-}
