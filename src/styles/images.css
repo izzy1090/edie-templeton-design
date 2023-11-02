@@ -1,57 +1,79 @@
-.imagesContainer {
+.imagesSpreadContainer {
     display: flex;
-    padding: 50px;
-    padding-left: 100px;
-    padding-right: 100px;
+    justify-content: space-around;
+    padding-top: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
-.imageContainerColumn1 {
+.hideImagesSpreadContainer {
+    animation: fadeImages 500ms ease-in;
+    background-color: #ffcba4;
+}
+
+@keyframes fadeImages {
+    0%{
+
+    }
+}
+
+.beforeHover img {
+    transform: translateY(0px);
+    transition: transform 200ms ease-in;
+}
+
+.imageContainer {
+    position: relative;
+    max-width:  fit-content;
+    max-height: fit-content;
+    cursor: pointer;
+    transform: translateY(0px);
+    transition: transform 200ms ease-in;
+    margin: 10px;
+}
+
+.imageContainer img {
+    max-width: 40vw;
+}
+
+.imageContainer:hover {
+    transform: translateY(-2px);
+    transition: transform 200ms ease-in;
+}
+
+.imagesSpreadColumn1  {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
 
-.imageContainerColumn2 {
+.imagesSpreadColumn2  {
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    margin-top: 100px;
 }
 
-.imagesContainer img {
-    width: 50%;
-    margin-bottom: 40px;
-    cursor: pointer;
-}
-
-.beforeHover img{
-    transform: translateY(0px);
-    transition: transform 200ms ease-in;
-}
-
-.imagesContainer img:hover {
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    transform: translateY(-2px);
-    transition: transform 200ms ease-in;
-}
-
-.lightBox {
-    position: fixed;
-    top: 0;
-    left: 0;
+.imageMask {
+    position: absolute;
+    background-color: #ffcba4;
     width: 100%;
-    height: 100%;  
-    background-color: rgba(196, 155, 237, 0.52);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+    height: 100%;
+    opacity: 0;
 }
 
-.lightBox img {
-    width: 20%;
-    height: auto;
+.imageMask:hover {
+    animation-fill-mode: forwards;
+    animation-name: imageHoverAnimation;
+    animation-duration: 800ms;
+    opacity: 1;
 }
 
-.hideLightBox {
-    display: none;
-}
+@keyframes imageHoverAnimation {
+    0% {
+        clip-path: circle(0%);
+    }
+    100% {
+        clip-path: circle(100%);
+    }
+} 

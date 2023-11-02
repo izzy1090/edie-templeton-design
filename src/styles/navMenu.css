@@ -1,25 +1,25 @@
 .hamburger {
     position: fixed;
     right: 0;
-    margin: 10px;
+    margin: 1rem 1.5rem;
     cursor: pointer;
     border-radius: 2rem;
     height: 20px;
     width: 20px;
-    background-color: #0D0D0E;
-    z-index: 1000;
+    background-color: #ffcba4;
+    z-index: 2;
 }
 
 .invertedHamburger {
     position: fixed;
     right: 0;
-    margin: 10px;
+    margin: 1rem 1.5rem;
     cursor: pointer;
     border-radius: 2rem;
     height: 20px;
     width: 20px;
     background-color: #F1F1EF;
-    z-index: 1000;
+    z-index: 2;
 }
 
 .activeMenu {
@@ -30,8 +30,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #0D0D0E;
-    z-index: 999;
+    background-color: #ffcba4;
+    z-index: 1;
 }
 
 .activeMenu a {
@@ -58,7 +58,6 @@
 .menuTransitionOut {
     animation-name: transitionOut;
     animation-duration: 500ms;
-
 }
 
 @keyframes transitionOut {
