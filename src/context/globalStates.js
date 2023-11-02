@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const GlobalStatesContext = createContext();
 
 function GlobalStatesProvider({ children }){
-    const [isNavOpen, setIsOpen] = useState(false);
+    const [ isNavOpen, setIsOpen ] = useState(false);
     const [ isGalleryOpen, setIsGalleryOpen ] = useState(false);
     const [ imageToShow, setImageToShow ] = useState({});
 
