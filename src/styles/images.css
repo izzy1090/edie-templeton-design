@@ -6,41 +6,6 @@
     padding-right: 5%;
 }
 
-.hideImagesSpreadContainer {
-    animation: fadeImages 500ms ease-in;
-    background-color: #ffcba4;
-}
-
-@keyframes fadeImages {
-    0%{
-
-    }
-}
-
-.beforeHover img {
-    transform: translateY(0px);
-    transition: transform 200ms ease-in;
-}
-
-.imageContainer {
-    position: relative;
-    max-width:  fit-content;
-    max-height: fit-content;
-    cursor: pointer;
-    transform: translateY(0px);
-    transition: transform 200ms ease-in;
-    margin: 10px;
-}
-
-.imageContainer img {
-    max-width: 40vw;
-}
-
-.imageContainer:hover {
-    transform: translateY(-2px);
-    transition: transform 200ms ease-in;
-}
-
 .imagesSpreadColumn1  {
     display: flex;
     align-items: flex-start;
@@ -54,26 +19,23 @@
     margin-top: 100px;
 }
 
-.imageMask {
-    position: absolute;
-    background-color: #ffcba4;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+.imageContainer {
+    max-width: fit-content;
+    max-height: fit-content;  
+    cursor: pointer;
+    margin: 10px;
 }
 
-.imageMask:hover {
-    animation-fill-mode: forwards;
-    animation-name: imageHoverAnimation;
-    animation-duration: 800ms;
-    opacity: 1;
+.imageContainer > img {
+    max-width: 40vw;
+    transform: translateY(0px);
+    clip-path: circle(100%);
+    transition: clip-path 200ms ease-in, transform 200ms ease-in;
+
 }
 
-@keyframes imageHoverAnimation {
-    0% {
-        clip-path: circle(0%);
-    }
-    100% {
-        clip-path: circle(100%);
-    }
-} 
+.imageContainer:hover > img {
+    transform: translateY(-2px);
+    clip-path: circle(35%);
+    transition: clip-path 500ms ease-in, transform 200ms ease-in;
+}
