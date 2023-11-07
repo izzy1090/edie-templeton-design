@@ -13,9 +13,26 @@
 
 .lightBox img {
     width: auto;
-    height: 95vh;
+    height: 50%;
+    animation: screenResize 300ms ease-in-out;
 }
 
-.hideLightBox {
-    display: none;
+@keyframes screenResize {
+    from {
+        opacity: 0;
+        transition: translateY(2);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.prevButton {
+    margin: .5rem;
+    cursor: pointer;
+}
+
+.nextButton {
+    margin: .5rem;
+    cursor: pointer;
 }

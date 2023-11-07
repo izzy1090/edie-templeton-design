@@ -1,8 +1,26 @@
+import { useEffect } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 
 function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
+
+    useEffect(()=>{
+        // add key handler to capture the key event
+        const keyHandler = (event) => {
+            if (event.key === "Escape"){
+                // prevent any default behavior of the key press
+                event.preventDefault()
+                setIsGalleryOpen(false)
+            }
+        }
+        // add an event listener looking for a key press and invoke the func above
+        document.addEventListener('keydown', keyHandler)
+        // make sure to "clean" up the event listener with a return 
+        return () => {
+            document.removeEventListener('keydown', keyHandler)
+        }
+    })
 
     const handleCloseGallery = () => {
         setIsGalleryOpen(false)
@@ -35,14 +53,14 @@ function Lightbox ( { images } ) {
 
     const renderedGallery = <>
         <div className={'lightBox'} onClick={handleCloseGallery}>
-            <div onClick={handlePrevGalleryImage}>
-                prev
+            <div onClick={handlePrevGalleryImage} className='prevButton'>
+                previous
             </div>
             <img src={imageToShow.value} 
                 alt={imageToShow.alt} 
                 onClick={(event)=>event.stopPropagation()}/>
-            <div onClick={handleNextGalleryImage}>
-                forward
+            <div onClick={handleNextGalleryImage} className='nextButton'>
+                next
             </div>
         </div>
     </>
