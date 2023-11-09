@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.lightBox img {
+.lightBox > img {
     width: auto;
     height: 50%;
     animation: screenResize 400ms ease-in-out;
