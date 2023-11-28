@@ -11,13 +11,25 @@
     z-index: 1000;
 }
 
-.lightBox > img {
+.closeContainer > img {
     width: auto;
-    height: 50%;
-    animation: screenResize 400ms ease-in-out;
+    height: 400px;
+    animation: lightboxEntrance 400ms ease-in-out;
 }
 
-@keyframes screenResize {
+.closeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightboxButton {
+    margin: .5rem;
+    cursor: pointer;
+}
+
+@keyframes lightboxEntrance {
     from {
         opacity: 0;
         transform:translateY(-5px);
@@ -25,18 +37,4 @@
     to {
         opacity: 1;
     }
-}
-
-.closeButton {
-
-}
-
-.prevButton {
-    margin: .5rem;
-    cursor: pointer;
-}
-
-.nextButton {
-    margin: .5rem;
-    cursor: pointer;
 }
