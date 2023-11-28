@@ -18,25 +18,30 @@
     justify-content: center;
 }
 
-.closeContainer > img {
+.innerContainer > img {
     width: auto;
     height: 400px;
-    animation: lightboxEntrance 400ms ease-in-out;
+    animation: lightboxEnter 400ms ease-in-out;
 }
 
-.closeContainer {
+.innerContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+.innerContainerTransition > img {
+    animation: lightboxEnter 400ms ease-in-out;
+}
+
 .lightboxButton {
     margin: .5rem;
     cursor: pointer;
+    animation: lightboxEnter 400ms ease-in-out;
 }
 
-@keyframes lightboxEntrance {
+@keyframes lightboxEnter {
     from {
         opacity: 0;
         transform:translateY(-5px);
