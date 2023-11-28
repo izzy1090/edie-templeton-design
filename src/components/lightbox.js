@@ -52,18 +52,20 @@ function Lightbox ( { images } ) {
     }
 
     const renderedGallery = <>
-        <div className='lightBox'>
-            <div onClick={handlePrevGalleryImage} className='lightboxButton'>
-                previous
-            </div>
-            <div className='closeContainer'>
-                <div className='lightboxButton' onClick={handleCloseGallery}>close</div>
-                <img src={imageToShow.value} 
-                    alt={imageToShow.alt} 
-                    onClick={(event)=>event.stopPropagation()}/>
-            </div>
-            <div onClick={handleNextGalleryImage} className='lightboxButton'>
-                next
+        <div className='lightbox'>
+            <div className='lightboxContainer'>
+                <div onClick={handlePrevGalleryImage} className='lightboxButton'>
+                    previous
+                </div>
+                <div className='closeContainer'>
+                    <div className='lightboxButton' onClick={handleCloseGallery}>close</div>
+                    <img src={imageToShow.value} 
+                        alt={imageToShow.alt} 
+                        onClick={(event)=>event.stopPropagation()}/>
+                </div>
+                <div onClick={handleNextGalleryImage} className='lightboxButton'>
+                    next
+                </div>
             </div>
         </div>
     </>

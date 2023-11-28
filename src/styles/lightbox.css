@@ -1,4 +1,4 @@
-.lightBox {
+.lightbox {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,6 +9,13 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
+}
+
+.lightboxContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .closeContainer > img {
