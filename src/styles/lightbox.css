@@ -31,14 +31,10 @@
     justify-content: center;
 }
 
-.innerContainerTransition > img {
-    animation: lightboxEnter 400ms ease-in-out;
-}
-
 .lightboxButton {
     margin: .5rem;
     cursor: pointer;
-    animation: lightboxEnter 400ms ease-in-out;
+    animation: lightboxEnter 550ms ease-in-out;
 }
 
 @keyframes lightboxEnter {
