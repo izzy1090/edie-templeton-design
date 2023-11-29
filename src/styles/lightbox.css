@@ -1,4 +1,4 @@
-.lightBox {
+.lightbox {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,25 +11,31 @@
     z-index: 1000;
 }
 
-.closeContainer > img {
-    width: auto;
-    height: 400px;
-    animation: lightboxEntrance 400ms ease-in-out;
+.lightboxContainer {
+    display: flex;
+    align-items: center;
 }
 
-.closeContainer {
+.innerContainer > img {
+    width: 45%;
+    height: auto;
+    animation: lightboxEnter 200ms ease-in-out;
+}
+
+.innerContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin: -250px;
 }
 
 .lightboxButton {
     margin: .5rem;
     cursor: pointer;
+    animation: lightboxEnter 550ms ease-in-out;
 }
 
-@keyframes lightboxEntrance {
+@keyframes lightboxEnter {
     from {
         opacity: 0;
         transform:translateY(-5px);

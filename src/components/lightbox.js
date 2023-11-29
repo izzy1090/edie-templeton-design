@@ -10,8 +10,14 @@ function Lightbox ( { images } ) {
         const keyHandler = (event) => {
             if (event.key === "Escape"){
                 // prevent any default behavior of the key press
-                event.preventDefault()
-                setIsGalleryOpen(false)
+                event.preventDefault();
+                setIsGalleryOpen(false);
+            } else if (event.key === "ArrowRight"){
+                event.preventDefault();
+                handleNextGalleryImage(event);
+            } else if (event.key === "ArrowLeft"){
+                event.preventDefault();
+                handlePrevGalleryImage(event);
             }
         }
         // add an event listener looking for a key press and invoke the func above
@@ -52,18 +58,22 @@ function Lightbox ( { images } ) {
     }
 
     const renderedGallery = <>
-        <div className='lightBox'>
-            <div onClick={handlePrevGalleryImage} className='lightboxButton'>
-                previous
-            </div>
-            <div className='closeContainer'>
-                <div className='lightboxButton' onClick={handleCloseGallery}>close</div>
-                <img src={imageToShow.value} 
-                    alt={imageToShow.alt} 
-                    onClick={(event)=>event.stopPropagation()}/>
-            </div>
-            <div onClick={handleNextGalleryImage} className='lightboxButton'>
-                next
+        <div className='lightbox'>
+            <div className='lightboxContainer'>
+                <div onClick={handlePrevGalleryImage} className='lightboxButton'>
+                    previous    
+                </div>
+                <div className='innerContainer'>
+                    <div className='lightboxButton' onClick={handleCloseGallery}>
+                        close
+                    </div>
+                    <img src={imageToShow.value} 
+                        alt={imageToShow.alt} 
+                        onClick={(event)=>event.stopPropagation()}/>
+                </div>
+                <div onClick={handleNextGalleryImage} className='lightboxButton'>
+                    next
+                </div>
             </div>
         </div>
     </>
