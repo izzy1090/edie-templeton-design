@@ -28,7 +28,7 @@
 }
 
 .imageContainer > img {
-    max-width: 40vw;
+    max-width: 30vw;
     transform: translateY(0px);
     clip-path: circle(100%);
     transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;

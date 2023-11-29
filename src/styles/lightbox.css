@@ -13,22 +13,20 @@
 
 .lightboxContainer {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
 }
 
 .innerContainer > img {
-    width: auto;
-    height: 400px;
-    animation: lightboxEnter 400ms ease-in-out;
+    width: 45%;
+    height: auto;
+    animation: lightboxEnter 200ms ease-in-out;
 }
 
 .innerContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin: -250px;
 }
 
 .lightboxButton {
