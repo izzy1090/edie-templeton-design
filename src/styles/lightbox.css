@@ -31,19 +31,29 @@
 .lightboxButton {
     margin: 1rem;
     cursor: pointer;
+    font-size: 1.2rem;
     animation: lightboxEnter 550ms ease-in-out;
+}
+
+.lightboxButton:hover {
+    color: #F1F1EF;
+}
+
+#closeButton {
+    position: absolute;
+    top: 2%;
 }
 
 #prevButton {
     margin-top: 3rem;
     position: absolute;
-    left: 5%;
+    left: 2%;
 }
 
 #nextButton {
     margin-top: 3rem;
     position: absolute;
-    right: 5%;
+    right: 2%;
 }
 
 @keyframes lightboxEnter {
