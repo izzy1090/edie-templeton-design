@@ -17,8 +17,8 @@
 }
 
 .innerContainer > img {
-    width: auto;
-    max-height: 80vh;
+    max-width: 70vh;
+    max-height: 70vh;
     animation: lightboxEnter 200ms ease-in-out;
 }
 
@@ -36,10 +36,14 @@
 
 #prevButton {
     margin-top: 3rem;
+    position: absolute;
+    left: 5%;
 }
 
 #nextButton {
     margin-top: 3rem;
+    position: absolute;
+    right: 5%;
 }
 
 @keyframes lightboxEnter {
