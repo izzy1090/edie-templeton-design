@@ -6,4 +6,17 @@
 
 body {
     background-color: #F1F1EF;
+    font-family: 'Poppins-Light';
 }
+
+@font-face {
+    font-family: "Poppins-Medium";
+    src: local('Poppins-Medium'), url('../assets/fonts/Poppins-Medium.ttf') format('truetype');
+   
+
+}
+
+@font-face {
+    font-family: "Poppins-Light";
+    src: local("Poppins-Light"), url('../assets/fonts/Poppins-Light.ttf') format('truetype');
+} 
