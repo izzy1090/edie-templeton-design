@@ -4,8 +4,8 @@
     margin: 1rem 1.5rem;
     cursor: pointer;
     border-radius: 2rem;
-    height: 20px;
-    width: 20px;
+    height: 1.7rem;
+    width: 1.7rem;
     background-color: #ffcba4;
     z-index: 2;
 }
@@ -16,8 +16,8 @@
     margin: 1rem 1.5rem;
     cursor: pointer;
     border-radius: 2rem;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     background-color: #F1F1EF;
     z-index: 2;
 }
@@ -38,6 +38,11 @@
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
+    font-size: 3rem;
+    color: black;
+}
+
+.activeMenu a:hover {
     color: #F1F1EF;
 }
 

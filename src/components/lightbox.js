@@ -64,7 +64,7 @@ function Lightbox ( { images } ) {
                     previous    
                 </div>
                 <div className='innerContainer'>
-                    <div className='lightboxButton' onClick={handleCloseGallery}>
+                    <div className='lightboxButton' id='closeButton' onClick={handleCloseGallery}>
                         close
                     </div>
                     <img src={imageToShow.value} 
