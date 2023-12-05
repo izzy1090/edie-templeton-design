@@ -65,3 +65,17 @@
         opacity: 1;
     }
 }
+
+.lightboxExit{
+    animation-name: lightboxExitAnimation;
+    animation-duration: 550ms;
+}
+
+@keyframes lightboxExitAnimation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
