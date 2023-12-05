@@ -16,12 +16,11 @@ function Images ( {images} ) {
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            {/* <div className='imageMask'></div> */}
             <img src={image.value}               
                 width={imageWidth} 
                 height={imageHeight}
                 alt={image.alt}
-                className='hoverAnimation'>
+                className='hoverAnimation' loading='lazy'>
             </img>
         </div>
     })
@@ -32,7 +31,7 @@ function Images ( {images} ) {
             <img src={image.value} 
                 width={imageWidth} 
                 height={imageHeight}
-                alt={image.alt}>
+                alt={image.alt} loading='lazy'>
             </img>
             
         </div>

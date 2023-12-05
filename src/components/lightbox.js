@@ -66,7 +66,7 @@ function Lightbox ( { images } ) {
     }
 
     const renderedGallery = <>
-        <div className={'lightbox'}>
+        <div className='lightbox'>
             <div className='lightboxContainer'>
                 <div onClick={handlePrevGalleryImage} className='lightboxButton' id='prevButton'>
                     previous    

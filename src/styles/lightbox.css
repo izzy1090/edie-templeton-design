@@ -67,8 +67,7 @@
 }
 
 .lightboxExit{
-    animation-name: lightboxExitAnimation;
-    animation-duration: 550ms;
+    animation: lightboxExitAnimation 500ms ease-in-out;
 }
 
 @keyframes lightboxExitAnimation {
