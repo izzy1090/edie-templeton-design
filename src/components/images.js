@@ -19,8 +19,7 @@ function Images ( {images} ) {
             <img src={image.value}               
                 width={imageWidth} 
                 height={imageHeight}
-                alt={image.alt}
-                className='hoverAnimation'>
+                alt={image.alt}>
             </img>
         </div>
     })
