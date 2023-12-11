@@ -6,7 +6,7 @@ function Images ( {images} ) {
     const { isNavOpen, setIsGalleryOpen, setImageToShow } = useGlobalStates();
 
     const imageWidth = '1000';
-    const imageHeight = '';
+    const imageHeight = 'auto';
 
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
@@ -20,7 +20,7 @@ function Images ( {images} ) {
                 width={imageWidth} 
                 height={imageHeight}
                 alt={image.alt}
-                className='hoverAnimation' loading='lazy'>
+                className='hoverAnimation'>
             </img>
         </div>
     })
@@ -31,7 +31,7 @@ function Images ( {images} ) {
             <img src={image.value} 
                 width={imageWidth} 
                 height={imageHeight}
-                alt={image.alt} loading='lazy'>
+                alt={image.alt}>
             </img>
             
         </div>
