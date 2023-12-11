@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
 
@@ -6,7 +7,7 @@ function Images ( {images} ) {
     const { isNavOpen, setIsGalleryOpen, setImageToShow } = useGlobalStates();
 
     const imageWidth = '1000';
-    const imageHeight = '';
+    const imageHeight = 'auto';
 
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
@@ -16,24 +17,21 @@ function Images ( {images} ) {
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img src={image.value}               
+            <LazyLoadImage src={image.value}               
                 width={imageWidth} 
                 height={imageHeight}
                 alt={image.alt}
-                className='hoverAnimation' loading='lazy'>
-            </img>
+                className='hoverAnimation'/>
         </div>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img src={image.value} 
+            <LazyLoadImage src={image.value} 
                 width={imageWidth} 
                 height={imageHeight}
-                alt={image.alt} loading='lazy'>
-            </img>
-            
+                alt={image.alt}/>
         </div>
     })
 
