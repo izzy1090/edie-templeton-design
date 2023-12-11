@@ -11,7 +11,7 @@ function Lightbox ( { images } ) {
             if (event.key === "Escape"){
                 // prevent any default behavior of the key press
                 event.preventDefault();
-                setIsGalleryOpen(false);
+                handleCloseGallery();
             } else if (event.key === "ArrowRight"){
                 event.preventDefault();
                 handleNextGalleryImage(event);
@@ -27,10 +27,6 @@ function Lightbox ( { images } ) {
             document.removeEventListener('keydown', keyHandler)
         }
     })
-
-    const handleCloseGallery = () => {
-        setIsGalleryOpen(false)
-    }
 
     const handlePrevGalleryImage = (event) => {
         // stopPropagation stops the event listener from bubbling and prevents the arrow 
@@ -55,6 +51,18 @@ function Lightbox ( { images } ) {
                 setImageToShow(images[0]);
             }
         }
+    }
+
+    const handleCloseGallery = () => {
+        const lightbox = document.querySelector('.lightbox')
+        lightbox.classList.add('lightboxExit')
+        
+        // animationend is an event listener that listens for the end of a CSS animation
+        lightbox.addEventListener('animationend', ()=>{
+            setIsGalleryOpen(false)
+            lightbox.style.display = 'none';
+        // {once: true} cleans up the event listener and states the event should only fire once
+        }, {once: true})
     }
 
     const renderedGallery = <>

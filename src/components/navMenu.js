@@ -10,29 +10,29 @@ function NavMenu( { hamburger, invertedHamburger, activeMenu } ){
             // sets up a click handler and passes in a click event
             const handler = (event) => {
                 // init. a var to look for the click event target's className
-                const clickedDev = event.target.className;
+                const clickedDiv = event.target.className;
                 // if the class name is the activeMenu
-                if (clickedDev === 'activeMenu'){
+                if (clickedDiv === 'activeMenu'){
                     // close the menu
                     setIsOpen(false)
                 }
             }
 
             document.addEventListener('click', handler)
-            
+
             return ()=>{
                 document.removeEventListener('click', handler)
             }
             
         }, [setIsOpen])
 
-    const handleClick = () => {
-        setIsOpen(!isNavOpen);  
+    const handleOpenCloseMenu = () => {
+        setIsOpen(!isNavOpen)
     }
 
     return <>
         <div className={isNavOpen ? "menuTransitionIn" : "menuTransitionOut"}>
-        <span onClick={handleClick}>
+        <span onClick={handleOpenCloseMenu}>
             {isNavOpen ? invertedHamburger : hamburger}
         </span>
             {isNavOpen ? activeMenu : null}
