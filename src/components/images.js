@@ -19,8 +19,7 @@ function Images ( {images} ) {
             <img src={image.value}               
                 width={imageWidth} 
                 height={imageHeight}
-                alt={image.alt}>
-            </img>
+                alt={image.alt}/>
         </div>
     })
 
@@ -30,9 +29,7 @@ function Images ( {images} ) {
             <img src={image.value} 
                 width={imageWidth} 
                 height={imageHeight}
-                alt={image.alt}>
-            </img>
-            
+                alt={image.alt}/>
         </div>
     })
 
