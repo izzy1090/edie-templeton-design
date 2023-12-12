@@ -4,7 +4,6 @@ import useGlobalStates from '../hooks/use-globalStates';
 function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
-
     useEffect(()=>{
         // add key handler to capture the key event
         const keyHandler = (event) => {
@@ -20,6 +19,7 @@ function Lightbox ( { images } ) {
                 handlePrevGalleryImage(event);
             }
         }
+
         // add an event listener looking for a key press and invoke the func above
         document.addEventListener('keydown', keyHandler)
         // make sure to "clean" up the event listener with a return 
@@ -51,6 +51,14 @@ function Lightbox ( { images } ) {
                 setImageToShow(images[0]);
             }
         }
+        
+        const nextImage = document.querySelector('.innerContainer > img')
+        nextImage.classList.add('currentImage')
+        setTimeout(()=>{
+            nextImage.classList.remove('currentImage')
+        }, 500)
+        console.log(nextImage)
+
     }
 
     const handleCloseGallery = () => {
