@@ -1,8 +1,11 @@
 import Route from './components/route';
 import NavMenuPage from "./pages/NavMenuPage";
-import ImagesPage from "./pages/ImagesPage";
+// import ImagesPage from "./pages/ImagesPage";
+import React from 'react';
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+
+const ImagesPage = React.lazy(()=> import("./pages/ImagesPage"))
 
 function App() {
   return (

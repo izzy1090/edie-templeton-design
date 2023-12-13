@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
 
