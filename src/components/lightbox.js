@@ -4,12 +4,6 @@ import useGlobalStates from '../hooks/use-globalStates';
 function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
-    // if (isGalleryOpen){
-    // const openedLightbox = document.querySelector('.innerContainer > img');
-    // openedLightbox.classList.add('lightboxEntrance');
-    // openedLightbox.addEventListener('animationend', ()=>{
-    //     openedLightbox.remove('lightboxEntrance')
-    // }, {once:true});}
 
     useEffect(()=>{
         // add key handler to capture the key event

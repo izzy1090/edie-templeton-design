@@ -1,12 +1,10 @@
+import { useEffect } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
 
 function Images ( {images} ) {
 
     const { isNavOpen, setIsGalleryOpen, setImageToShow } = useGlobalStates();
-
-    const imageWidth = '1000';
-    const imageHeight = 'auto';
 
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
@@ -17,9 +15,10 @@ function Images ( {images} ) {
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img src={image.value}               
-                width={imageWidth} 
-                height={imageHeight}
-                alt={image.alt}/>
+                alt={image.alt}
+                width={image.width} 
+                height={image.height}
+                loading={image.loading}/>
         </div>
     })
 
@@ -27,9 +26,10 @@ function Images ( {images} ) {
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img src={image.value} 
-                width={imageWidth} 
-                height={imageHeight}
-                alt={image.alt}/>
+                alt={image.alt}
+                width={image.width} 
+                height={image.height}
+                loading={image.loading}/>
         </div>
     })
 

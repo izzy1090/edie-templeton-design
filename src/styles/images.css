@@ -1,38 +1,37 @@
 .imagesSpreadContainer {
     display: flex;
-    justify-content: space-around;
     padding-top: 10%;
-    padding-left: 5%;
-    padding-right: 5%;
+    justify-content: center;
+    /* justify-content: space-around; */
+    /* padding-left: 5%;
+    padding-right: 5%; */
 }
 
 .imagesSpreadColumn1  {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
 }
 
 .imagesSpreadColumn2  {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
     margin-top: 100px;
 }
 
 .imageContainer {
     position: relative;
-    max-width: fit-content;
-    max-height: fit-content;  
     cursor: pointer;
-    margin: 10px;
+    margin: 5px;
 }
 
 .imageContainer > img {
     max-width: 30vw;
+    height: auto;
     transform: translateY(0px);
     clip-path: circle(100%);
     transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
-
 }
 
 .imageContainer:hover > img {

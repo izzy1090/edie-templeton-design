@@ -19,18 +19,18 @@ function ImagesPage () {
     const imageArray = [ 
         {key: 0, value: grammieKitchen, alt: "Edie's grandma's kitchen."}, 
         {key: 1, value: chineseCabinet, alt: 'Ornate black and gold chinese cabinet.'}, 
-        {key: 2, value: livingRoom1, alt: '72 Clermont Ave shot # 1.'}, 
-        {key: 3, value: livingRoom2, alt: '72 Clermont Ave shot # 2.'}, 
-        {key: 4, value: livingRoom3, alt: '72 Clermont Ave shot # 3.'}, 
-        {key: 5, value: bathroom1, alt: 'Bathroom shot 1.'}, 
-        {key: 6, value: bathroom2, alt: 'Bathroom shot 2.'}, 
-        {key: 7, value: flowers, alt: 'Bouquet of flowers.'}, 
-        {key: 8, value: diningRoom, alt: "Edie's parent's living room."}, 
-        {key: 9, value: bedroom1, alt: 'Dog sitting on bed in front of portrait in the background.'}, 
-        {key: 10, value: bedroom2, alt: 'Empty bedroom with chair and fur rug draped over the chair.'}, 
-        {key: 11, value: nightstand1, alt: 'Nightstand photo 1.'}, 
-        {key: 12, value: nightstand2, alt: 'Nightstand photo 2.'}, 
-        {key: 13, value: NYT, alt: 'Copy of the NYT laid out on a dining room table.'} ];
+        {key: 2, value: livingRoom1, width: 1800, height: 1200, alt: '72 Clermont Ave shot # 1.', loading: 'lazy'}, 
+        {key: 3, value: livingRoom2, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 2.', loading: 'lazy' }, 
+        {key: 4, value: livingRoom3, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 3.', loading: 'lazy'}, 
+        {key: 5, value: bathroom1, width: 1300, height: 1950, alt: 'Bathroom shot 1.', loading: 'lazy'}, 
+        {key: 6, value: bathroom2, width: 1300, height: 1950, alt: 'Bathroom shot 2.', loading: 'lazy'}, 
+        {key: 7, value: flowers, width: 1067, height: 1600, alt: 'Bouquet of flowers.', loading: 'lazy'}, 
+        {key: 8, value: diningRoom, width: 1000, height: 1500, alt: "Edie's parent's living room.", loading: 'lazy'}, 
+        {key: 9, value: bedroom1, width: 933, height: 1400, alt: 'Dog sitting on bed in front of portrait in the background.', loading: 'lazy'}, 
+        {key: 10, value: bedroom2, width: 1200, height: 1800, alt: 'Empty bedroom with chair and fur rug draped over the chair.', loading: 'lazy'}, 
+        {key: 11, value: nightstand1, width: 1067, height: 1600, alt: 'Nightstand photo 1.', loading: 'lazy'}, 
+        {key: 12, value: nightstand2, width: 1333, height: 2000,  alt: 'Nightstand photo 2.', loading: 'lazy'}, 
+        {key: 13, value: NYT, width: 1800, height: 1200, alt: 'Copy of the NYT laid out on a dining room table.', loading: 'lazy'} ];
 
     return <Images images={imageArray}/>
 }
