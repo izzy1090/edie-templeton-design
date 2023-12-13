@@ -19,7 +19,10 @@
 .innerContainer > img {
     max-width: 70vh;
     max-height: 70vh;
-    animation: lightboxEnter 300ms ease-in-out;
+}
+
+.lightboxEntrance {
+    animation: lightboxEnter 300ms ease-in-out forwards;
 }
 
 .innerContainer {
@@ -28,18 +31,35 @@
     align-items: center;
 }
 
-.currentImage {
+.nextImage {
     animation-name: nextSlide;
-    animation-duration: 500ms;
+    animation-duration: 400ms;
     animation-timing-function: ease-in-out;
-    opacity: 0;
 }
 
 @keyframes nextSlide {
     from {
-        opacity: 1;
-    } to {
+        transform: translateX(-200px);
         opacity: 0;
+    } to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.previousImage {
+    animation-name: previousSlide;
+    animation-duration: 400ms;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes previousSlide {
+    from {
+        transform: translateX(200px);
+        opacity: 0;
+    } to {
+        transform: translateX(0px);
+        opacity: 1;
     }
 }
 
