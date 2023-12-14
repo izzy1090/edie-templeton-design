@@ -11,13 +11,28 @@ function Images ( {images} ) {
         setImageToShow(image)
     }
 
-    function onIntersection(entries){
-        console.log(entries)
-    }
-
     useEffect(()=>{
-        const observer = new IntersectionObserver(onIntersection, {});
-    }, [])
+        // create an instance of an observer accepts a series of entries
+        const observer = new IntersectionObserver((entries)=>{
+            // iterate across those individual entries 
+            entries.forEach((entry)=>{
+                // If the entry is intersecting with the observer
+                if (entry.isIntersecting){
+                    // add the class if they're intersecting 
+                    entry.target.classList.add('fadeInImage')
+                }
+            })
+            // you can set a rootMargin expanding the viewport
+        }, {rootMargin: '-50px'})
+
+        const imagesToObserve = document.querySelectorAll('.imageContainer')
+        // iterate across the imageContainers to observe which ones intersect with our observer from above
+        imagesToObserve.forEach((image)=>{
+            observer.observe(image)
+        })
+        // disconnect the observer when everything is finished to clean things up
+        return () => observer.disconnect()
+    }, [])    
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
