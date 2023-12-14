@@ -20,13 +20,14 @@ function Lightbox ( { images } ) {
                 handlePrevGalleryImage(event);
             }
         }
+
         // add an event listener looking for a key press and invoke the func above
-        document.addEventListener('keydown', keyHandler)
+        document.addEventListener('keydown', keyHandler);
         // make sure to "clean" up the event listener with a return 
         return () => {
-            document.removeEventListener('keydown', keyHandler)
+            document.removeEventListener('keydown', keyHandler);
         }
-    })
+    });
 
     const handlePrevGalleryImage = (event) => {
         // stopPropagation stops the event listener from bubbling and prevents the arrow 
@@ -40,6 +41,13 @@ function Lightbox ( { images } ) {
                 setImageToShow(images[images.length - 1]);
             } 
         }
+
+        const previousImage = document.querySelector('.innerContainer > img');
+        previousImage.classList.add('previousImage');
+        previousImage.addEventListener('animationend', ()=>{
+            previousImage.classList.remove('previousImage');
+            previousImage.classList.remove('lightboxEntrance')
+        }, {once:true});
     }
 
     const handleNextGalleryImage = (event) => {
@@ -51,18 +59,25 @@ function Lightbox ( { images } ) {
                 setImageToShow(images[0]);
             }
         }
+        
+        const nextImage = document.querySelector('.innerContainer > img');
+        nextImage.classList.add('nextImage');
+        nextImage.addEventListener('animationend', ()=>{
+            nextImage.classList.remove('nextImage');
+            nextImage.classList.remove('lightboxEntrance')
+        }, {once:true});
     }
 
     const handleCloseGallery = () => {
-        const lightbox = document.querySelector('.lightbox')
-        lightbox.classList.add('lightboxExit')
+        const lightbox = document.querySelector('.lightbox');
+        lightbox.classList.add('lightboxExit');
         
         // animationend is an event listener that listens for the end of a CSS animation
         lightbox.addEventListener('animationend', ()=>{
-            setIsGalleryOpen(false)
+            setIsGalleryOpen(false);
             lightbox.style.display = 'none';
         // {once: true} cleans up the event listener and states the event should only fire once
-        }, {once: true})
+        }, {once: true});
     }
 
     const renderedGallery = <>
@@ -77,7 +92,8 @@ function Lightbox ( { images } ) {
                     </div>
                     <img src={imageToShow.value} 
                         alt={imageToShow.alt} 
-                        onClick={(event)=>event.stopPropagation()}/>
+                        onClick={(event)=>event.stopPropagation()}
+                        className='lightboxEntrance'/>
                 </div>
                 <div onClick={handleNextGalleryImage} className='lightboxButton' id='nextButton'>
                     next

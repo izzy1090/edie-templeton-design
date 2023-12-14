@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
 
@@ -5,22 +6,42 @@ function Images ( {images} ) {
 
     const { isNavOpen, setIsGalleryOpen, setImageToShow } = useGlobalStates();
 
-    const imageWidth = '1000';
-    const imageHeight = 'auto';
-
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
         setImageToShow(image)
     }
 
+    useEffect(()=>{
+        // create an instance of an observer accepts a series of entries
+        const observer = new IntersectionObserver((entries)=>{
+            // iterate across those individual entries 
+            entries.forEach((entry)=>{
+                // If the entry is intersecting with the observer
+                if (entry.isIntersecting){
+                    // add the class if they're intersecting 
+                    entry.target.classList.add('fadeInImage')
+                }
+            })
+            // you can set a rootMargin expanding the viewport
+        }, {rootMargin: '-50px'})
+
+        const imagesToObserve = document.querySelectorAll('.imageContainer')
+        // iterate across the imageContainers to observe which ones intersect with our observer from above
+        imagesToObserve.forEach((image)=>{
+            observer.observe(image)
+        })
+        // disconnect the observer when everything is finished to clean things up
+        return () => observer.disconnect()
+    }, [])    
+
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img src={image.value}               
-                width={imageWidth} 
-                height={imageHeight}
-                alt={image.alt}>
-            </img>
+                alt={image.alt}
+                width={image.width} 
+                height={image.height}
+                loading={image.loading}/>
         </div>
     })
 
@@ -28,11 +49,10 @@ function Images ( {images} ) {
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img src={image.value} 
-                width={imageWidth} 
-                height={imageHeight}
-                alt={image.alt}>
-            </img>
-            
+                alt={image.alt}
+                width={image.width} 
+                height={image.height}
+                loading={image.loading}/>
         </div>
     })
 
