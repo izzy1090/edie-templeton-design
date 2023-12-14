@@ -11,6 +11,14 @@ function Images ( {images} ) {
         setImageToShow(image)
     }
 
+    function onIntersection(entries){
+        console.log(entries)
+    }
+
+    useEffect(()=>{
+        const observer = new IntersectionObserver(onIntersection, {});
+    }, [])
+
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
