@@ -2,9 +2,6 @@
     display: flex;
     padding-top: 10%;
     justify-content: center;
-    /* justify-content: space-around; */
-    /* padding-left: 5%;
-    padding-right: 5%; */
 }
 
 .imagesSpreadColumn1  {
@@ -51,20 +48,31 @@
     .imagesSpreadContainer {
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        margin-top: 25%; 
     }
 
     .imagesSpreadColumn1  {
-        display: flex;
-        flex-direction: row;
-        overflow-y: scroll;
-        align-items: center;
+        display: block;
+        flex-direction: column;
+        margin: auto; 
     }
     
     .imagesSpreadColumn2  {
-        display: flex;
-        flex-direction: row;
-        overflow-y: scroll;
+        display: block;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .imageContainer > img {
+        max-width: 90vw;
+        height: auto;
+        transform: translateY(0px);
+        clip-path: circle(100%);
+        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+        padding-top: 5%;
+    }
+    .imageContainer:nth-last-child(-n + 1){
+        padding-bottom: 5%;
     }
 }
 

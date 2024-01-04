@@ -18,12 +18,13 @@ function Images ( {images} ) {
             entries.forEach((entry)=>{
                 // If the entry is intersecting with the observer
                 if (entry.isIntersecting){
+                    console.log(entry.target)
                     // add the class if they're intersecting 
-                    entry.target.classList.add('fadeInImage')
+                    entry.target.classList.add('fadeInImage');
+                    observer.unobserve(entry.target);
                 }
             })
-            // you can set a rootMargin expanding the viewport
-        }, {rootMargin: '-50px'})
+        }, { rootMargin: "-50px"})
 
         const imagesToObserve = document.querySelectorAll('.imageContainer')
         // iterate across the imageContainers to observe which ones intersect with our observer from above
@@ -37,22 +38,22 @@ function Images ( {images} ) {
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img src={image.value}               
+            <img loading={image.loading} 
+                src={image.value}               
                 alt={image.alt}
                 width={image.width} 
-                height={image.height}
-                loading={image.loading}/>
+                height={image.height}/>
         </div>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img src={image.value} 
+            <img loading={image.loading} 
+                src={image.value} 
                 alt={image.alt}
                 width={image.width} 
-                height={image.height}
-                loading={image.loading}/>
+                height={image.height}/>
         </div>
     })
 

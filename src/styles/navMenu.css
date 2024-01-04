@@ -1,7 +1,8 @@
 .hamburger {
-    position: fixed;
-    right: 0;
-    margin: 1rem 1.5rem;
+    position: absolute;
+    right: 3%;
+    top: 3.5%;
+    /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
     height: 1.7rem;
@@ -11,9 +12,10 @@
 }
 
 .invertedHamburger {
-    position: fixed;
-    right: 0;
-    margin: 1rem 1.5rem;
+    position: absolute;
+    right: 3%;
+    top: 3.5%;
+    /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
     height: 1.7rem;
