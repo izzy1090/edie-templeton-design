@@ -1,6 +1,6 @@
 .hamburger {
     position: absolute;
-    right: 6%;
+    right: 3%;
     top: 3.5%;
     /* margin: 2rem 1rem; */
     cursor: pointer;
@@ -13,7 +13,7 @@
 
 .invertedHamburger {
     position: absolute;
-    right: 6%;
+    right: 3%;
     top: 3.5%;
     /* margin: 2rem 1rem; */
     cursor: pointer;
