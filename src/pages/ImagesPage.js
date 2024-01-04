@@ -17,8 +17,8 @@ import NYT from '../images/NYT.jpg';
 function ImagesPage () {
 
     const imageArray = [ 
-        {key: 0, value: grammieKitchen, alt: "Edie's grandma's kitchen."}, 
-        {key: 1, value: chineseCabinet, alt: 'Ornate black and gold chinese cabinet.'}, 
+        {key: 0, value: grammieKitchen, alt: "Edie's grandma's kitchen." , loading: 'lazy'}, 
+        {key: 1, value: chineseCabinet, alt: 'Ornate black and gold chinese cabinet.', loading: 'lazy'}, 
         {key: 2, value: livingRoom1, width: 1800, height: 1200, alt: '72 Clermont Ave shot # 1.', loading: 'lazy'}, 
         {key: 3, value: livingRoom2, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 2.', loading: 'lazy' }, 
         {key: 4, value: livingRoom3, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 3.', loading: 'lazy'}, 
