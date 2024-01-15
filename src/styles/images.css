@@ -24,18 +24,20 @@
     opacity: 0;
 }
 
-.imageContainer > img {
-    max-width: 30vw;
-    height: auto;
-    transform: translateY(0px);
-    clip-path: circle(100%);
-    transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
-}
-
-.imageContainer:hover > img {
-    transform: translateY(-1.5px);
-    clip-path: circle(35%);
-    transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+@media (hover:hover){
+    .imageContainer > img {
+        max-width: 30vw;
+        height: auto;
+        transform: translateY(0px);
+        clip-path: circle(100%);
+        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+    }
+    
+    .imageContainer:hover > img {
+        transform: translateY(-1.5px);
+        clip-path: circle(35%);
+        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+    }
 }
 
 .fadeInImage {
@@ -45,6 +47,7 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
     .imagesSpreadContainer {
         display: flex;
         flex-direction: column;
