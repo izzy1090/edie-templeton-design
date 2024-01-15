@@ -88,5 +88,10 @@
 /* Large devices (laptops/desktops, 992px and up) */
 /* @media only screen and (min-width: 992px) {} */
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {} */
+/* Extra large devices (large laptops and desktops, 1300px and up) */
+@media only screen and (min-width: 1500px) {
+    .imageContainer > img {
+        max-width: 20vw;
+        height: auto;
+    }
+}

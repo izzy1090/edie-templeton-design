@@ -8,16 +8,20 @@ function Lightbox ( { images } ) {
     useEffect(()=>{
         // add key handler to capture the key event
         const keyHandler = (event) => {
-            if (event.key === "Escape"){
-                // prevent any default behavior of the key press
-                event.preventDefault();
-                handleCloseGallery();
-            } else if (event.key === "ArrowRight"){
-                event.preventDefault();
-                handleNextGalleryImage(event);
-            } else if (event.key === "ArrowLeft"){
-                event.preventDefault();
-                handlePrevGalleryImage(event);
+            if (isGalleryOpen)
+            {
+                if (event.key === "Escape")
+                {
+                    // prevent any default behavior of the key press
+                    event.preventDefault();
+                    handleCloseGallery();
+                } else if (event.key === "ArrowRight"){
+                    event.preventDefault();
+                    handleNextGalleryImage(event);
+                } else if (event.key === "ArrowLeft"){
+                    event.preventDefault();
+                    handlePrevGalleryImage(event);
+                }
             }
         }
 
