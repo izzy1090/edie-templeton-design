@@ -9,6 +9,7 @@
     width: 1.7rem;
     background-color: #ffcba4;
     z-index: 2;
+    display: none;
 }
 
 .invertedHamburger {
@@ -22,9 +23,10 @@
     width: 1.7rem;
     background-color: #F1F1EF;
     z-index: 2;
+    display: none;
 }
 
-.activeMenu {
+.mobileActiveMenu {
     height: 100%;
     width: 100%;
     display: flex;
@@ -36,7 +38,7 @@
     z-index: 1;
 }
 
-.activeMenu a {
+.mobileActiveMenu a {
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
@@ -44,8 +46,21 @@
     color: black;
 }
 
-.activeMenu a:hover {
-    color: #F1F1EF;
+.desktopMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.desktopMenu a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.desktopMenu a:hover {
+    color: #ffcba4;
 }
 
 .menuTransitionIn {
@@ -75,3 +90,30 @@
         opacity: 1;
     }
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .desktopMenu {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .invertedHamburger {
+        display: block;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Extra large devices (large laptops and desktops, 1000px and up) */
+@media only screen and (min-width: 1000px) {}
+
+/* Extra large devices (large laptops and desktops, 1500px and up) */
+@media only screen and (min-width: 1500px) {}
