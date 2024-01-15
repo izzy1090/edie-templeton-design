@@ -62,6 +62,7 @@ function Lightbox ( { images } ) {
         
         const nextImage = document.querySelector('.innerContainer > img');
         nextImage.classList.add('nextImage');
+        
         nextImage.addEventListener('animationend', ()=>{
             nextImage.classList.remove('nextImage');
             nextImage.classList.remove('lightboxEntrance')
