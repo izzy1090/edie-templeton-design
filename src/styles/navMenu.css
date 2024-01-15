@@ -50,13 +50,31 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin: 10px;
+    margin: 20px;
 }
 
 .desktopMenu a {
     text-decoration: none;
     font-size: 1.5rem;
     color: black;
+    position: relative; /* Ensure proper positioning of ::after pseudo-element */
+}
+
+.desktopMenu a::after {
+    content: ""; /* Add content to the ::after pseudo-element */
+    display: block; /* Make it a block-level element */
+    width: 100%; /* Set initial width to cover the entire link */
+    height: 2px; /* Set the desired height of the underline */
+    background-color: #ffcba4; /* Set the desired color of the underline */
+    opacity: 0; /* Initial opacity */
+    transform: scaleX(0); /* Initial scale transformation */
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition property */
+}
+
+.desktopMenu a:hover::after, .desktopMenu a:focus::after {
+    transform: scaleX(1); /* Scale to full width on hover or focus */
+    opacity: 1; /* Show the underline */
 }
 
 .desktopMenu a:hover {
