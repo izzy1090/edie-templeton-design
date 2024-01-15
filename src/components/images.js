@@ -39,7 +39,7 @@ function Images ( {images} ) {
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img 
-                src={image.value}               
+                src={image.compressedImage}               
                 alt={image.alt}
                 width={image.width} 
                 height={image.height}/>
@@ -50,7 +50,7 @@ function Images ( {images} ) {
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img 
-                src={image.value} 
+                src={image.compressedImage} 
                 alt={image.alt}
                 width={image.width} 
                 height={image.height}/>

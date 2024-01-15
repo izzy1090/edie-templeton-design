@@ -91,7 +91,7 @@ function Lightbox ( { images } ) {
                     <div className='lightboxButton' id='closeButton' onClick={handleCloseGallery}>
                         close
                     </div>
-                    <img src={imageToShow.value} 
+                    <img src={imageToShow.highResImage} 
                         alt={imageToShow.alt} 
                         onClick={(event)=>event.stopPropagation()}
                         className='lightboxEntrance'/>
