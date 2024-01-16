@@ -1,7 +1,7 @@
 .imagesSpreadContainer {
     display: flex;
-    padding-top: 10%;
     justify-content: center;
+    margin-top: 5%;
 }
 
 .imagesSpreadColumn1  {
@@ -24,27 +24,31 @@
     opacity: 0;
 }
 
-.imageContainer > img {
-    max-width: 30vw;
-    height: auto;
-    transform: translateY(0px);
-    clip-path: circle(100%);
-    transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
-}
-
-.imageContainer:hover > img {
-    transform: translateY(-1.5px);
-    clip-path: circle(35%);
-    transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+/* This media breakpoint targets screens with hover capabilities */
+@media (hover:hover){
+    .imageContainer > img {
+        max-width: 30vw;
+        height: auto;
+        transform: translateY(0px);
+        clip-path: circle(100%);
+        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+    }
+    
+    .imageContainer:hover > img {
+        transform: translateY(-1.5px);
+        clip-path: circle(35%);
+        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+    }
 }
 
 .fadeInImage {
-    transition: opacity 600ms;
+    transition: opacity 1000ms;
     opacity: 1;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
     .imagesSpreadContainer {
         display: flex;
         flex-direction: column;
@@ -82,8 +86,18 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {}
 
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) {} */
+/* Extra large devices (large laptops and desktops, 1000px and up) */
+@media only screen and (min-width: 1000px) {
+    .imageContainer > img {
+        max-width: 25vw;
+        height: auto;
+    }
+}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {} */
+/* Extra large devices (large laptops and desktops, 1500px and up) */
+@media only screen and (min-width: 1500px) {
+    .imageContainer > img {
+        max-width: 20vw;
+        height: auto;
+    }
+}

@@ -18,18 +18,17 @@ function Images ( {images} ) {
             entries.forEach((entry)=>{
                 // If the entry is intersecting with the observer
                 if (entry.isIntersecting){
-                    console.log(entry.target)
                     // add the class if they're intersecting 
                     entry.target.classList.add('fadeInImage');
                     observer.unobserve(entry.target);
                 }
             })
-        }, { rootMargin: "-50px"})
+        }, { rootMargin: "-100px"})
 
         const imagesToObserve = document.querySelectorAll('.imageContainer')
         // iterate across the imageContainers to observe which ones intersect with our observer from above
         imagesToObserve.forEach((image)=>{
-            observer.observe(image)
+            observer.observe(image);
         })
         // disconnect the observer when everything is finished to clean things up
         return () => observer.disconnect()
@@ -38,8 +37,8 @@ function Images ( {images} ) {
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img loading={image.loading} 
-                src={image.value}               
+            <img 
+                src={image.compressedImage}               
                 alt={image.alt}
                 width={image.width} 
                 height={image.height}/>
@@ -49,8 +48,8 @@ function Images ( {images} ) {
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img loading={image.loading} 
-                src={image.value} 
+            <img 
+                src={image.compressedImage} 
                 alt={image.alt}
                 width={image.width} 
                 height={image.height}/>

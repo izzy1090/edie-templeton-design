@@ -1,7 +1,7 @@
 .hamburger {
     position: absolute;
     right: 3%;
-    top: 3.5%;
+    top: 2%;
     /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
@@ -9,12 +9,13 @@
     width: 1.7rem;
     background-color: #ffcba4;
     z-index: 2;
+    display: none;
 }
 
 .invertedHamburger {
     position: absolute;
     right: 3%;
-    top: 3.5%;
+    top: 2%;
     /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
@@ -22,9 +23,10 @@
     width: 1.7rem;
     background-color: #F1F1EF;
     z-index: 2;
+    display: none;
 }
 
-.activeMenu {
+.mobileActiveMenu {
     height: 100%;
     width: 100%;
     display: flex;
@@ -36,16 +38,19 @@
     z-index: 1;
 }
 
-.activeMenu a {
+.mobileActiveMenu div {
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2rem;
     color: black;
 }
 
-.activeMenu a:hover {
-    color: #F1F1EF;
+/* This media breakpoint targets screens with hover capabilities */
+@media (hover:hover){
+    .mobileActiveMenu div:hover {
+        color: #F1F1EF;
+    }
 }
 
 .menuTransitionIn {
@@ -75,3 +80,97 @@
         opacity: 1;
     }
 }
+
+.desktopMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 20px;
+    opacity: 0;
+}
+
+.desktopMenu div {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.704);
+    position: relative; /* Ensure proper positioning of ::after pseudo-element */
+    cursor: pointer;
+}
+
+.desktopMenu div::after {
+    content: ""; /* Add content to the ::after pseudo-element */
+    display: block; /* Make it a block-level element */
+    width: 100%; /* Set initial width to cover the entire link */
+    height: 2px; /* Set the desired height of the underline */
+    background-color: #ffcba4; /* Set the desired color of the underline */
+    opacity: 0; /* Initial opacity */
+    transform: scaleX(0); /* Initial scale transformation */
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition property */
+}
+
+.desktopMenu div:hover::after, .desktopMenu div:focus::after {
+    transform: scaleX(1); /* Scale to full width on hover or focus */
+    opacity: 1; /* Show the underline */
+}
+
+.desktopMenu div:hover {
+    color: #ffcba4;
+}
+
+.menuPageIntro {
+    animation: menuPageIntroAnim 500ms ease-in-out;
+    opacity: 1;
+}
+
+@keyframes menuPageIntroAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menuPageExit {
+    animation: menuPageExitAnim 500ms ease-in-out forwards;
+}
+
+@keyframes menuPageExitAnim {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .desktopMenu {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .invertedHamburger {
+        display: block;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Extra large devices (large laptops and desktops, 1000px and up) */
+@media only screen and (min-width: 1000px) {}
+
+/* Extra large devices (large laptops and desktops, 1500px and up) */
+@media only screen and (min-width: 1500px) {}

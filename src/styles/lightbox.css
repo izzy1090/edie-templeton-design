@@ -22,7 +22,7 @@
 }
 
 .lightboxEntrance {
-    animation: lightboxIntro 300ms ease-in-out forwards;
+    animation: lightboxIntroAnim 300ms ease-in-out forwards;
 }
 
 .innerContainer {
@@ -32,42 +32,64 @@
 }
 
 .nextImage {
-    animation-name: nextSlide;
+    animation-name: nextImageAnim;
     animation-duration: 500ms;
     animation-timing-function: ease-in-out;
 }
 
-@keyframes nextSlide {
+@keyframes nextImageAnim {
     from {
-        transform: translateX(-200px);
+        transform: translateX(100px);
         opacity: 0;
     } to {
         transform: translateX(0px);
         opacity: 1;
     }
+}
+
+#nextButton {
+    margin-top: 3rem;
+    position: absolute;
+    right: 2%;
 }
 
 .previousImage {
-    animation-name: previousSlide;
+    animation-name: previousImageAnim;
     animation-duration: 500ms;
     animation-timing-function: ease-in-out;
 }
 
-@keyframes previousSlide {
+@keyframes previousImageAnim {
     from {
-        transform: translateX(200px);
+        transform: translateX(-100px);
         opacity: 0;
     } to {
         transform: translateX(0px);
         opacity: 1;
     }
+}
+
+#prevButton {
+    margin-top: 3rem;
+    position: absolute;
+    left: 2%;
 }
 
 .lightboxButton {
     margin: 1rem;
     cursor: pointer;
     font-size: 1.2rem;
-    animation: lightboxIntro 550ms ease-in-out;
+    animation: lightboxIntroAnim 550ms ease-in-out;
+}
+
+@keyframes lightboxIntroAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .lightboxButton:hover {
@@ -80,45 +102,14 @@
 }
 
 #closeButton:active {
-    transform: translateY(2px);
-}
-
-#prevButton {
-    margin-top: 3rem;
-    position: absolute;
-    left: 2%;
-    
-}
-
-#prevButton:active {
-    transform: translateY(2px);
-}
-
-#nextButton {
-    margin-top: 3rem;
-    position: absolute;
-    right: 2%;
-}
-
-#nextButton:active{
-    transform: translateY(2px);
-}
-
-@keyframes lightboxIntro {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-    }
+    transform: translateY(1px);
 }
 
 .lightboxExit{
-    animation: lightboxExit 500ms ease-in-out;
+    animation: lightboxExitAnim 500ms ease-in-out;
 }
 
-@keyframes lightboxExit {
+@keyframes lightboxExitAnim {
     from {
         opacity: 1;
     }
@@ -126,3 +117,34 @@
         opacity: 0;
     }
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #nextButton {
+        margin-top: 1rem;
+        position: absolute;
+        right: 0%;
+        padding: 10%;
+        bottom: 5%;
+    }
+
+    #prevButton {
+        margin-top: 1rem;
+        position: absolute;
+        left: 0%;
+        padding: 10%;
+        bottom: 5%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {} */

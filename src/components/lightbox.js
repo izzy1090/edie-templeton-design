@@ -8,16 +8,20 @@ function Lightbox ( { images } ) {
     useEffect(()=>{
         // add key handler to capture the key event
         const keyHandler = (event) => {
-            if (event.key === "Escape"){
-                // prevent any default behavior of the key press
-                event.preventDefault();
-                handleCloseGallery();
-            } else if (event.key === "ArrowRight"){
-                event.preventDefault();
-                handleNextGalleryImage(event);
-            } else if (event.key === "ArrowLeft"){
-                event.preventDefault();
-                handlePrevGalleryImage(event);
+            if (isGalleryOpen)
+            {
+                if (event.key === "Escape")
+                {
+                    // prevent any default behavior of the key press
+                    event.preventDefault();
+                    handleCloseGallery();
+                } else if (event.key === "ArrowRight"){
+                    event.preventDefault();
+                    handleNextGalleryImage(event);
+                } else if (event.key === "ArrowLeft"){
+                    event.preventDefault();
+                    handlePrevGalleryImage(event);
+                }
             }
         }
 
@@ -62,6 +66,7 @@ function Lightbox ( { images } ) {
         
         const nextImage = document.querySelector('.innerContainer > img');
         nextImage.classList.add('nextImage');
+        
         nextImage.addEventListener('animationend', ()=>{
             nextImage.classList.remove('nextImage');
             nextImage.classList.remove('lightboxEntrance')
@@ -90,7 +95,7 @@ function Lightbox ( { images } ) {
                     <div className='lightboxButton' id='closeButton' onClick={handleCloseGallery}>
                         close
                     </div>
-                    <img src={imageToShow.value} 
+                    <img src={imageToShow.highResImage} 
                         alt={imageToShow.alt} 
                         onClick={(event)=>event.stopPropagation()}
                         className='lightboxEntrance'/>

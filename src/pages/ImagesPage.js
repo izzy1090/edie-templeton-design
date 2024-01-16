@@ -1,36 +1,55 @@
 import Images from '../components/images';
-import grammieKitchen from '../images/grammies-kitchen.jpg';
-import chineseCabinet from '../images/chinese-cabinet.jpg';
-import livingRoom1 from '../images/living-room1.jpg';
-import livingRoom2 from '../images/living-room2.jpg';
-import livingRoom3 from '../images/living-room3.jpg';
-import bathroom1 from '../images/bathroom1.jpg';
-import bathroom2 from '../images/bathroom2.jpg';
-import flowers from '../images/flowers.jpg';
-import diningRoom from '../images/dining-room.jpg';
-import bedroom1 from '../images/bedroom1.jpg';
-import bedroom2 from '../images/bedroom2.jpg';
-import nightstand1 from '../images/nightstand1.jpg';
-import nightstand2 from '../images/nightstand2.jpg';
-import NYT from '../images/NYT.jpg';
+
+// High res images
+import grammieKitchen from '../images/gallery/grammies-kitchen.jpg';
+import chineseCabinet from '../images/gallery/chinese-cabinet.jpg';
+import livingRoom1 from '../images/gallery/living-room1.jpg';
+import livingRoom2 from '../images/gallery/living-room2.jpg';
+import livingRoom3 from '../images/gallery/living-room3.jpg';
+import bathroom1 from '../images/gallery/bathroom1.jpg';
+import bathroom2 from '../images/gallery/bathroom2.jpg';
+import flowers from '../images/gallery/flowers.jpg';
+import diningRoom from '../images/gallery/dining-room.jpg';
+import bedroom1 from '../images/gallery/bedroom1.jpg';
+import bedroom2 from '../images/gallery/bedroom2.jpg';
+import nightstand1 from '../images/gallery/nightstand1.jpg';
+import nightstand2 from '../images/gallery/nightstand2.jpg';
+import NYT from '../images/gallery/NYT.jpg';
+
+// Compressed images
+import grammieKitchenCompressed from '../images/gallery/grammies-kitchen.webp';
+import chineseCabinetCompressed from '../images/gallery/chinese-cabinet.webp';
+import livingRoom1Compressed from '../images/gallery/living-room1.webp';
+import livingRoom2Compressed from '../images/gallery/living-room2.webp';
+import livingRoom3Compressed from '../images/gallery/living-room3.webp';
+import bathroom1Compressed from '../images/gallery/bathroom1.webp';
+import bathroom2Compressed from '../images/gallery/bathroom2.webp';
+import flowersCompressed from '../images/gallery/flowers.webp';
+import diningRoomCompressed from '../images/gallery/dining-room.webp';
+import bedroom1Compressed from '../images/gallery/bedroom1.webp';
+import bedroom2Compressed from '../images/gallery/bedroom2.webp';
+import nightstand1Compressed from '../images/gallery/nightstand1.webp';
+import nightstand2Compressed from '../images/gallery/nightstand2.webp';
+import NYTCompressed from '../images/gallery/NYT.webp';
 
 function ImagesPage () {
 
     const imageArray = [ 
-        {key: 0, value: grammieKitchen, alt: "Edie's grandma's kitchen." , loading: 'lazy'}, 
-        {key: 1, value: chineseCabinet, alt: 'Ornate black and gold chinese cabinet.', loading: 'lazy'}, 
-        {key: 2, value: livingRoom1, width: 1800, height: 1200, alt: '72 Clermont Ave shot # 1.', loading: 'lazy'}, 
-        {key: 3, value: livingRoom2, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 2.', loading: 'lazy' }, 
-        {key: 4, value: livingRoom3, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 3.', loading: 'lazy'}, 
-        {key: 5, value: bathroom1, width: 1300, height: 1950, alt: 'Bathroom shot 1.', loading: 'lazy'}, 
-        {key: 6, value: bathroom2, width: 1300, height: 1950, alt: 'Bathroom shot 2.', loading: 'lazy'}, 
-        {key: 7, value: flowers, width: 1067, height: 1600, alt: 'Bouquet of flowers.', loading: 'lazy'}, 
-        {key: 8, value: diningRoom, width: 1000, height: 1500, alt: "Edie's parent's living room.", loading: 'lazy'}, 
-        {key: 9, value: bedroom1, width: 933, height: 1400, alt: 'Dog sitting on bed in front of portrait in the background.', loading: 'lazy'}, 
-        {key: 10, value: bedroom2, width: 1200, height: 1800, alt: 'Empty bedroom with chair and fur rug draped over the chair.', loading: 'lazy'}, 
-        {key: 11, value: nightstand1, width: 1067, height: 1600, alt: 'Nightstand photo 1.', loading: 'lazy'}, 
-        {key: 12, value: nightstand2, width: 1333, height: 2000,  alt: 'Nightstand photo 2.', loading: 'lazy'}, 
-        {key: 13, value: NYT, width: 1800, height: 1200, alt: 'Copy of the NYT laid out on a dining room table.', loading: 'lazy'} ];
+        {key: 0, highResImage: grammieKitchen, compressedImage: grammieKitchenCompressed, alt: "Edie's grandma's kitchen." }, 
+        {key: 1, highResImage: chineseCabinet, compressedImage: chineseCabinetCompressed, alt: 'Ornate black and gold chinese cabinet.'}, 
+        {key: 2, highResImage: livingRoom1, compressedImage: livingRoom1Compressed, width: 1800, height: 1200, alt: '72 Clermont Ave shot # 1.'}, 
+        {key: 3, highResImage: livingRoom2, compressedImage: livingRoom2Compressed, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 2.'}, 
+        {key: 4, highResImage: livingRoom3, compressedImage: livingRoom3Compressed, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 3.'}, 
+        {key: 5, highResImage: bathroom1, compressedImage: bathroom1Compressed, width: 1300, height: 1950, alt: 'Bathroom shot 1.'}, 
+        {key: 6, highResImage: bathroom2, compressedImage: bathroom2Compressed, width: 1300, height: 1950, alt: 'Bathroom shot 2.'}, 
+        {key: 7, highResImage: flowers, compressedImage: flowersCompressed, width: 1067, height: 1600, alt: 'Bouquet of flowers.'}, 
+        {key: 8, highResImage: diningRoom, compressedImage: diningRoomCompressed, width: 1000, height: 1500, alt: "Edie's parent's living room."}, 
+        {key: 9, highResImage: bedroom1, compressedImage: bedroom1Compressed, width: 933, height: 1400, alt: 'Dog sitting on bed in front of portrait in the background.'}, 
+        {key: 10, highResImage: bedroom2, compressedImage: bedroom2Compressed, width: 1200, height: 1800, alt: 'Empty bedroom with chair and fur rug draped over the chair.'}, 
+        {key: 11, highResImage: nightstand1, compressedImage: nightstand1Compressed, width: 1067, height: 1600, alt: 'Nightstand photo 1.'}, 
+        {key: 12, highResImage: nightstand2, compressedImage: nightstand2Compressed, width: 1333, height: 2000,  alt: 'Nightstand photo 2.'}, 
+        {key: 13, highResImage: NYT, compressedImage: NYTCompressed, width: 1800, height: 1200, alt: 'Copy of the NYT laid out on a dining room table.'} 
+    ]
 
     return <Images images={imageArray}/>
 }

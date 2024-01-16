@@ -12,8 +12,6 @@ body {
 @font-face {
     font-family: "Poppins-Medium";
     src: local('Poppins-Medium'), url('../assets/fonts/Poppins-Medium.ttf') format('truetype');
-   
-
 }
 
 @font-face {
