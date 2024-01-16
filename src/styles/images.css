@@ -24,6 +24,7 @@
     opacity: 0;
 }
 
+/* This media breakpoint targets screens with hover capabilities */
 @media (hover:hover){
     .imageContainer > img {
         max-width: 30vw;

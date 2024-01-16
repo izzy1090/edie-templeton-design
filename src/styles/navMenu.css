@@ -42,8 +42,15 @@
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2rem;
     color: black;
+}
+
+/* This media breakpoint targets screens with hover capabilities */
+@media (hover:hover){
+    .mobileActiveMenu a:hover {
+        color: #F1F1EF;
+    }
 }
 
 .desktopMenu {
@@ -55,7 +62,7 @@
 
 .desktopMenu a {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: rgba(0, 0, 0, 0.704);
     position: relative; /* Ensure proper positioning of ::after pseudo-element */
 }
