@@ -9,7 +9,7 @@ function App() {
   <>
     <Route path="/">
       <NavMenuPage/>
-        <ImagesPage/>
+      <ImagesPage/>
     </Route>
     <Route path="/about">
       <NavMenuPage/>

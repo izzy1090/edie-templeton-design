@@ -38,7 +38,7 @@
     z-index: 1;
 }
 
-.mobileActiveMenu a {
+.mobileActiveMenu div {
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
@@ -48,44 +48,9 @@
 
 /* This media breakpoint targets screens with hover capabilities */
 @media (hover:hover){
-    .mobileActiveMenu a:hover {
+    .mobileActiveMenu div:hover {
         color: #F1F1EF;
     }
-}
-
-.desktopMenu {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin: 20px;
-}
-
-.desktopMenu a {
-    text-decoration: none;
-    font-size: 1.3rem;
-    color: rgba(0, 0, 0, 0.704);
-    position: relative; /* Ensure proper positioning of ::after pseudo-element */
-}
-
-.desktopMenu a::after {
-    content: ""; /* Add content to the ::after pseudo-element */
-    display: block; /* Make it a block-level element */
-    width: 100%; /* Set initial width to cover the entire link */
-    height: 2px; /* Set the desired height of the underline */
-    background-color: #ffcba4; /* Set the desired color of the underline */
-    opacity: 0; /* Initial opacity */
-    transform: scaleX(0); /* Initial scale transformation */
-    transform-origin: center;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition property */
-}
-
-.desktopMenu a:hover::after, .desktopMenu a:focus::after {
-    transform: scaleX(1); /* Scale to full width on hover or focus */
-    opacity: 1; /* Show the underline */
-}
-
-.desktopMenu a:hover {
-    color: #ffcba4;
 }
 
 .menuTransitionIn {
@@ -113,6 +78,73 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+.desktopMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 20px;
+    opacity: 0;
+}
+
+.desktopMenu div {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.704);
+    position: relative; /* Ensure proper positioning of ::after pseudo-element */
+    cursor: pointer;
+}
+
+.desktopMenu div::after {
+    content: ""; /* Add content to the ::after pseudo-element */
+    display: block; /* Make it a block-level element */
+    width: 100%; /* Set initial width to cover the entire link */
+    height: 2px; /* Set the desired height of the underline */
+    background-color: #ffcba4; /* Set the desired color of the underline */
+    opacity: 0; /* Initial opacity */
+    transform: scaleX(0); /* Initial scale transformation */
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition property */
+}
+
+.desktopMenu div:hover::after, .desktopMenu div:focus::after {
+    transform: scaleX(1); /* Scale to full width on hover or focus */
+    opacity: 1; /* Show the underline */
+}
+
+.desktopMenu div:hover {
+    color: #ffcba4;
+}
+
+.menuPageIntro {
+    animation: menuPageIntroAnim 500ms ease-in-out;
+    opacity: 1;
+}
+
+@keyframes menuPageIntroAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menuPageExit {
+    animation: menuPageExitAnim 500ms ease-in-out forwards;
+}
+
+@keyframes menuPageExitAnim {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(5px);
     }
 }
 

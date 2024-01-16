@@ -5,18 +5,32 @@ function NavMenu( { menuItems } ){
 
     const { isNavOpen, setIsOpen } = useGlobalStates();
 
+    const desktopLinkAnimation = (destination) => {
+        const pageElements = document.querySelector('body')
+        pageElements.classList.add('menuPageExit');
+        pageElements.addEventListener('animationend', ()=>{
+            window.location.href = destination;
+        })
+    }
+
     const hamburger = <div className="hamburger"></div>
     const invertedHamburger = <div className="invertedHamburger"></div>
 
+    window.addEventListener('load', ()=>{
+        const menuElements = document.querySelector('.desktopMenu');
+        menuElements.classList.add('menuPageIntro');
+    })
+
     // useEffect so the web page is always looking for a click event
     useEffect(()=> {
-        if (isNavOpen){
+        if (isNavOpen)
+        {
             // sets up a click handler and passes in a click event
             const handler = (event) => {
                 // init. a var to look for the click event target's className
                 const clickedDiv = event.target.className;
-                // if the class name is the activeMenu
-                if (clickedDiv === 'activeMenu' || event.key === 'Escape'){
+                // if the class name is the mobileActiveMenu
+                if (clickedDiv === 'mobileActiveMenu' || event.key === 'Escape'){
                     // close the menu
                     setIsOpen(false);
                 } 
@@ -36,15 +50,17 @@ function NavMenu( { menuItems } ){
         setIsOpen(!isNavOpen)
     }
 
+    // TODO: Need to do a link animation specific to mobile
     const mobileActiveMenu = menuItems.map((menuItem)=>{
         return <div key={menuItem.key}>
-            <a href={menuItem.path}>{menuItem.value}</a>
+            {menuItem.value}
         </div>
     })
 
     const renderedMenuItems = menuItems.map((menuItem)=>{
-        return <div key={menuItem.key} style={{padding: '10px'}}>
-            <a href={menuItem.path}>{menuItem.value}</a>
+        return <div key={menuItem.key} style={{padding: '10px'}} 
+            onClick={()=>desktopLinkAnimation(menuItem.path)}>
+                {menuItem.value}
         </div>
     })
 
