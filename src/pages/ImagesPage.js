@@ -48,7 +48,8 @@ function ImagesPage () {
         {key: 10, highResImage: bedroom2, compressedImage: bedroom2Compressed, width: 1200, height: 1800, alt: 'Empty bedroom with chair and fur rug draped over the chair.'}, 
         {key: 11, highResImage: nightstand1, compressedImage: nightstand1Compressed, width: 1067, height: 1600, alt: 'Nightstand photo 1.'}, 
         {key: 12, highResImage: nightstand2, compressedImage: nightstand2Compressed, width: 1333, height: 2000,  alt: 'Nightstand photo 2.'}, 
-        {key: 13, highResImage: NYT, compressedImage: NYTCompressed, width: 1800, height: 1200, alt: 'Copy of the NYT laid out on a dining room table.'} ];
+        {key: 13, highResImage: NYT, compressedImage: NYTCompressed, width: 1800, height: 1200, alt: 'Copy of the NYT laid out on a dining room table.'} 
+    ]
 
     return <Images images={imageArray}/>
 }

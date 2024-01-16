@@ -18,18 +18,17 @@ function Images ( {images} ) {
             entries.forEach((entry)=>{
                 // If the entry is intersecting with the observer
                 if (entry.isIntersecting){
-                    console.log(entry.target)
                     // add the class if they're intersecting 
                     entry.target.classList.add('fadeInImage');
                     observer.unobserve(entry.target);
                 }
             })
-        }, { rootMargin: "-50px"})
+        }, { rootMargin: "-100px"})
 
         const imagesToObserve = document.querySelectorAll('.imageContainer')
         // iterate across the imageContainers to observe which ones intersect with our observer from above
         imagesToObserve.forEach((image)=>{
-            observer.observe(image)
+            observer.observe(image);
         })
         // disconnect the observer when everything is finished to clean things up
         return () => observer.disconnect()

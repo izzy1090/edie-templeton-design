@@ -1,7 +1,7 @@
 .imagesSpreadContainer {
     display: flex;
-    padding-top: 10%;
     justify-content: center;
+    margin-top: 5%;
 }
 
 .imagesSpreadColumn1  {
@@ -41,7 +41,7 @@
 }
 
 .fadeInImage {
-    transition: opacity 600ms;
+    transition: opacity 1000ms;
     opacity: 1;
 }
 
@@ -87,10 +87,6 @@
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
 @media only screen and (min-width: 1000px) {
-    .imagesSpreadContainer {
-        padding-top: 8%;
-    }
-
     .imageContainer > img {
         max-width: 25vw;
         height: auto;
@@ -99,10 +95,6 @@
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {
-    .imagesSpreadContainer {
-        padding-top: 6%;
-    }
-
     .imageContainer > img {
         max-width: 20vw;
         height: auto;
