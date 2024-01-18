@@ -5,24 +5,14 @@ function NavMenu( { menuItems } ){
 
     const { isNavOpen, setIsOpen } = useGlobalStates();
 
-    const desktopLinkAnimation = (destination) => {
-        const pageElements = document.querySelector('body')
-        pageElements.classList.add('menuPageExit');
-        pageElements.addEventListener('animationend', ()=>{
-            window.location.href = destination;
-        })
-    }
+    const hamburger = <div className="hamburgerMenu"></div>
+    const invertedHamburger = <div className="invertedHamburgerMenu"></div>
 
-    const hamburger = <div className="hamburger"></div>
-    const invertedHamburger = <div className="invertedHamburger"></div>
-
-    window.addEventListener('load', ()=>{
-        const menuElements = document.querySelector('.desktopMenu');
-        menuElements.classList.add('menuPageIntro');
-    })
-
-    // useEffect so the web page is always looking for a click event
     useEffect(()=> {
+         
+        const menuElements = document.querySelector('.desktopMenu');
+        menuElements.classList.add('desktopMenuIntro');
+
         if (isNavOpen)
         {
             // sets up a click handler and passes in a click event
@@ -30,7 +20,7 @@ function NavMenu( { menuItems } ){
                 // init. a var to look for the click event target's className
                 const clickedDiv = event.target.className;
                 // if the class name is the mobileActiveMenu
-                if (clickedDiv === 'mobileActiveMenu' || event.key === 'Escape'){
+                if (clickedDiv === 'mobileMenu' || event.key === 'Escape'){
                     // close the menu
                     setIsOpen(false);
                 } 
@@ -50,26 +40,48 @@ function NavMenu( { menuItems } ){
         setIsOpen(!isNavOpen)
     }
 
-    // TODO: Need to do a link animation specific to mobile
+    const mobileLinkAnim = (destination) => {
+        const mobileMenuItems = document.querySelectorAll('.mobileMenu div');
+        mobileMenuItems.forEach((item, i)=>{
+            item.classList.add('mobileMenuLink');
+            item.addEventListener('animationend', ()=>{
+                if (i === mobileMenuItems.length - 1){
+                    item.style.opacity = 0;
+                    const background = document.querySelector('.mobileMenu');
+                    background.style.opacity = 0;
+                    window.location.href = destination;
+                }
+            })
+        })
+    }   
+
     const mobileActiveMenu = menuItems.map((menuItem)=>{
-        return <div key={menuItem.key}>
+        return <div key={menuItem.key} onClick={()=> mobileLinkAnim(menuItem.path)}>
             {menuItem.value}
         </div>
     })
 
+    const desktopLinkAnim = (destination) => {
+        const pageElements = document.querySelector('body');
+        pageElements.classList.add('desktopMenuLink');
+        pageElements.addEventListener('animationend', ()=>{
+            window.location.href = destination;
+        })
+    }
+
     const renderedMenuItems = menuItems.map((menuItem)=>{
         return <div key={menuItem.key} style={{padding: '10px'}} 
-            onClick={()=>desktopLinkAnimation(menuItem.path)}>
+            onClick={()=>desktopLinkAnim(menuItem.path)}>
                 {menuItem.value}
         </div>
     })
 
     return <>
-        <div className={isNavOpen ? "menuTransitionIn" : "menuTransitionOut"}>
+        <div className={isNavOpen ? "mobileMenuIntro" : "mobileMenuExit"}>
         <span onClick={handleOpenCloseMenu}>
             {isNavOpen ? invertedHamburger : hamburger}
         </span>
-            {isNavOpen ? <div className="mobileActiveMenu">{mobileActiveMenu}</div> : null}
+            {isNavOpen ? <div className="mobileMenu">{mobileActiveMenu}</div> : null}
         </div>
         <div className="desktopMenu">{renderedMenuItems}</div>
     </>
