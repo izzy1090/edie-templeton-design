@@ -39,7 +39,7 @@
 
 @keyframes nextImageAnim {
     from {
-        transform: translateX(100px);
+        transform: translateX(-100px);
         opacity: 0;
     } to {
         transform: translateX(0px);
@@ -61,7 +61,7 @@
 
 @keyframes previousImageAnim {
     from {
-        transform: translateX(-100px);
+        transform: translateX(100px);
         opacity: 0;
     } to {
         transform: translateX(0px);
@@ -99,10 +99,6 @@
 #closeButton {
     position: absolute;
     top: 2%;
-}
-
-#closeButton:active {
-    transform: translateY(1px);
 }
 
 .lightboxExit{

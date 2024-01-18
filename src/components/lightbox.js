@@ -6,7 +6,6 @@ function Lightbox ( { images } ) {
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
 
     useEffect(()=>{
-        // add key handler to capture the key event
         const keyHandler = (event) => {
             if (isGalleryOpen)
             {
@@ -24,7 +23,6 @@ function Lightbox ( { images } ) {
                 }
             }
         }
-
         // add an event listener looking for a key press and invoke the func above
         document.addEventListener('keydown', keyHandler);
         // make sure to "clean" up the event listener with a return 
@@ -34,50 +32,67 @@ function Lightbox ( { images } ) {
     });
 
     const handlePrevGalleryImage = (event) => {
-        // stopPropagation stops the event listener from bubbling and prevents the arrow 
         event.stopPropagation();
-        for (let i = 0; i < images.length; i++){
-            // handles selecting the image that's directly behind the current image
-            if (images[i].key === imageToShow.key & imageToShow.key !== images[0].key){
-                setImageToShow(images[i - 1]);
-            // handles the situation if the current image selected is the first in the gallery
-            } else if (imageToShow.key === 0){
-                setImageToShow(images[images.length - 1]);
-            } 
-        }
 
         const previousImage = document.querySelector('.innerContainer > img');
-        previousImage.classList.add('previousImage');
-        previousImage.addEventListener('animationend', ()=>{
-            previousImage.classList.remove('previousImage');
-            previousImage.classList.remove('lightboxEntrance')
-        }, {once:true});
+        const previousImageAnim = () => {
+            previousImage.classList.add('previousImage');
+            previousImage.addEventListener('animationend', ()=>{
+                previousImage.classList.remove('previousImage');
+                previousImage.classList.remove('lightboxEntrance');
+            }, {once:true});
+        }
+
+        for (let i = 0; i < images.length; i++){
+            
+            // handles selecting the image that's directly behind the current image
+            if (images[i].key === imageToShow.key & imageToShow.key !== images[0].key)
+            {
+                setImageToShow(images[i - 1]);
+                previousImageAnim()
+                break;
+            // handles the situation if the current image selected is the first in the gallery
+            } else if (imageToShow.key === 0)
+            {
+                setImageToShow(images[images.length - 1]);
+                previousImageAnim();
+                break;
+            } 
+            
+        }
+        console.log(imageToShow.highResImage)
     }
 
     const handleNextGalleryImage = (event) => {
         event.stopPropagation();
+
+        const nextImage = document.querySelector('.innerContainer > img');
+        const nextImageAnim = () => {
+            nextImage.classList.add('nextImage');
+            nextImage.addEventListener('animationend', ()=>{
+                nextImage.classList.remove('nextImage');
+                nextImage.classList.remove('lightboxEntrance');
+            }, {once:true});
+        }
         for (let i = 0; i < images.length; i++){
-            if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key){
+            if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
+            {
                 setImageToShow(images[i+1]);
-            } else if (imageToShow.key === images[images.length - 1].key){
+                nextImageAnim();
+                break;
+            } else if (imageToShow.key === images[images.length - 1].key)
+            {
                 setImageToShow(images[0]);
+                nextImageAnim();
+                break;
             }
         }
-        
-        const nextImage = document.querySelector('.innerContainer > img');
-        nextImage.classList.add('nextImage');
-        
-        nextImage.addEventListener('animationend', ()=>{
-            nextImage.classList.remove('nextImage');
-            nextImage.classList.remove('lightboxEntrance')
-        }, {once:true});
     }
 
     const handleCloseGallery = () => {
         const lightbox = document.querySelector('.lightbox');
         lightbox.classList.add('lightboxExit');
         
-        // animationend is an event listener that listens for the end of a CSS animation
         lightbox.addEventListener('animationend', ()=>{
             setIsGalleryOpen(false);
             lightbox.style.display = 'none';
