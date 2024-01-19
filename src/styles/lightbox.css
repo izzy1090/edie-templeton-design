@@ -22,7 +22,7 @@
 }
 
 .lightboxEntrance {
-    animation: lightboxIntroAnim 300ms ease-in-out forwards;
+    animation: lightboxIntroAnim 300ms ease forwards;
 }
 
 .innerContainer {
@@ -32,18 +32,16 @@
 }
 
 .nextImage {
-    animation-name: nextImageAnim;
-    animation-duration: 500ms;
-    animation-timing-function: ease-in-out;
+    animation: nextImageAnim 1s ease;
 }
 
 @keyframes nextImageAnim {
-    from {
-        transform: translateX(-100px);
+    0% {
         opacity: 0;
-    } to {
-        transform: translateX(0px);
+        transform: translateX(-400px);
+    } 100% {
         opacity: 1;
+        transform: translateX(0px);
     }
 }
 
@@ -54,16 +52,15 @@
 }
 
 .previousImage {
-    animation-name: previousImageAnim;
-    animation-duration: 500ms;
-    animation-timing-function: ease-in-out;
+    animation: previousImageAnim 1s ease;
 }
 
 @keyframes previousImageAnim {
-    from {
-        transform: translateX(100px);
+    0% {
+        transform: translateX(400px);
         opacity: 0;
-    } to {
+    } 
+    100% {
         transform: translateX(0px);
         opacity: 1;
     }

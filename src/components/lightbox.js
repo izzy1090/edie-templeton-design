@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { lazy } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 
 function Lightbox ( { images } ) {
@@ -35,55 +36,37 @@ function Lightbox ( { images } ) {
         event.stopPropagation();
 
         const previousImage = document.querySelector('.innerContainer > img');
-        const previousImageAnim = () => {
-            previousImage.classList.add('previousImage');
-            previousImage.addEventListener('animationend', ()=>{
-                previousImage.classList.remove('previousImage');
-                previousImage.classList.remove('lightboxEntrance');
-            }, {once:true});
-        }
+        previousImage.classList.add('goingBack');
 
         for (let i = 0; i < images.length; i++){
-            
             // handles selecting the image that's directly behind the current image
             if (images[i].key === imageToShow.key & imageToShow.key !== images[0].key)
             {
                 setImageToShow(images[i - 1]);
-                previousImageAnim()
                 break;
             // handles the situation if the current image selected is the first in the gallery
             } else if (imageToShow.key === 0)
             {
                 setImageToShow(images[images.length - 1]);
-                previousImageAnim();
                 break;
-            } 
-            
+            }    
         }
-        console.log(imageToShow.highResImage)
     }
 
     const handleNextGalleryImage = (event) => {
         event.stopPropagation();
 
         const nextImage = document.querySelector('.innerContainer > img');
-        const nextImageAnim = () => {
-            nextImage.classList.add('nextImage');
-            nextImage.addEventListener('animationend', ()=>{
-                nextImage.classList.remove('nextImage');
-                nextImage.classList.remove('lightboxEntrance');
-            }, {once:true});
-        }
+        nextImage.classList.add('goingForward')
+
         for (let i = 0; i < images.length; i++){
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
             {
                 setImageToShow(images[i+1]);
-                nextImageAnim();
                 break;
             } else if (imageToShow.key === images[images.length - 1].key)
             {
                 setImageToShow(images[0]);
-                nextImageAnim();
                 break;
             }
         }
@@ -113,7 +96,30 @@ function Lightbox ( { images } ) {
                     <img src={imageToShow.highResImage} 
                         alt={imageToShow.alt} 
                         onClick={(event)=>event.stopPropagation()}
-                        className='lightboxEntrance'/>
+                        className='lightboxEntrance'
+                        onLoad={()=>{
+                            const goingBack = document.querySelector('.goingBack')
+                            const goingForward = document.querySelector('.goingForward')
+                            const currentImage = document.querySelector('.innerContainer > img');
+
+                            if (goingBack !== null)
+                            {
+                                currentImage.classList.add('previousImage')
+                                currentImage.addEventListener('animationend', ()=>{
+                                    currentImage.classList.remove('goingBack');
+                                    currentImage.classList.remove('previousImage');
+                                    currentImage.classList.remove('lightboxEntrance');
+                                }, {once:true});
+                            } else if (goingForward !== null)
+                            {
+                                currentImage.classList.add('nextImage');
+                                currentImage.addEventListener('animationend', ()=>{
+                                    currentImage.classList.remove('goingForward');
+                                    currentImage.classList.remove('nextImage');
+                                    currentImage.classList.remove('lightboxEntrance');
+                                }, {once:true});
+                            }
+                        }}/>
                 </div>
                 <div onClick={handleNextGalleryImage} className='lightboxButton' id='nextButton'>
                     next
