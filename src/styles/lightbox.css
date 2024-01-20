@@ -25,6 +25,16 @@
     animation: lightboxIntroAnim 1s ease forwards;
 }
 
+@keyframes lightboxIntroAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .innerContainer {
     display: flex;
     flex-direction: column;
@@ -32,19 +42,17 @@
 }
 
 .nextImage {
-    animation: nextImageAnim 1s ease;
+    animation: forwardAnim 1s ease;
 }
 
 #forwardOutro {
     opacity: 0;
 }
 
-@keyframes nextImageAnim {
+@keyframes forwardAnim {
     0% {
-        opacity: 0;
         transform: translateX(-400px);
     } 100% {
-        opacity: 1;
         transform: translateX(0px);
     }
 }
@@ -56,21 +64,19 @@
 }
 
 .previousImage {
-    animation: previousImageAnim 1s ease;
+    animation: backAnim 500ms linear;
 }
 
 #backOutro {
     opacity: 0;
 }
 
-@keyframes previousImageAnim {
+@keyframes backAnim {
     0% {
-        transform: translateX(400px);
-        opacity: 0;
+        transform: translateX(200px);
     } 
     100% {
-        transform: translateX(0px);
-        opacity: 1;
+        transform: translateY(0px);
     }
 }
 
@@ -87,18 +93,10 @@
     animation: lightboxIntroAnim 550ms ease-in-out;
 }
 
-@keyframes lightboxIntroAnim {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
+@media (hover:hover){
+    .lightboxButton:hover {
+        color: #F1F1EF;
     }
-    to {
-        opacity: 1;
-    }
-}
-
-.lightboxButton:hover {
-    color: #F1F1EF;
 }
 
 #closeButton {

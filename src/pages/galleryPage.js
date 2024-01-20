@@ -1,4 +1,4 @@
-import Images from '../components/images';
+import Images from '../components/gallery';
 
 // High res images
 import grammieKitchen from '../images/gallery/grammies-kitchen.jpg';

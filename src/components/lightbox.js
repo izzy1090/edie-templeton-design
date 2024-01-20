@@ -1,36 +1,46 @@
 import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
+import rightArrow from '../assets/right-arrow.svg';
+import leftArrow from '../assets/left-arrow.svg';
 
 function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
 
-    useEffect(()=>{
-        const keyHandler = (event) => {
-            if (isGalleryOpen)
-            {
-                if (event.key === "Escape")
-                {
-                    // prevent any default behavior of the key press
-                    event.preventDefault();
-                    handleCloseGallery();
-                } else if (event.key === "ArrowRight"){
-                    event.preventDefault();
-                    handleNextGalleryImage(event);
-                } else if (event.key === "ArrowLeft"){
-                    event.preventDefault();
-                    handlePrevGalleryImage(event);
-                }
-            }
-        }
-        // add an event listener looking for a key press and invoke the func above
-        document.addEventListener('keydown', keyHandler);
-        // make sure to "clean" up the event listener with a return 
-        return () => {
-            document.removeEventListener('keydown', keyHandler);
-        }
-    });
+    // useEffect(()=>{
+    //     const lightboxIntroAnim = document.querySelector('.lightboxEntrance');
+    //     if (lightboxIntroAnim !== null)
+    //     {
+    //         // lightboxIntroAnim.addEventListener('animationend', ()=>{
+    //         //     lightboxIntroAnim.remove('.lightboxEntrance');
+    //         // });
+    //     }
+
+    //     const keyHandler = (event) => {
+    //         if (isGalleryOpen)
+    //         {
+    //             if (event.key === "Escape")
+    //             {
+    //                 // prevent any default behavior of the key press
+    //                 event.preventDefault();
+    //                 handleCloseGallery();
+    //             } else if (event.key === "ArrowRight"){
+    //                 event.preventDefault();
+    //                 handleNextGalleryImage(event);
+    //             } else if (event.key === "ArrowLeft"){
+    //                 event.preventDefault();
+    //                 handlePrevGalleryImage(event);
+    //             }
+    //         }
+    //     }
+    //     // add an event listener looking for a key press and invoke the func above
+    //     document.addEventListener('keydown', keyHandler);
+    //     // make sure to "clean" up the event listener with a return 
+    //     return () => {
+    //         document.removeEventListener('keydown', keyHandler);
+    //     }
+    // });
 
     const handlePrevGalleryImage = (event) => {
         event.stopPropagation();
@@ -82,7 +92,7 @@ function Lightbox ( { images } ) {
             children.classList.add('lightboxExit');
             children.addEventListener('animationend', ()=>{
                 setIsGalleryOpen(false);
-                children.style.display = 'none';
+                // children.style.display = 'none';
             // {once: true} cleans up the event listener and states the event should only fire once
             }, {once: true});
         })
