@@ -8,14 +8,14 @@ function Lightbox ( { images } ) {
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
 
-    // useEffect(()=>{
-    //     const lightboxIntroAnim = document.querySelector('.lightboxEntrance');
-    //     if (lightboxIntroAnim !== null)
-    //     {
-    //         // lightboxIntroAnim.addEventListener('animationend', ()=>{
-    //         //     lightboxIntroAnim.remove('.lightboxEntrance');
-    //         // });
-    //     }
+    useEffect(()=>{
+        // This clears the lightbox intro animation when the component loads
+        const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
+        lightboxIntroAnim.forEach((element)=>{
+            element.addEventListener('animationend', ()=>{
+                element.classList.remove('lightboxEntrance');
+            })
+        })
 
     //     const keyHandler = (event) => {
     //         if (isGalleryOpen)
@@ -40,15 +40,15 @@ function Lightbox ( { images } ) {
     //     return () => {
     //         document.removeEventListener('keydown', keyHandler);
     //     }
-    // });
+    });
 
     const handlePrevGalleryImage = (event) => {
         event.stopPropagation();
-        setIsButtonDisabled(true);
+        // setIsButtonDisabled(true);
 
-        const previousImage = document.querySelector('.innerContainer > img');
-        previousImage.classList.add('goingBack');
-        previousImage.id = 'backOutro';
+        // const previousImage = document.querySelector('.innerContainer > img');
+        // previousImage.classList.add('goingBack');
+        // previousImage.id = 'backOutro';
 
         for (let i = 0; i < images.length; i++){
             // handles selecting the image that's directly behind the current image
@@ -67,11 +67,11 @@ function Lightbox ( { images } ) {
 
     const handleNextGalleryImage = (event) => {
         event.stopPropagation();
-        setIsButtonDisabled(true);
+        // setIsButtonDisabled(true);
 
-        const nextImage = document.querySelector('.innerContainer > img');
-        nextImage.classList.add('goingForward');
-        nextImage.id = 'forwardOutro';
+        // const nextImage = document.querySelector('.innerContainer > img');
+        // nextImage.classList.add('goingForward');
+        // nextImage.id = 'forwardOutro';
 
         for (let i = 0; i < images.length; i++){
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
@@ -86,6 +86,8 @@ function Lightbox ( { images } ) {
         }
     }
 
+    // This targets the innerContainer and the buttons to add a lightboxExit animation
+    // before closing the lightbox with a state change
     const handleCloseGallery = () => {
         const innerContainer = document.querySelector('.innerContainer > img');
         const lightboxButton = document.querySelector('.lightboxButton');
@@ -100,17 +102,16 @@ function Lightbox ( { images } ) {
         innerContainer.addEventListener('animationend', ()=>{
             setIsGalleryOpen(false);
         })
-
     }
 
     const renderedGallery = <>
         <div className='lightbox'>
             <div className='lightboxContainer'>
-                <div onClick={!isButtonDisabled ? handlePrevGalleryImage : null} className='lightboxButton' id='prevButton'>
+                <div onClick={!isButtonDisabled ? handlePrevGalleryImage : null} className='lightboxButton lightboxEntrance' id='prevButton'>
                     previous    
                 </div>
                 <div className='innerContainer'>
-                    <div className='lightboxButton' id='closeButton' onClick={handleCloseGallery}>
+                    <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
                         close
                     </div>
                     <img src={imageToShow.highResImage} 
@@ -118,33 +119,33 @@ function Lightbox ( { images } ) {
                         onClick={(event)=>event.stopPropagation()}
                         className='lightboxEntrance'
                         onLoad={()=>{
-                            const goingBack = document.querySelector('.goingBack')
-                            const goingForward = document.querySelector('.goingForward')
-                            const currentImage = document.querySelector('.innerContainer > img');
-                            currentImage.id = '';
-                            if (goingBack)
-                            {
-                                currentImage.classList.add('previousImage')
-                                currentImage.addEventListener('animationend', ()=>{
-                                    currentImage.classList.remove('goingBack');
-                                    currentImage.classList.remove('previousImage');
-                                    currentImage.classList.remove('lightboxEntrance');
-                                    setIsButtonDisabled(false)
-                                }, {once:true});
+                            // const goingBack = document.querySelector('.goingBack')
+                            // const goingForward = document.querySelector('.goingForward')
+                            // const currentImage = document.querySelector('.innerContainer > img');
+                            // currentImage.id = '';
+                            // if (goingBack)
+                            // {
+                            //     currentImage.classList.add('previousImage')
+                            //     currentImage.addEventListener('animationend', ()=>{
+                            //         currentImage.classList.remove('goingBack');
+                            //         currentImage.classList.remove('previousImage');
+                            //         currentImage.classList.remove('lightboxEntrance');
+                            //         setIsButtonDisabled(false)
+                            //     }, {once:true});
                                 
-                            } else if (goingForward)
-                            {
-                                currentImage.classList.add('nextImage');
-                                currentImage.addEventListener('animationend', ()=>{
-                                    currentImage.classList.remove('goingForward');
-                                    currentImage.classList.remove('nextImage');
-                                    currentImage.classList.remove('lightboxEntrance');
-                                    setIsButtonDisabled(false);
-                                }, {once:true});
-                            }
+                            // } else if (goingForward)
+                            // {
+                            //     currentImage.classList.add('nextImage');
+                            //     currentImage.addEventListener('animationend', ()=>{
+                            //         currentImage.classList.remove('goingForward');
+                            //         currentImage.classList.remove('nextImage');
+                            //         currentImage.classList.remove('lightboxEntrance');
+                            //         setIsButtonDisabled(false);
+                            //     }, {once:true});
+                            // }
                         }}/>
                 </div>
-                <div onClick={!isButtonDisabled ? handleNextGalleryImage : null} className='lightboxButton' id='nextButton'>
+                <div onClick={!isButtonDisabled ? handleNextGalleryImage : null} className='lightboxButton lightboxEntrance' id='nextButton'>
                     next
                 </div>
             </div>

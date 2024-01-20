@@ -21,20 +21,6 @@
     max-height: 70vh;
 }
 
-.lightboxEntrance {
-    animation: lightboxIntroAnim 1s ease forwards;
-}
-
-@keyframes lightboxIntroAnim {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 .innerContainer {
     display: flex;
     flex-direction: column;
@@ -90,7 +76,6 @@
     margin: 1rem;
     cursor: pointer;
     font-size: 1.2rem;
-    animation: lightboxIntroAnim 550ms ease-in-out;
 }
 
 @media (hover:hover){
@@ -102,6 +87,20 @@
 #closeButton {
     position: fixed;
     top: 2%;
+}
+
+.lightboxEntrance {
+    animation: lightboxIntroAnim 1s ease forwards;
+}
+
+@keyframes lightboxIntroAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .lightboxExit{
