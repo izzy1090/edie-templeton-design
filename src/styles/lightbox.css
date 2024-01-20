@@ -107,15 +107,15 @@
 }
 
 .lightboxExit{
-    animation: lightboxExitAnim 500ms ease-in-out;
+    animation: lightboxExitAnim 1s ease-in-out;
 }
 
 @keyframes lightboxExitAnim {
     from {
-        opacity: 1;
+        transform: translateY(0px);
     }
     to {
-        opacity: 0;
+        transform: translateY(-10px);
     }
 }
 

@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 
 function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
+    const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
 
     useEffect(()=>{
         const keyHandler = (event) => {
@@ -33,6 +34,7 @@ function Lightbox ( { images } ) {
 
     const handlePrevGalleryImage = (event) => {
         event.stopPropagation();
+        setIsButtonDisabled(true);
 
         const previousImage = document.querySelector('.innerContainer > img');
         previousImage.classList.add('goingBack');
@@ -55,6 +57,7 @@ function Lightbox ( { images } ) {
 
     const handleNextGalleryImage = (event) => {
         event.stopPropagation();
+        setIsButtonDisabled(true);
 
         const nextImage = document.querySelector('.innerContainer > img');
         nextImage.classList.add('goingForward');
@@ -74,20 +77,25 @@ function Lightbox ( { images } ) {
     }
 
     const handleCloseGallery = () => {
+        const lightboxContainer = document.querySelectorAll('.lightboxContainer > *');
+        lightboxContainer.forEach((children)=>{
+            children.classList.add('lightboxExit');
+            children.addEventListener('animationend', ()=>{
+                setIsGalleryOpen(false);
+                children.style.display = 'none';
+            // {once: true} cleans up the event listener and states the event should only fire once
+            }, {once: true});
+        })
+
         const lightbox = document.querySelector('.lightbox');
-        lightbox.classList.add('lightboxExit');
-        
-        lightbox.addEventListener('animationend', ()=>{
-            setIsGalleryOpen(false);
-            lightbox.style.display = 'none';
-        // {once: true} cleans up the event listener and states the event should only fire once
-        }, {once: true});
+        lightbox.style.opacity = 0;
+        lightbox.style.transition = 'opacity 1s ease';
     }
 
     const renderedGallery = <>
         <div className='lightbox'>
             <div className='lightboxContainer'>
-                <div onClick={handlePrevGalleryImage} className='lightboxButton' id='prevButton'>
+                <div onClick={!isButtonDisabled ? handlePrevGalleryImage : null} className='lightboxButton' id='prevButton'>
                     previous    
                 </div>
                 <div className='innerContainer'>
@@ -110,7 +118,9 @@ function Lightbox ( { images } ) {
                                     currentImage.classList.remove('goingBack');
                                     currentImage.classList.remove('previousImage');
                                     currentImage.classList.remove('lightboxEntrance');
+                                    setIsButtonDisabled(false)
                                 }, {once:true});
+                                
                             } else if (goingForward)
                             {
                                 currentImage.classList.add('nextImage');
@@ -118,11 +128,12 @@ function Lightbox ( { images } ) {
                                     currentImage.classList.remove('goingForward');
                                     currentImage.classList.remove('nextImage');
                                     currentImage.classList.remove('lightboxEntrance');
+                                    setIsButtonDisabled(false);
                                 }, {once:true});
                             }
                         }}/>
                 </div>
-                <div onClick={handleNextGalleryImage} className='lightboxButton' id='nextButton'>
+                <div onClick={!isButtonDisabled ? handleNextGalleryImage : null} className='lightboxButton' id='nextButton'>
                     next
                 </div>
             </div>
