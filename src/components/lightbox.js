@@ -87,19 +87,20 @@ function Lightbox ( { images } ) {
     }
 
     const handleCloseGallery = () => {
-        const lightboxContainer = document.querySelectorAll('.lightboxContainer > *');
-        lightboxContainer.forEach((children)=>{
-            children.classList.add('lightboxExit');
-            children.addEventListener('animationend', ()=>{
-                setIsGalleryOpen(false);
-                // children.style.display = 'none';
-            // {once: true} cleans up the event listener and states the event should only fire once
-            }, {once: true});
-        })
-
+        const innerContainer = document.querySelector('.innerContainer > img');
+        const lightboxButton = document.querySelector('.lightboxButton');
+        
         const lightbox = document.querySelector('.lightbox');
         lightbox.style.opacity = 0;
         lightbox.style.transition = 'opacity 1s ease';
+
+        innerContainer.classList.add('lightboxExit');
+        lightboxButton.classList.add('lightboxExit');
+
+        innerContainer.addEventListener('animationend', ()=>{
+            setIsGalleryOpen(false);
+        })
+
     }
 
     const renderedGallery = <>

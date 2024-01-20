@@ -59,7 +59,7 @@
 
 #nextButton {
     margin-top: 3rem;
-    position: absolute;
+    position: fixed;
     right: 2%;
 }
 
@@ -82,7 +82,7 @@
 
 #prevButton {
     margin-top: 3rem;
-    position: absolute;
+    position: fixed;
     left: 2%;
 }
 
@@ -100,7 +100,7 @@
 }
 
 #closeButton {
-    position: absolute;
+    position: fixed;
     top: 2%;
 }
 
@@ -113,6 +113,7 @@
         transform: translateY(0px);
     }
     to {
+        opacity: 0;
         transform: translateY(-10px);
     }
 }
