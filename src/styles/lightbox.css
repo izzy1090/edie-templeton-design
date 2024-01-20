@@ -22,7 +22,7 @@
 }
 
 .lightboxEntrance {
-    animation: lightboxIntroAnim 300ms ease forwards;
+    animation: lightboxIntroAnim 1s ease forwards;
 }
 
 .innerContainer {
@@ -33,6 +33,10 @@
 
 .nextImage {
     animation: nextImageAnim 1s ease;
+}
+
+#forwardOutro {
+    opacity: 0;
 }
 
 @keyframes nextImageAnim {
@@ -53,6 +57,10 @@
 
 .previousImage {
     animation: previousImageAnim 1s ease;
+}
+
+#backOutro {
+    opacity: 0;
 }
 
 @keyframes previousImageAnim {

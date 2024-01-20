@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { lazy } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 
 function Lightbox ( { images } ) {
@@ -37,6 +36,7 @@ function Lightbox ( { images } ) {
 
         const previousImage = document.querySelector('.innerContainer > img');
         previousImage.classList.add('goingBack');
+        previousImage.id = 'backOutro';
 
         for (let i = 0; i < images.length; i++){
             // handles selecting the image that's directly behind the current image
@@ -57,7 +57,8 @@ function Lightbox ( { images } ) {
         event.stopPropagation();
 
         const nextImage = document.querySelector('.innerContainer > img');
-        nextImage.classList.add('goingForward')
+        nextImage.classList.add('goingForward');
+        nextImage.id = 'forwardOutro';
 
         for (let i = 0; i < images.length; i++){
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
@@ -101,8 +102,8 @@ function Lightbox ( { images } ) {
                             const goingBack = document.querySelector('.goingBack')
                             const goingForward = document.querySelector('.goingForward')
                             const currentImage = document.querySelector('.innerContainer > img');
-
-                            if (goingBack !== null)
+                            currentImage.id = '';
+                            if (goingBack)
                             {
                                 currentImage.classList.add('previousImage')
                                 currentImage.addEventListener('animationend', ()=>{
@@ -110,7 +111,7 @@ function Lightbox ( { images } ) {
                                     currentImage.classList.remove('previousImage');
                                     currentImage.classList.remove('lightboxEntrance');
                                 }, {once:true});
-                            } else if (goingForward !== null)
+                            } else if (goingForward)
                             {
                                 currentImage.classList.add('nextImage');
                                 currentImage.addEventListener('animationend', ()=>{
