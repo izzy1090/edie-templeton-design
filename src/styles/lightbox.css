@@ -27,34 +27,32 @@
     align-items: center;
 }
 
-.nextImage {
-    animation: forwardAnim 1s ease;
-}
-
-#forwardOutro {
-    opacity: 0;
-}
-
-@keyframes forwardAnim {
-    0% {
-        transform: translateX(-400px);
-    } 100% {
-        transform: translateX(0px);
-    }
-}
-
 #nextButton {
     margin-top: 3rem;
     position: fixed;
     right: 2%;
 }
 
-.previousImage {
-    animation: backAnim 500ms linear;
+.nextImage {
+    animation: forwardAnim 500ms ease;
 }
 
-#backOutro {
-    opacity: 0;
+@keyframes forwardAnim {
+    0% {
+        transform: translateX(-200px);
+    } 100% {
+        transform: translateX(0px);
+    }
+}
+
+#prevButton {
+    margin-top: 3rem;
+    position: fixed;
+    left: 2%;
+}
+
+.previousImage {
+    animation: backAnim 500ms linear;
 }
 
 @keyframes backAnim {
@@ -64,12 +62,6 @@
     100% {
         transform: translateY(0px);
     }
-}
-
-#prevButton {
-    margin-top: 3rem;
-    position: fixed;
-    left: 2%;
 }
 
 .lightboxButton {

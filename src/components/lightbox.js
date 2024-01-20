@@ -42,13 +42,9 @@ function Lightbox ( { images } ) {
     //     }
     });
 
-    const handlePrevGalleryImage = (event) => {
+    const handlePreviousImage = (event) => {
         event.stopPropagation();
         // setIsButtonDisabled(true);
-
-        // const previousImage = document.querySelector('.innerContainer > img');
-        // previousImage.classList.add('goingBack');
-        // previousImage.id = 'backOutro';
 
         for (let i = 0; i < images.length; i++){
             // handles selecting the image that's directly behind the current image
@@ -65,13 +61,9 @@ function Lightbox ( { images } ) {
         }
     }
 
-    const handleNextGalleryImage = (event) => {
+    const handleNextImage = (event) => {
         event.stopPropagation();
         // setIsButtonDisabled(true);
-
-        // const nextImage = document.querySelector('.innerContainer > img');
-        // nextImage.classList.add('goingForward');
-        // nextImage.id = 'forwardOutro';
 
         for (let i = 0; i < images.length; i++){
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
@@ -107,7 +99,14 @@ function Lightbox ( { images } ) {
     const renderedGallery = <>
         <div className='lightbox'>
             <div className='lightboxContainer'>
-                <div onClick={!isButtonDisabled ? handlePrevGalleryImage : null} className='lightboxButton lightboxEntrance' id='prevButton'>
+                <div onClick={(event)=>{
+                    const image = document.querySelector('.innerContainer > img');
+                    image.id = 'goingBack';
+                    if (!isButtonDisabled)
+                    {
+                        handlePreviousImage(event);
+                    }
+                }} className='lightboxButton lightboxEntrance' id='prevButton'>
                     previous    
                 </div>
                 <div className='innerContainer'>
@@ -119,6 +118,23 @@ function Lightbox ( { images } ) {
                         onClick={(event)=>event.stopPropagation()}
                         className='lightboxEntrance'
                         onLoad={()=>{
+                            const image = document.querySelector('.innerContainer > img');
+                            const goingBack = document.getElementById('goingBack');
+                            const goingForward = document.getElementById('goingForward');
+
+                            if (goingBack !== null)
+                            {
+                                image.classList.add('previousImage');
+                                image.addEventListener('animationend', ()=>{
+                                    image.classList.remove('previousImage');
+                                })
+                            } else if(goingForward !== null)
+                            {
+                                image.classList.add('nextImage');
+                                image.addEventListener('animationend', ()=>{
+                                    image.classList.remove('nextImage');
+                                })
+                            }
                             // const goingBack = document.querySelector('.goingBack')
                             // const goingForward = document.querySelector('.goingForward')
                             // const currentImage = document.querySelector('.innerContainer > img');
@@ -145,7 +161,14 @@ function Lightbox ( { images } ) {
                             // }
                         }}/>
                 </div>
-                <div onClick={!isButtonDisabled ? handleNextGalleryImage : null} className='lightboxButton lightboxEntrance' id='nextButton'>
+                <div onClick={(event)=>{
+                    const image = document.querySelector('.innerContainer > img');
+                    image.id = 'goingForward';
+                    if (!isButtonDisabled)
+                    {
+                        handleNextImage(event);
+                    }
+                }} className='lightboxButton lightboxEntrance' id='nextButton'>
                     next
                 </div>
             </div>
