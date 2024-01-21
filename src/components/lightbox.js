@@ -17,29 +17,38 @@ function Lightbox ( { images } ) {
             })
         })
 
-    //     const keyHandler = (event) => {
-    //         if (isGalleryOpen)
-    //         {
-    //             if (event.key === "Escape")
-    //             {
-    //                 // prevent any default behavior of the key press
-    //                 event.preventDefault();
-    //                 handleCloseGallery();
-    //             } else if (event.key === "ArrowRight"){
-    //                 event.preventDefault();
-    //                 handleNextGalleryImage(event);
-    //             } else if (event.key === "ArrowLeft"){
-    //                 event.preventDefault();
-    //                 handlePrevGalleryImage(event);
-    //             }
-    //         }
-    //     }
-    //     // add an event listener looking for a key press and invoke the func above
-    //     document.addEventListener('keydown', keyHandler);
-    //     // make sure to "clean" up the event listener with a return 
-    //     return () => {
-    //         document.removeEventListener('keydown', keyHandler);
-    //     }
+        const keyHandler = (event) => {
+            event.preventDefault();
+
+            if (event.key === "Escape")
+            {                    
+                handleCloseGallery();
+            }
+
+            if (!isButtonDisabled)
+            {
+                if (event.key === "ArrowLeft")
+                {
+                    const image = document.querySelector('.innerContainer > img');
+                    image.id = 'goingBack';
+                    setIsButtonDisabled(true);
+                    handlePreviousImage(event);
+                } 
+                else if (event.key === "ArrowRight")
+                {
+                    const image = document.querySelector('.innerContainer > img');
+                    image.id = 'goingForward';
+                    setIsButtonDisabled(true);
+                    handleNextImage(event);
+                }
+            }
+        }
+        // add an event listener looking for a key press and invoke the func above
+        document.addEventListener('keydown', keyHandler);
+        // make sure to "clean" up the event listener with a return 
+        return () => {
+            document.removeEventListener('keydown', keyHandler);
+        }
     });
 
     const handlePreviousImage = (event) => {
@@ -78,15 +87,14 @@ function Lightbox ( { images } ) {
     // before closing the lightbox with a state change
     const handleCloseGallery = () => {
         const innerContainer = document.querySelector('.innerContainer > img');
-        const lightboxButton = document.querySelector('.lightboxButton');
+        const lightboxButton = document.querySelectorAll('.lightboxButton');
         
         const lightbox = document.querySelector('.lightbox');
         lightbox.style.opacity = 0;
         lightbox.style.transition = 'opacity 1s ease';
 
         innerContainer.classList.add('lightboxExit');
-        lightboxButton.classList.add('lightboxExit');
-
+        lightboxButton.forEach((element)=>element.classList.add("lightboxExit"));
         innerContainer.addEventListener('animationend', ()=>{
             setIsGalleryOpen(false);
         })
