@@ -9,46 +9,50 @@ function Lightbox ( { images } ) {
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
 
     useEffect(()=>{
+        
         // This clears the lightbox intro animation when the component loads
         const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
         lightboxIntroAnim.forEach((element)=>{
+            setIsButtonDisabled(true);
             element.addEventListener('animationend', ()=>{
+                setIsButtonDisabled(false);
                 element.classList.remove('lightboxEntrance');
             })
         })
 
-        const keyHandler = (event) => {
-            event.preventDefault();
+        // const keyHandler = (event) => {
+        //     event.preventDefault();
+        //     if (isGalleryOpen){
+        //         if (event.key === "Escape")
+        //         {                    
+        //             handleCloseGallery();
+        //         }
 
-            if (event.key === "Escape")
-            {                    
-                handleCloseGallery();
-            }
-
-            if (!isButtonDisabled)
-            {
-                if (event.key === "ArrowLeft")
-                {
-                    const image = document.querySelector('.innerContainer > img');
-                    image.id = 'goingBack';
-                    setIsButtonDisabled(true);
-                    handlePreviousImage(event);
-                } 
-                else if (event.key === "ArrowRight")
-                {
-                    const image = document.querySelector('.innerContainer > img');
-                    image.id = 'goingForward';
-                    setIsButtonDisabled(true);
-                    handleNextImage(event);
-                }
-            }
-        }
-        // add an event listener looking for a key press and invoke the func above
-        document.addEventListener('keydown', keyHandler);
-        // make sure to "clean" up the event listener with a return 
-        return () => {
-            document.removeEventListener('keydown', keyHandler);
-        }
+        //         if (!isButtonDisabled)
+        //         {
+        //             if (event.key === "ArrowLeft")
+        //             {
+        //                 setIsButtonDisabled(true);
+        //                 const image = document.querySelector('.innerContainer > img');
+        //                 image.id = 'goingBack';
+        //                 handlePreviousImage(event);
+        //             } 
+        //             else if (event.key === "ArrowRight")
+        //             {
+        //                 setIsButtonDisabled(true);
+        //                 const image = document.querySelector('.innerContainer > img');
+        //                 image.id = 'goingForward';
+        //                 handleNextImage(event);
+        //             }
+        //         }
+        //     }
+        // }
+        // // add an event listener looking for a key press and invoke the func above
+        // document.addEventListener('keydown', keyHandler);
+        // // make sure to "clean" up the event listener with a return 
+        // return () => {
+        //     document.removeEventListener('keydown', keyHandler);
+        // }
     });
 
     const handlePreviousImage = (event) => {
