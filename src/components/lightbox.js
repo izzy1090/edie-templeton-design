@@ -44,8 +44,6 @@ function Lightbox ( { images } ) {
 
     const handlePreviousImage = (event) => {
         event.stopPropagation();
-        // setIsButtonDisabled(true);
-
         for (let i = 0; i < images.length; i++){
             // handles selecting the image that's directly behind the current image
             if (images[i].key === imageToShow.key & imageToShow.key !== images[0].key)
@@ -63,8 +61,6 @@ function Lightbox ( { images } ) {
 
     const handleNextImage = (event) => {
         event.stopPropagation();
-        // setIsButtonDisabled(true);
-
         for (let i = 0; i < images.length; i++){
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
             {
@@ -100,10 +96,11 @@ function Lightbox ( { images } ) {
         <div className='lightbox'>
             <div className='lightboxContainer'>
                 <div onClick={(event)=>{
-                    const image = document.querySelector('.innerContainer > img');
-                    image.id = 'goingBack';
                     if (!isButtonDisabled)
                     {
+                        const image = document.querySelector('.innerContainer > img');
+                        image.id = 'goingBack';
+                        setIsButtonDisabled(true);
                         handlePreviousImage(event);
                     }
                 }} className='lightboxButton lightboxEntrance' id='prevButton'>
@@ -115,57 +112,36 @@ function Lightbox ( { images } ) {
                     </div>
                     <img src={imageToShow.highResImage} 
                         alt={imageToShow.alt} 
-                        onClick={(event)=>event.stopPropagation()}
+                        onClick={(event)=>{event.stopPropagation()}}
                         className='lightboxEntrance'
                         onLoad={()=>{
-                            const image = document.querySelector('.innerContainer > img');
-                            const goingBack = document.getElementById('goingBack');
-                            const goingForward = document.getElementById('goingForward');
+                                const image = document.querySelector('.innerContainer > img');
+                                const goingBack = document.getElementById('goingBack');
+                                const goingForward = document.getElementById('goingForward');
 
-                            if (goingBack !== null)
-                            {
-                                image.classList.add('previousImage');
-                                image.addEventListener('animationend', ()=>{
-                                    image.classList.remove('previousImage');
-                                })
-                            } else if(goingForward !== null)
-                            {
-                                image.classList.add('nextImage');
-                                image.addEventListener('animationend', ()=>{
-                                    image.classList.remove('nextImage');
-                                })
-                            }
-                            // const goingBack = document.querySelector('.goingBack')
-                            // const goingForward = document.querySelector('.goingForward')
-                            // const currentImage = document.querySelector('.innerContainer > img');
-                            // currentImage.id = '';
-                            // if (goingBack)
-                            // {
-                            //     currentImage.classList.add('previousImage')
-                            //     currentImage.addEventListener('animationend', ()=>{
-                            //         currentImage.classList.remove('goingBack');
-                            //         currentImage.classList.remove('previousImage');
-                            //         currentImage.classList.remove('lightboxEntrance');
-                            //         setIsButtonDisabled(false)
-                            //     }, {once:true});
-                                
-                            // } else if (goingForward)
-                            // {
-                            //     currentImage.classList.add('nextImage');
-                            //     currentImage.addEventListener('animationend', ()=>{
-                            //         currentImage.classList.remove('goingForward');
-                            //         currentImage.classList.remove('nextImage');
-                            //         currentImage.classList.remove('lightboxEntrance');
-                            //         setIsButtonDisabled(false);
-                            //     }, {once:true});
-                            // }
+                                if (goingBack !== null)
+                                {
+                                    image.classList.add('previousImage');
+                                    image.addEventListener('animationend', ()=>{
+                                        setIsButtonDisabled(false);
+                                        image.classList.remove('previousImage');
+                                    })
+                                } else if(goingForward !== null)
+                                {
+                                    image.classList.add('nextImage');
+                                    image.addEventListener('animationend', ()=>{
+                                        setIsButtonDisabled(false);
+                                        image.classList.remove('nextImage');
+                                    })
+                                }
                         }}/>
                 </div>
                 <div onClick={(event)=>{
-                    const image = document.querySelector('.innerContainer > img');
-                    image.id = 'goingForward';
                     if (!isButtonDisabled)
                     {
+                        const image = document.querySelector('.innerContainer > img');
+                        image.id = 'goingForward';
+                        setIsButtonDisabled(true);
                         handleNextImage(event);
                     }
                 }} className='lightboxButton lightboxEntrance' id='nextButton'>

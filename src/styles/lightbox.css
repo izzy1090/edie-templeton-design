@@ -34,7 +34,7 @@
 }
 
 .nextImage {
-    animation: forwardAnim 500ms ease;
+    animation: forwardAnim 500ms linear;
 }
 
 @keyframes forwardAnim {
