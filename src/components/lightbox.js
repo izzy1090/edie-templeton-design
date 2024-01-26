@@ -15,13 +15,14 @@ function Lightbox ( { images } ) {
                     // prevent any default behavior of the key press
                     event.preventDefault();
                     handleCloseGallery();
-                } else if (event.key === "ArrowRight"){
-                    event.preventDefault();
-                    handleNextGalleryImage(event);
-                } else if (event.key === "ArrowLeft"){
-                    event.preventDefault();
-                    handlePrevGalleryImage(event);
-                }
+                } 
+                // else if (event.key === "ArrowRight"){
+                //     event.preventDefault();
+                //     handleNextGalleryImage(event);
+                // } else if (event.key === "ArrowLeft"){
+                //     event.preventDefault();
+                //     handlePrevGalleryImage(event);
+                // }
             }
         }
         // add an event listener looking for a key press and invoke the func above
