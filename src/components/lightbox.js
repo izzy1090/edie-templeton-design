@@ -20,40 +20,40 @@ function Lightbox ( { images } ) {
             })
         })
 
-        // const keyHandler = (event) => {
-        //     event.preventDefault();
-        //     if (isGalleryOpen){
-        //         if (event.key === "Escape")
-        //         {                    
-        //             handleCloseGallery();
-        //         }
+        const keyHandler = (event) => {
+            // event.preventDefault();
+            if (isGalleryOpen){
+                if (event.key === "Escape")
+                {                    
+                    handleCloseGallery();
+                }
 
-        //         if (!isButtonDisabled)
-        //         {
-        //             if (event.key === "ArrowLeft")
-        //             {
-        //                 setIsButtonDisabled(true);
-        //                 const image = document.querySelector('.innerContainer > img');
-        //                 image.id = 'goingBack';
-        //                 handlePreviousImage(event);
-        //             } 
-        //             else if (event.key === "ArrowRight")
-        //             {
-        //                 setIsButtonDisabled(true);
-        //                 const image = document.querySelector('.innerContainer > img');
-        //                 image.id = 'goingForward';
-        //                 handleNextImage(event);
-        //             }
-        //         }
-        //     }
-        // }
-        // // add an event listener looking for a key press and invoke the func above
-        // document.addEventListener('keydown', keyHandler);
-        // // make sure to "clean" up the event listener with a return 
-        // return () => {
-        //     document.removeEventListener('keydown', keyHandler);
-        // }
-    });
+                // if (!isButtonDisabled)
+                // {
+                //     if (event.key === "ArrowLeft")
+                //     {
+                //         setIsButtonDisabled(true);
+                //         const image = document.querySelector('.innerContainer > img');
+                //         image.id = 'goingBack';
+                //         handlePreviousImage(event);
+                //     } 
+                //     else if (event.key === "ArrowRight")
+                //     {
+                //         setIsButtonDisabled(true);
+                //         const image = document.querySelector('.innerContainer > img');
+                //         image.id = 'goingForward';
+                //         handleNextImage(event);
+                //     }
+                // }
+            }
+        }
+        // add an event listener looking for a key press and invoke the func above
+        document.addEventListener('keydown', keyHandler);
+        // make sure to "clean" up the event listener with a return 
+        return () => {
+            document.removeEventListener('keydown', keyHandler);
+        }
+    }, [isGalleryOpen]);
 
     const handlePreviousImage = (event) => {
         event.stopPropagation();
