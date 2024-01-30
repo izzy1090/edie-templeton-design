@@ -9,9 +9,7 @@ function Lightbox ( { images } ) {
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
 
     useEffect(()=>{
-        
-        
-
+    
         const keyHandler = (event) => {
             
             if (isGalleryOpen)
@@ -47,6 +45,14 @@ function Lightbox ( { images } ) {
         }
     }
 
+    const backSlideTransitionOut = (event) => {
+        const image = document.querySelector('.innerContainer > img');
+        image.id = 'goingBack';
+        image.style.opacity = 0;
+        setIsButtonDisabled(true);
+        handlePreviousImage(event);
+    }
+
     const handleNextImage = (event) => {
         event.stopPropagation();
         for (let i = 0; i < images.length; i++){
@@ -60,6 +66,14 @@ function Lightbox ( { images } ) {
                 break;
             }
         }
+    }
+
+    const forwardSlideTransitionOut = (event) => {
+        const image = document.querySelector('.innerContainer > img');
+        image.id = 'goingForward';
+        image.style.opacity = 0;
+        setIsButtonDisabled(true);
+        handleNextImage(event);
     }
 
     // This targets the innerContainer and the buttons to add a lightboxExit animation
@@ -83,12 +97,14 @@ function Lightbox ( { images } ) {
         <div className='lightbox'>
             <div className='lightboxContainer'>
                 <div onClick={(event)=>{
+                    const image = document.querySelector('.innerContainer > img');
                     if (!isButtonDisabled)
                     {
-                        const image = document.querySelector('.innerContainer > img');
-                        image.id = 'goingBack';
-                        setIsButtonDisabled(true);
-                        handlePreviousImage(event);
+                        image.classList.add('backTransitionOut');
+                        image.addEventListener('animationend', ()=>{
+                            image.classList.remove('backTransitionOut');
+                            backSlideTransitionOut(event);
+                        })
                     }
                 }} className='lightboxButton lightboxEntrance' id='prevButton'>
                     previous    
@@ -110,6 +126,7 @@ function Lightbox ( { images } ) {
                                 if (initialGalleryOpen !== null)
                                 {
                                     image.classList.add('lightboxEntrance');
+                                    image.id = '';
                                     // This clears the lightbox intro animation for any components after the animation finishes
                                     const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                     lightboxIntroAnim.forEach((element)=>{
@@ -119,13 +136,14 @@ function Lightbox ( { images } ) {
                                             element.classList.remove('lightboxEntrance');
                                         })
                                     })
-                                    image.id = '';
                                 }
                                 else if (goingBack !== null)
                                 {
                                     image.classList.add('previousImage');
+                                    
                                     image.addEventListener('animationend', ()=>{
                                         setIsButtonDisabled(false);
+                                        image.style.opacity = 1;
                                         image.classList.remove('previousImage');
                                     })
                                 } else if(goingForward !== null)
@@ -133,18 +151,22 @@ function Lightbox ( { images } ) {
                                     image.classList.add('nextImage');
                                     image.addEventListener('animationend', ()=>{
                                         setIsButtonDisabled(false);
+                                        image.style.opacity = 1;
                                         image.classList.remove('nextImage');
                                     })
                                 }
                         }}/>
                 </div>
                 <div onClick={(event)=>{
+                    const image = document.querySelector('.innerContainer > img');
                     if (!isButtonDisabled)
                     {
-                        const image = document.querySelector('.innerContainer > img');
-                        image.id = 'goingForward';
-                        setIsButtonDisabled(true);
-                        handleNextImage(event);
+                        image.classList.add('forwardTransitionOut');
+                        image.addEventListener('animationend', ()=>{
+                            image.classList.remove('forwardTransitionOut');
+                            forwardSlideTransitionOut(event);
+                        })
+                        
                     }
                 }} className='lightboxButton lightboxEntrance' id='nextButton'>
                     next
