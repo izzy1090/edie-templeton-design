@@ -21,7 +21,7 @@ function Lightbox ( { images } ) {
         })
 
         const keyHandler = (event) => {
-            // event.preventDefault();
+            
             if (isGalleryOpen){
                 if (event.key === "Escape")
                 {                    
@@ -30,6 +30,7 @@ function Lightbox ( { images } ) {
 
                 // if (!isButtonDisabled)
                 // {
+                    // event.preventDefault();
                 //     if (event.key === "ArrowLeft")
                 //     {
                 //         setIsButtonDisabled(true);
