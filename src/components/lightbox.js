@@ -10,15 +10,7 @@ function Lightbox ( { images } ) {
 
     useEffect(()=>{
         
-        // This clears the lightbox intro animation when the component loads
-        const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
-        lightboxIntroAnim.forEach((element)=>{
-            setIsButtonDisabled(true);
-            element.addEventListener('animationend', ()=>{
-                setIsButtonDisabled(false);
-                element.classList.remove('lightboxEntrance');
-            })
-        })
+        
 
         const keyHandler = (event) => {
             
@@ -36,7 +28,7 @@ function Lightbox ( { images } ) {
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
-    }, [isGalleryOpen]);
+    });
 
     const handlePreviousImage = (event) => {
         event.stopPropagation();
@@ -108,13 +100,28 @@ function Lightbox ( { images } ) {
                     <img src={imageToShow.highResImage} 
                         alt={imageToShow.alt} 
                         onClick={(event)=>{event.stopPropagation()}}
-                        className='lightboxEntrance'
+                        id='initialGalleryOpen'
                         onLoad={()=>{
                                 const image = document.querySelector('.innerContainer > img');
                                 const goingBack = document.getElementById('goingBack');
                                 const goingForward = document.getElementById('goingForward');
+                                const initialGalleryOpen = document.getElementById('initialGalleryOpen');
 
-                                if (goingBack !== null)
+                                if (initialGalleryOpen !== null)
+                                {
+                                    image.classList.add('lightboxEntrance');
+                                    // This clears the lightbox intro animation for any components after the animation finishes
+                                    const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
+                                    lightboxIntroAnim.forEach((element)=>{
+                                        setIsButtonDisabled(true);
+                                        element.addEventListener('animationend', ()=>{
+                                            setIsButtonDisabled(false);
+                                            element.classList.remove('lightboxEntrance');
+                                        })
+                                    })
+                                    image.id = '';
+                                }
+                                else if (goingBack !== null)
                                 {
                                     image.classList.add('previousImage');
                                     image.addEventListener('animationend', ()=>{
