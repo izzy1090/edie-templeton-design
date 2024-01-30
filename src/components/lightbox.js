@@ -22,30 +22,12 @@ function Lightbox ( { images } ) {
 
         const keyHandler = (event) => {
             
-            if (isGalleryOpen){
+            if (isGalleryOpen)
+            {
                 if (event.key === "Escape")
                 {                    
                     handleCloseGallery();
                 }
-
-                // if (!isButtonDisabled)
-                // {
-                    // event.preventDefault();
-                //     if (event.key === "ArrowLeft")
-                //     {
-                //         setIsButtonDisabled(true);
-                //         const image = document.querySelector('.innerContainer > img');
-                //         image.id = 'goingBack';
-                //         handlePreviousImage(event);
-                //     } 
-                //     else if (event.key === "ArrowRight")
-                //     {
-                //         setIsButtonDisabled(true);
-                //         const image = document.querySelector('.innerContainer > img');
-                //         image.id = 'goingForward';
-                //         handleNextImage(event);
-                //     }
-                // }
             }
         }
         // add an event listener looking for a key press and invoke the func above
