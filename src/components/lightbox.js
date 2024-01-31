@@ -7,6 +7,7 @@ function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
+    const [ isImageLoading, setIsImageLoading ] = useState(false);
 
     useEffect(()=>{
     
@@ -50,6 +51,7 @@ function Lightbox ( { images } ) {
         image.id = 'goingBack';
         image.style.opacity = 0;
         setIsButtonDisabled(true);
+        setIsImageLoading(true);
         handlePreviousImage(event);
     }
 
@@ -73,6 +75,7 @@ function Lightbox ( { images } ) {
         image.id = 'goingForward';
         image.style.opacity = 0;
         setIsButtonDisabled(true);
+        setIsImageLoading(true);
         handleNextImage(event);
     }
 
@@ -116,6 +119,7 @@ function Lightbox ( { images } ) {
                     <img src={imageToShow.highResImage} 
                         alt={imageToShow.alt} 
                         onClick={(event)=>{event.stopPropagation()}}
+                        className={isImageLoading ? 'loading' : ''}
                         id='initialGalleryOpen'
                         onLoad={()=>{
                                 const image = document.querySelector('.innerContainer > img');
@@ -131,9 +135,9 @@ function Lightbox ( { images } ) {
                                     const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                     lightboxIntroAnim.forEach((element)=>{
                                         setIsButtonDisabled(true);
+                                        
                                         element.addEventListener('animationend', ()=>{
-                                            setIsButtonDisabled(false);
-                                            element.classList.remove('lightboxEntrance');
+                                            setIsButtonDisabled(false);                                            element.classList.remove('lightboxEntrance');
                                         })
                                     })
                                 }
@@ -143,6 +147,8 @@ function Lightbox ( { images } ) {
                                     
                                     image.addEventListener('animationend', ()=>{
                                         setIsButtonDisabled(false);
+                                        setIsImageLoading(false);
+                                        image.classList.remove('loading');
                                         image.style.opacity = 1;
                                         image.classList.remove('previousImage');
                                     })
@@ -151,6 +157,8 @@ function Lightbox ( { images } ) {
                                     image.classList.add('nextImage');
                                     image.addEventListener('animationend', ()=>{
                                         setIsButtonDisabled(false);
+                                        setIsImageLoading(false);
+                                        image.classList.remove('loading');
                                         image.style.opacity = 1;
                                         image.classList.remove('nextImage');
                                     })

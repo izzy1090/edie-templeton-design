@@ -2,7 +2,6 @@ import Route from './components/route';
 import NavMenuPage from "./pages/NavMenuPage";
 import HomePage from "./pages/HomePage";
 import GalleryPage from "./pages/galleryPage";
-import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from "./pages/ContactPage";
 
 function App() {
@@ -15,10 +14,6 @@ function App() {
     <Route path="/gallery">
       <NavMenuPage/>
       <GalleryPage/>
-    </Route>
-    <Route path="/projects">
-      <NavMenuPage/>
-      <ProjectsPage/>
     </Route>
     <Route path="/contact">
       <NavMenuPage/>
