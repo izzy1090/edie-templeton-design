@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
-import rightArrow from '../assets/right-arrow.svg';
-import leftArrow from '../assets/left-arrow.svg';
+import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
+import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 
 function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
+    const [ isImageLoading, setIsImageLoading ] = useState(false);
 
     useEffect(()=>{
-    
+        /*
+            Handles the Escape key to close out the lightbox / gallery
+        */
         const keyHandler = (event) => {
-            
             if (isGalleryOpen)
             {
                 if (event.key === "Escape")
@@ -20,17 +22,32 @@ function Lightbox ( { images } ) {
                 }
             }
         }
-        // add an event listener looking for a key press and invoke the func above
         document.addEventListener('keydown', keyHandler);
-        // make sure to "clean" up the event listener with a return 
+
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
     });
 
+    /*
+        This initiates the backward slide transition by transitioning back the current
+        slide. 
+    */
+    const backSlideTransitionOut = (event) => {
+        const image = document.querySelector('.innerContainer > img');
+        image.id = 'goingBack';
+        image.style.opacity = 0;
+        setIsButtonDisabled(true);
+        handlePreviousImage(event);
+    }
+
+    /*
+        This handles transitioning the current image to the previous image in the array (i.e. gallery)
+    */
     const handlePreviousImage = (event) => {
         event.stopPropagation();
-        for (let i = 0; i < images.length; i++){
+        for (let i = 0; i < images.length; i++)
+        {
             // handles selecting the image that's directly behind the current image
             if (images[i].key === imageToShow.key & imageToShow.key !== images[0].key)
             {
@@ -45,17 +62,25 @@ function Lightbox ( { images } ) {
         }
     }
 
-    const backSlideTransitionOut = (event) => {
+    /*
+        This initiates the forward slide transition by transitioning forward the current
+        slide. 
+    */
+    const forwardSlideTransitionOut = (event) => {
         const image = document.querySelector('.innerContainer > img');
-        image.id = 'goingBack';
+        image.id = 'goingForward';
         image.style.opacity = 0;
         setIsButtonDisabled(true);
-        handlePreviousImage(event);
+        handleNextImage(event);
     }
 
+    /*
+        This handles transitioning the current image to the next image in the array (i.e. gallery)
+    */
     const handleNextImage = (event) => {
         event.stopPropagation();
-        for (let i = 0; i < images.length; i++){
+        for (let i = 0; i < images.length; i++)
+        {
             if (images[i].key === imageToShow.key & imageToShow.key !== images[images.length-1].key)
             {
                 setImageToShow(images[i+1]);
@@ -68,17 +93,13 @@ function Lightbox ( { images } ) {
         }
     }
 
-    const forwardSlideTransitionOut = (event) => {
-        const image = document.querySelector('.innerContainer > img');
-        image.id = 'goingForward';
-        image.style.opacity = 0;
-        setIsButtonDisabled(true);
-        handleNextImage(event);
-    }
-
-    // This targets the innerContainer and the buttons to add a lightboxExit animation
-    // before closing the lightbox with a state change
+    /* 
+        This targets the innerContainer and the buttons to add a lightboxExit animation 
+        before closing the lightbox with a state change 
+     */
     const handleCloseGallery = () => {
+        setIsImageLoading(false);
+
         const innerContainer = document.querySelector('.innerContainer > img');
         const lightboxButton = document.querySelectorAll('.lightboxButton');
         
@@ -93,86 +114,102 @@ function Lightbox ( { images } ) {
         })
     }
 
-    const renderedGallery = <>
-        <div className='lightbox'>
-            <div className='lightboxContainer'>
-                <div onClick={(event)=>{
-                    const image = document.querySelector('.innerContainer > img');
-                    if (!isButtonDisabled)
-                    {
-                        image.classList.add('backTransitionOut');
-                        image.addEventListener('animationend', ()=>{
-                            image.classList.remove('backTransitionOut');
-                            backSlideTransitionOut(event);
-                        })
-                    }
-                }} className='lightboxButton lightboxEntrance' id='prevButton'>
-                    previous    
-                </div>
-                <div className='innerContainer'>
-                    <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
-                        close
-                    </div>
-                    <img src={imageToShow.highResImage} 
-                        alt={imageToShow.alt} 
-                        onClick={(event)=>{event.stopPropagation()}}
-                        id='initialGalleryOpen'
-                        onLoad={()=>{
-                                const image = document.querySelector('.innerContainer > img');
-                                const goingBack = document.getElementById('goingBack');
-                                const goingForward = document.getElementById('goingForward');
-                                const initialGalleryOpen = document.getElementById('initialGalleryOpen');
+    /*
+        The loading animation that plays between slide transitions while the next photo loads. 
+    */
+    const loadingAnimation = <div className='loading' style={{zIndex: 1000}}>*</div>
+    const loader = isImageLoading ? loadingAnimation : null;
 
-                                if (initialGalleryOpen !== null)
-                                {
-                                    image.classList.add('lightboxEntrance');
-                                    image.id = '';
-                                    // This clears the lightbox intro animation for any components after the animation finishes
-                                    const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
-                                    lightboxIntroAnim.forEach((element)=>{
-                                        setIsButtonDisabled(true);
-                                        element.addEventListener('animationend', ()=>{
-                                            setIsButtonDisabled(false);
-                                            element.classList.remove('lightboxEntrance');
-                                        })
-                                    })
-                                }
-                                else if (goingBack !== null)
-                                {
-                                    image.classList.add('previousImage');
-                                    
-                                    image.addEventListener('animationend', ()=>{
-                                        setIsButtonDisabled(false);
-                                        image.style.opacity = 1;
-                                        image.classList.remove('previousImage');
-                                    })
-                                } else if(goingForward !== null)
-                                {
-                                    image.classList.add('nextImage');
-                                    image.addEventListener('animationend', ()=>{
-                                        setIsButtonDisabled(false);
-                                        image.style.opacity = 1;
-                                        image.classList.remove('nextImage');
-                                    })
-                                }
-                        }}/>
+    /*
+        The rendered gallery for the lightbox which includes the image and buttons.
+    */
+    const renderedGallery = <>
+    <div className='lightbox'>
+        <div className='lightboxContainer'>
+            <div onClick={(event)=>{
+                const image = document.querySelector('.innerContainer > img');
+                if (!isButtonDisabled)
+                {
+                    image.classList.add('backTransitionOut');
+                    image.addEventListener('animationend', ()=>{
+                        image.classList.remove('backTransitionOut');
+                        setIsImageLoading(true);
+                        backSlideTransitionOut(event);
+                    })
+                }
+            }} className='lightboxButton lightboxEntrance' id='prevButton'>
+                <BackArrow style={{width: "2em", height: '2em'}}/>
+            </div>
+            <div className='innerContainer'>
+                <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
+                    close
                 </div>
-                <div onClick={(event)=>{
-                    const image = document.querySelector('.innerContainer > img');
-                    if (!isButtonDisabled)
-                    {
-                        image.classList.add('forwardTransitionOut');
-                        image.addEventListener('animationend', ()=>{
-                            image.classList.remove('forwardTransitionOut');
-                            forwardSlideTransitionOut(event);
-                        })
-                        
-                    }
-                }} className='lightboxButton lightboxEntrance' id='nextButton'>
-                    next
-                </div>
+                {loader}
+                <img src={imageToShow.highResImage} 
+                    alt={imageToShow.alt} 
+                    onClick={(event)=>{event.stopPropagation()}}
+                    id='initialGalleryOpen'
+                    onLoad={()=>{
+                            const image = document.querySelector('.innerContainer > img');
+                            const goingBack = document.getElementById('goingBack');
+                            const goingForward = document.getElementById('goingForward');
+                            const initialGalleryOpen = document.getElementById('initialGalleryOpen');
+                            const loading = document.querySelector('.loading')
+
+                            if (initialGalleryOpen !== null)
+                            {
+                                image.classList.add('lightboxEntrance');
+                                image.id = '';
+                                // This clears the lightbox intro animation for any components after the animation finishes
+                                const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
+                                lightboxIntroAnim.forEach((element)=>{
+                                    setIsButtonDisabled(true);
+                                    element.addEventListener('animationend', ()=>{
+                                        setIsButtonDisabled(false);                                            element.classList.remove('lightboxEntrance');
+                                    })
+                                })
+                            }
+                            else if (goingBack !== null)
+                            {
+                                image.classList.add('previousImage');
+                                loading.style.display = 'none';
+                                image.addEventListener('animationend', ()=>{
+                                    setIsButtonDisabled(false);
+                                    setIsImageLoading(false);
+                                    image.style.opacity = 1;
+                                    image.classList.remove('previousImage');
+                                })
+                            } else if(goingForward !== null)
+                            {
+                                image.classList.add('nextImage');
+                                loading.style.display = 'none';
+                                image.addEventListener('animationend', ()=>{
+                                    setIsButtonDisabled(false);
+                                    setIsImageLoading(false);
+                                    image.style.opacity = 1;
+                                    image.classList.remove('nextImage');
+                                })
+                            }
+                            
+                    }}/>
+            </div>
+            <div onClick={(event)=>{
+                const image = document.querySelector('.innerContainer > img');
+                if (!isButtonDisabled)
+                {
+                    image.classList.add('forwardTransitionOut');
+                    image.addEventListener('animationend', ()=>{
+                        image.classList.remove('forwardTransitionOut');
+                        setIsImageLoading(true);
+                        forwardSlideTransitionOut(event);
+                    })
+                    
+                }
+            }} className='lightboxButton lightboxEntrance' id='nextButton'>
+                <ForwardArrow style={{width: "2em", height: "2em"}}/>
             </div>
         </div>
+    </div>
     </>
 
     return <>{isGalleryOpen ? renderedGallery : null}</>
