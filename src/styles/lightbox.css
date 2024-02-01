@@ -262,7 +262,7 @@
 @media only screen and (max-width: 600px) {
     #nextButton {
         margin-top: 1rem;
-        position: absolute;
+        position: fixed;
         right: 0%;
         /* padding: 10%; */
         bottom: 1%;
@@ -270,7 +270,7 @@
 
     #prevButton {
         margin-top: 1rem;
-        position: absolute;
+        position: fixed;
         left: 0%;
         /* padding: 10%; */
         bottom: 1%;
