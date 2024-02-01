@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
-import rightArrow from '../assets/right-arrow.svg';
-import leftArrow from '../assets/left-arrow.svg';
+import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
+import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 
 function Lightbox ( { images } ) {
 
@@ -138,7 +138,7 @@ function Lightbox ( { images } ) {
                     })
                 }
             }} className='lightboxButton lightboxEntrance' id='prevButton'>
-                previous    
+                <BackArrow style={{width: "2em", height: '2em'}}/>
             </div>
             <div className='innerContainer'>
                 <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
@@ -206,7 +206,7 @@ function Lightbox ( { images } ) {
                     
                 }
             }} className='lightboxButton lightboxEntrance' id='nextButton'>
-                next
+                <ForwardArrow style={{width: "2em", height: "2em"}}/>
             </div>
         </div>
     </div>
