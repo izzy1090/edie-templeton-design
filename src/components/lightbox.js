@@ -7,7 +7,7 @@ function Lightbox ( { images } ) {
 
     const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
-    const [ isImageLoading, setIsImageLoading ] = useState(true);
+    const [ isImageLoading, setIsImageLoading ] = useState(false);
 
     useEffect(()=>{
         /*
@@ -117,8 +117,8 @@ function Lightbox ( { images } ) {
     /*
         The loading animation that plays between slide transitions while the next photo loads. 
     */
-        const loadingAnimation = <div className='lightbox lightboxContainer' style={{zIndex: 1000}}>load</div>
-        const loader = isImageLoading ? loadingAnimation : null;
+    const loadingAnimation = <div className='loading' style={{zIndex: 1000}}>*</div>
+    const loader = isImageLoading ? loadingAnimation : null;
 
     /*
         The rendered gallery for the lightbox which includes the image and buttons.
@@ -133,6 +133,7 @@ function Lightbox ( { images } ) {
                     image.classList.add('backTransitionOut');
                     image.addEventListener('animationend', ()=>{
                         image.classList.remove('backTransitionOut');
+                        setIsImageLoading(true);
                         backSlideTransitionOut(event);
                     })
                 }
@@ -143,6 +144,7 @@ function Lightbox ( { images } ) {
                 <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
                     close
                 </div>
+                {loader}
                 <img src={imageToShow.highResImage} 
                     alt={imageToShow.alt} 
                     onClick={(event)=>{event.stopPropagation()}}
@@ -152,6 +154,7 @@ function Lightbox ( { images } ) {
                             const goingBack = document.getElementById('goingBack');
                             const goingForward = document.getElementById('goingForward');
                             const initialGalleryOpen = document.getElementById('initialGalleryOpen');
+                            const loading = document.querySelector('.loading')
 
                             if (initialGalleryOpen !== null)
                             {
@@ -169,20 +172,25 @@ function Lightbox ( { images } ) {
                             else if (goingBack !== null)
                             {
                                 image.classList.add('previousImage');
+                                loading.style.display = 'none';
                                 image.addEventListener('animationend', ()=>{
                                     setIsButtonDisabled(false);
+                                    setIsImageLoading(false);
                                     image.style.opacity = 1;
                                     image.classList.remove('previousImage');
                                 })
                             } else if(goingForward !== null)
                             {
                                 image.classList.add('nextImage');
+                                loading.style.display = 'none';
                                 image.addEventListener('animationend', ()=>{
                                     setIsButtonDisabled(false);
+                                    setIsImageLoading(false);
                                     image.style.opacity = 1;
                                     image.classList.remove('nextImage');
                                 })
                             }
+                            
                     }}/>
             </div>
             <div onClick={(event)=>{
@@ -192,6 +200,7 @@ function Lightbox ( { images } ) {
                     image.classList.add('forwardTransitionOut');
                     image.addEventListener('animationend', ()=>{
                         image.classList.remove('forwardTransitionOut');
+                        setIsImageLoading(true);
                         forwardSlideTransitionOut(event);
                     })
                     
