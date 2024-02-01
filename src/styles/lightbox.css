@@ -261,8 +261,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .innerContainer > img {
-        margin: 10px;
+    #closeButton {
+        display: flex;
+        margin: 5px;
+        top: 10px;
     }
 
     #nextButton {
@@ -271,7 +273,8 @@
         /* right: 0%; */
         /* padding: 10%; */
         /* bottom: 1%; */
-        margin-top: 5px;
+        display: flex;
+        margin: 5px;
         bottom: 5px;
     }
 
@@ -282,7 +285,8 @@
         /* left: 0%; */
         /* padding: 10%; */
         /* bottom: 1%; */
-        margin-top: 5px;
+        display: flex;
+        margin: 5px;
         bottom: 5px;
     }
     
