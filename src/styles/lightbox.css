@@ -17,8 +17,8 @@
 }
 
 .innerContainer > img {
-    max-width: 70vw;
-    max-height: 70vh;
+    max-width: 80vw;
+    max-height: 80vh;
 }
 
 .innerContainer {
@@ -109,7 +109,7 @@
 
 #closeButton {
     position: fixed;
-    top: 5%;
+    top: 2%;
 }
 
 .lightboxEntrance {
@@ -264,16 +264,16 @@
         margin-top: 1rem;
         position: absolute;
         right: 0%;
-        padding: 10%;
-        bottom: 5%;
+        /* padding: 10%; */
+        bottom: 1%;
     }
 
     #prevButton {
         margin-top: 1rem;
         position: absolute;
         left: 0%;
-        padding: 10%;
-        bottom: 5%;
+        /* padding: 10%; */
+        bottom: 1%;
     }
 }
 
