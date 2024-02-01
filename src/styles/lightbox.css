@@ -262,18 +262,18 @@
 @media only screen and (max-width: 600px) {
     #nextButton {
         margin-top: 1rem;
-        position: fixed;
+        position: absolute;
         right: 0%;
         /* padding: 10%; */
-        bottom: 1%;
+        bottom: 0%;
     }
 
     #prevButton {
         margin-top: 1rem;
-        position: fixed;
+        position: absolute;
         left: 0%;
         /* padding: 10%; */
-        bottom: 1%;
+        bottom: 0%;
     }
 }
 
