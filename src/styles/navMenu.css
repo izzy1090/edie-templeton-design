@@ -1,14 +1,22 @@
+.logo {
+    width: 3em;
+    height: 3em;
+}
+
+#mobileLogo {
+    display: none;
+}
+
 .hamburgerMenu {
     position: absolute;
     right: 3%;
     top: 2%;
-    /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
     height: 1.7rem;
     width: 1.7rem;
     background-color: #ffcba4;
-    z-index: 2;
+    z-index: 3;
     display: none;
 }
 
@@ -16,13 +24,12 @@
     position: absolute;
     right: 3%;
     top: 2%;
-    /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
     height: 1.7rem;
     width: 1.7rem;
     background-color: #F1F1EF;
-    z-index: 2;
+    z-index: 3;
     display: none;
 }
 
@@ -30,15 +37,15 @@
     height: 100%;
     width: 100%;
     display: flex;
-    position: fixed;
+    position: absolute;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #ffcba4;
-    z-index: 1;
+    z-index: 2;
 }
 
-.mobileMenu div {
+.mobileMenu > div {
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
@@ -55,7 +62,7 @@
 
 .mobileMenuIntro {
     animation-name: mobileMenuIntroAnim;
-    animation-duration: 500ms;
+    animation-duration: 1s;
 }
 
 @keyframes mobileMenuIntroAnim {
@@ -69,7 +76,7 @@
 
 .mobileMenuExit {
     animation-name: mobileMenuExitAnim;
-    animation-duration: 500ms;
+    animation-duration: 1s;
 }
 
 @keyframes mobileMenuExitAnim {
@@ -99,20 +106,27 @@
 .desktopMenu {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
     opacity: 0;
 }
 
-.desktopMenu div {
+.menuItemContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.menuItems > div {
     text-decoration: none;
     font-size: 1.3rem;
     color: rgba(0, 0, 0, 0.704);
     position: relative; /* Ensure proper positioning of ::after pseudo-element */
     cursor: pointer;
+    width: fit-content;
 }
 
-.desktopMenu div::after {
+.menuItems > div::after {
     content: ""; /* Add content to the ::after pseudo-element */
     display: block; 
     width: 100%; /* Initial width to cover entire link */
@@ -124,12 +138,12 @@
     transition: transform 500ms ease, opacity 500ms ease; 
 }
 
-.desktopMenu div:hover::after, .desktopMenu div:focus::after {
+.menuItems > div:hover::after, .desktopMenuItems > div:focus::after {
     transform: scaleX(1); /* Scale to full width on hover or focus */
     opacity: 1; /* Show the underline */
 }
 
-.desktopMenu div:hover {
+.menuItems > div:hover {
     color: #ffcba4;
 }
 
@@ -167,6 +181,10 @@
 @media only screen and (max-width: 600px) {
     .desktopMenu {
         display: none;
+    }
+
+    #mobileLogo {
+        display: block;
     }
 
     .hamburgerMenu {

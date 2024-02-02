@@ -1,7 +1,7 @@
 import Route from './components/route';
 import NavMenuPage from "./pages/NavMenuPage";
 import HomePage from "./pages/HomePage";
-import GalleryPage from "./pages/galleryPage";
+import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 
 function App() {
