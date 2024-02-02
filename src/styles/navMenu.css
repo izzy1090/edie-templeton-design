@@ -99,20 +99,32 @@
 .desktopMenu {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
     opacity: 0;
 }
 
-.desktopMenu div {
+.logo {
+    width: 3em;
+    height: 3em;
+}
+
+.menuItemContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.menuItems > div {
     text-decoration: none;
     font-size: 1.3rem;
     color: rgba(0, 0, 0, 0.704);
     position: relative; /* Ensure proper positioning of ::after pseudo-element */
     cursor: pointer;
+    width: fit-content;
 }
 
-.desktopMenu div::after {
+.menuItems > div::after {
     content: ""; /* Add content to the ::after pseudo-element */
     display: block; 
     width: 100%; /* Initial width to cover entire link */
@@ -124,12 +136,12 @@
     transition: transform 500ms ease, opacity 500ms ease; 
 }
 
-.desktopMenu div:hover::after, .desktopMenu div:focus::after {
+.menuItems > div:hover::after, .desktopMenuItems > div:focus::after {
     transform: scaleX(1); /* Scale to full width on hover or focus */
     opacity: 1; /* Show the underline */
 }
 
-.desktopMenu div:hover {
+.menuItems > div:hover {
     color: #ffcba4;
 }
 

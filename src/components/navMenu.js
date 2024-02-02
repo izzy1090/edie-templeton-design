@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
+import { ReactComponent as Logo } from '../assets/Mark.svg';
 
 function NavMenu( { menuItems } ){
 
@@ -83,7 +84,11 @@ function NavMenu( { menuItems } ){
         </span>
             {isNavOpen ? <div className="mobileMenu">{mobileActiveMenu}</div> : null}
         </div>
-        <div className="desktopMenu">{renderedMenuItems}</div>
+        <div className="desktopMenu">
+            <Logo className="logo"/>
+            <div className="menuItemContainer menuItems">{renderedMenuItems}</div>
+        </div>
+
     </>
 }
 
