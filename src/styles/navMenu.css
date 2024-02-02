@@ -1,14 +1,22 @@
+.logo {
+    width: 3em;
+    height: 3em;
+}
+
+#mobileLogo {
+    display: none;
+}
+
 .hamburgerMenu {
     position: absolute;
     right: 3%;
     top: 2%;
-    /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
     height: 1.7rem;
     width: 1.7rem;
     background-color: #ffcba4;
-    z-index: 2;
+    z-index: 3;
     display: none;
 }
 
@@ -16,13 +24,12 @@
     position: absolute;
     right: 3%;
     top: 2%;
-    /* margin: 2rem 1rem; */
     cursor: pointer;
     border-radius: 2rem;
     height: 1.7rem;
     width: 1.7rem;
     background-color: #F1F1EF;
-    z-index: 2;
+    z-index: 3;
     display: none;
 }
 
@@ -30,15 +37,15 @@
     height: 100%;
     width: 100%;
     display: flex;
-    position: fixed;
+    position: absolute;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #ffcba4;
-    z-index: 1;
+    z-index: 2;
 }
 
-.mobileMenu div {
+.mobileMenu > div {
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
@@ -55,7 +62,7 @@
 
 .mobileMenuIntro {
     animation-name: mobileMenuIntroAnim;
-    animation-duration: 500ms;
+    animation-duration: 1s;
 }
 
 @keyframes mobileMenuIntroAnim {
@@ -69,7 +76,7 @@
 
 .mobileMenuExit {
     animation-name: mobileMenuExitAnim;
-    animation-duration: 500ms;
+    animation-duration: 1s;
 }
 
 @keyframes mobileMenuExitAnim {
@@ -103,11 +110,6 @@
     align-items: center;
     padding: 15px;
     opacity: 0;
-}
-
-.logo {
-    width: 3em;
-    height: 3em;
 }
 
 .menuItemContainer {
@@ -179,6 +181,10 @@
 @media only screen and (max-width: 600px) {
     .desktopMenu {
         display: none;
+    }
+
+    #mobileLogo {
+        display: block;
     }
 
     .hamburgerMenu {

@@ -33,7 +33,7 @@
 }
 
 .forwardTransitionOut {
-    animation: forwardTransitionOutAnim 500ms linear;
+    animation: forwardTransitionOutAnim 700ms ease-in-out;
 }
 
 @keyframes forwardTransitionOutAnim {
@@ -47,7 +47,7 @@
 }
 
 .nextImage {
-    animation: forwardAnim 500ms linear;
+    animation: forwardAnim 700ms ease-in-out;
 }
 
 @keyframes forwardAnim {
@@ -65,7 +65,7 @@
 }
 
 .previousImage {
-    animation: backAnim 500ms linear;
+    animation: backAnim 700ms ease-in-out;
 }
 
 @keyframes backAnim {
@@ -80,7 +80,7 @@
 }
 
 .backTransitionOut {
-    animation: backTransitionOutAnim 500ms linear;
+    animation: backTransitionOutAnim 700ms ease-in-out;
 }
 
 @keyframes backTransitionOutAnim {

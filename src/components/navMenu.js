@@ -38,7 +38,7 @@ function NavMenu( { menuItems } ){
     }, [setIsOpen, isNavOpen])
 
     const handleOpenCloseMenu = () => {
-        setIsOpen(!isNavOpen)
+        setIsOpen(!isNavOpen);
     }
 
     const mobileLinkAnim = (destination) => {
@@ -78,17 +78,17 @@ function NavMenu( { menuItems } ){
     })
 
     return <>
-        <div className={isNavOpen ? "mobileMenuIntro" : "mobileMenuExit"}>
-        <span onClick={handleOpenCloseMenu}>
-            {isNavOpen ? invertedHamburger : hamburger}
-        </span>
+        <div className={isNavOpen ? 'mobileMenuIntro' : 'mobileMenuExit'}>
+            <Logo className="logo" id="mobileLogo" style={isNavOpen ? {display: 'none'}: {padding: '15px'}}/>
+            <span onClick={handleOpenCloseMenu}>
+                {isNavOpen ? invertedHamburger : hamburger}
+            </span>
             {isNavOpen ? <div className="mobileMenu">{mobileActiveMenu}</div> : null}
         </div>
         <div className="desktopMenu">
             <Logo className="logo"/>
             <div className="menuItemContainer menuItems">{renderedMenuItems}</div>
         </div>
-
     </>
 }
 
