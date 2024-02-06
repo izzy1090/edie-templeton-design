@@ -10,6 +10,16 @@ function Lightbox ( { images } ) {
     const [ isImageLoading, setIsImageLoading ] = useState(false);
 
     useEffect(()=>{
+        const initialGalleryOpen = document.getElementById('initialGalleryOpen');
+        const image = document.querySelector('.innerContainer > img');
+
+        if (initialGalleryOpen)
+        {
+            image.style.opacity = 0;
+            setIsImageLoading(true);
+        }
+        
+
         /*
             Handles the Escape key to close out the lightbox / gallery
         */
@@ -160,11 +170,14 @@ function Lightbox ( { images } ) {
                             {
                                 image.classList.add('lightboxEntrance');
                                 image.id = '';
+                                image.style.opacity = 1;
+                                loading.style.display = 'none';
                                 // This clears the lightbox intro animation for any components after the animation finishes
                                 const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                 lightboxIntroAnim.forEach((element)=>{
                                     setIsButtonDisabled(true);
                                     element.addEventListener('animationend', ()=>{
+                                        setIsImageLoading(false);
                                         setIsButtonDisabled(false);                                            element.classList.remove('lightboxEntrance');
                                     })
                                 })
