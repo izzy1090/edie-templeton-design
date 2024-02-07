@@ -126,7 +126,7 @@ function Lightbox ( { images } ) {
     /*
         The loading animation that plays between slide transitions while the next photo loads. 
     */
-    const loadingAnimation = <div className='loading' style={{zIndex: 1000}}></div>
+    const loadingAnimation = <div className='loading'></div>
     const loader = isImageLoading ? loadingAnimation : null;
 
     /*
@@ -163,7 +163,12 @@ function Lightbox ( { images } ) {
                             const goingBack = document.getElementById('goingBack');
                             const goingForward = document.getElementById('goingForward');
                             const initialGalleryOpen = document.getElementById('initialGalleryOpen');
-                            const loading = document.querySelector('.loading')
+                            const loading = document.querySelector('.loading');
+                            if (loading !== null)
+                                {
+                                    loading.style.display = 'none'
+                                }
+                            
 
                             if (initialGalleryOpen !== null)
                             {
@@ -172,7 +177,7 @@ function Lightbox ( { images } ) {
                                 image.style.opacity = 1;
                                 if (loading !== null)
                                 {
-                                    loading.style.display = 'none';
+                                    // loading.style.opacity = 0;
                                 }
                                 
                                 // This clears the lightbox intro animation for any components after the animation finishes
@@ -188,7 +193,6 @@ function Lightbox ( { images } ) {
                             else if (goingBack !== null)
                             {
                                 image.classList.add('previousImage');
-                                loading.style.display = 'none';
                                 image.addEventListener('animationend', ()=>{
                                     setIsButtonDisabled(false);
                                     setIsImageLoading(false);
@@ -198,7 +202,6 @@ function Lightbox ( { images } ) {
                             } else if(goingForward !== null)
                             {
                                 image.classList.add('nextImage');
-                                loading.style.display = 'none';
                                 image.addEventListener('animationend', ()=>{
                                     setIsButtonDisabled(false);
                                     setIsImageLoading(false);
