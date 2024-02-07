@@ -176,11 +176,17 @@ function Lightbox ( { images } ) {
                                 image.classList.add('lightboxEntrance');
                                 image.id = '';
                                 image.style.opacity = 1; 
+                                if (loading)
+                                {
+                                    loading.classList.remove('loading');
+                                    setIsImageLoading(false);
+                                }
                                 // This clears the lightbox intro animation for any components after the animation finishes
                                 const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                 lightboxIntroAnim.forEach((element)=>{
                                     setIsButtonDisabled(true);
                                     element.addEventListener('animationend', ()=>{
+                                        setIsImageLoading(false);
                                         setIsButtonDisabled(false);                                            element.classList.remove('lightboxEntrance');
                                     })
                                 })
