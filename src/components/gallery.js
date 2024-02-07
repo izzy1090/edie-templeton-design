@@ -5,16 +5,16 @@ import Lightbox from './lightbox';
 function Images ( {images} ) {
 
     const { isNavOpen, setIsGalleryOpen, setImageToShow } = useGlobalStates();
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const handleOpenGallery = (image) => {
         setIsGalleryOpen(true);
         setImageToShow(image)
     }
 
-    window.addEventListener('load', ()=>{
-        setIsLoading(false);
-    });
+    // window.addEventListener('load', ()=>{
+    //     setIsLoading(false);
+    // });
 
     useEffect(()=>{
 

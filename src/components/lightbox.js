@@ -36,7 +36,7 @@ function Lightbox ( { images } ) {
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
-    });
+    }, [isGalleryOpen, isImageLoading]);
 
     /*
         This initiates the backward slide transition by transitioning back the current
@@ -170,7 +170,11 @@ function Lightbox ( { images } ) {
                                 image.classList.add('lightboxEntrance');
                                 image.id = '';
                                 image.style.opacity = 1;
-                                loading.style.display = 'none';
+                                if (loading !== null)
+                                {
+                                    loading.style.display = 'none';
+                                }
+                                
                                 // This clears the lightbox intro animation for any components after the animation finishes
                                 const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                 lightboxIntroAnim.forEach((element)=>{
