@@ -46,7 +46,10 @@ function Images ( {images} ) {
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
-        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
+        return <div className='imageContainer' key={image.key} onClick={()=>{
+            handleOpenGallery(image);
+            setIsLoading(false);
+            }}>
             <img 
                 src={image.compressedImage}               
                 alt={image.alt}
@@ -57,7 +60,10 @@ function Images ( {images} ) {
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
-        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
+        return <div className='imageContainer' key={image.key} onClick={()=>{
+            setIsLoading(false);
+            handleOpenGallery(image);
+        }}>
             <img 
                 src={image.compressedImage} 
                 alt={image.alt}
