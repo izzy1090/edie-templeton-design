@@ -17,6 +17,13 @@ function Images ( {images} ) {
     // });
 
     useEffect(()=>{
+        const initialGalleryLoad = document.getElementById('initialGalleryLoad');
+        if (initialGalleryLoad != null)
+        {
+            const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
+            imagesSpreadContainer.id = '';
+            setIsLoading(false);
+        }
 
         if (!isLoading)
         {
@@ -73,7 +80,7 @@ function Images ( {images} ) {
     })
 
     const imageSpread = <>
-        <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null}>
+        <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
             <div className={"imagesSpreadColumn1"}>
                 {imageContainerColumn1}
             </div>

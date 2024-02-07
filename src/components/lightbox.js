@@ -36,7 +36,7 @@ function Lightbox ( { images } ) {
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
-    }, [isGalleryOpen, isImageLoading]);
+    }, [isGalleryOpen]);
 
     /*
         This initiates the backward slide transition by transitioning back the current
@@ -166,27 +166,21 @@ function Lightbox ( { images } ) {
                             const loading = document.querySelector('.loading');
 
                             if (loading)
-                                {
-                                    loading.classList.remove('loading');
-                                    setIsImageLoading(false);
-                                }
+                            {
+                                loading.classList.remove('loading');  
+                            }
                             
                             if (initialGalleryOpen !== null)
                             {
                                 image.classList.add('lightboxEntrance');
                                 image.id = '';
                                 image.style.opacity = 1; 
-                                if (loading)
-                                {
-                                    loading.classList.remove('loading');
-                                    setIsImageLoading(false);
-                                }
+                                setIsImageLoading(false);
                                 // This clears the lightbox intro animation for any components after the animation finishes
                                 const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                 lightboxIntroAnim.forEach((element)=>{
                                     setIsButtonDisabled(true);
                                     element.addEventListener('animationend', ()=>{
-                                        setIsImageLoading(false);
                                         setIsButtonDisabled(false);                                            element.classList.remove('lightboxEntrance');
                                     })
                                 })
