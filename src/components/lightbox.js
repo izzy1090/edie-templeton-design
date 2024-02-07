@@ -164,21 +164,17 @@ function Lightbox ( { images } ) {
                             const goingForward = document.getElementById('goingForward');
                             const initialGalleryOpen = document.getElementById('initialGalleryOpen');
                             const loading = document.querySelector('.loading');
-                            if (loading !== null)
-                                {
-                                    loading.style.display = 'none'
-                                }
-                            
 
+                            if (loading)
+                            {
+                                loading.classList.remove('loading');
+                            }
+                            
                             if (initialGalleryOpen !== null)
                             {
                                 image.classList.add('lightboxEntrance');
                                 image.id = '';
                                 image.style.opacity = 1;
-                                if (loading !== null)
-                                {
-                                    // loading.style.opacity = 0;
-                                }
                                 
                                 // This clears the lightbox intro animation for any components after the animation finishes
                                 const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
