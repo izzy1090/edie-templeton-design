@@ -36,7 +36,7 @@ function Lightbox ( { images } ) {
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
-    });
+    }, [isGalleryOpen]);
 
     /*
         This initiates the backward slide transition by transitioning back the current
@@ -126,7 +126,7 @@ function Lightbox ( { images } ) {
     /*
         The loading animation that plays between slide transitions while the next photo loads. 
     */
-    const loadingAnimation = <div className='loading' style={{zIndex: 1000}}></div>
+    const loadingAnimation = <div className='loading'></div>
     const loader = isImageLoading ? loadingAnimation : null;
 
     /*
@@ -163,20 +163,24 @@ function Lightbox ( { images } ) {
                             const goingBack = document.getElementById('goingBack');
                             const goingForward = document.getElementById('goingForward');
                             const initialGalleryOpen = document.getElementById('initialGalleryOpen');
-                            const loading = document.querySelector('.loading')
+                            const loading = document.querySelector('.loading');
 
+                            if (loading)
+                            {
+                                loading.classList.remove('loading');  
+                            }
+                            
                             if (initialGalleryOpen !== null)
                             {
                                 image.classList.add('lightboxEntrance');
                                 image.id = '';
-                                image.style.opacity = 1;
-                                loading.style.display = 'none';
+                                image.style.opacity = 1; 
+                                setIsImageLoading(false);
                                 // This clears the lightbox intro animation for any components after the animation finishes
                                 const lightboxIntroAnim = document.querySelectorAll('.lightboxEntrance');
                                 lightboxIntroAnim.forEach((element)=>{
                                     setIsButtonDisabled(true);
                                     element.addEventListener('animationend', ()=>{
-                                        setIsImageLoading(false);
                                         setIsButtonDisabled(false);                                            element.classList.remove('lightboxEntrance');
                                     })
                                 })
@@ -184,7 +188,6 @@ function Lightbox ( { images } ) {
                             else if (goingBack !== null)
                             {
                                 image.classList.add('previousImage');
-                                loading.style.display = 'none';
                                 image.addEventListener('animationend', ()=>{
                                     setIsButtonDisabled(false);
                                     setIsImageLoading(false);
@@ -194,7 +197,6 @@ function Lightbox ( { images } ) {
                             } else if(goingForward !== null)
                             {
                                 image.classList.add('nextImage');
-                                loading.style.display = 'none';
                                 image.addEventListener('animationend', ()=>{
                                     setIsButtonDisabled(false);
                                     setIsImageLoading(false);
