@@ -1,3 +1,15 @@
+.galleryLoading {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.loadingSkeleton {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+    gap: 16px; /* Adjust the gap between columns */
+}
+
 .imagesSpreadContainer {
     display: flex;
     justify-content: center;

@@ -18,7 +18,6 @@ function Lightbox ( { images } ) {
             image.style.opacity = 0;
             setIsImageLoading(true);
         }
-        
 
         /*
             Handles the Escape key to close out the lightbox / gallery
@@ -127,7 +126,7 @@ function Lightbox ( { images } ) {
     /*
         The loading animation that plays between slide transitions while the next photo loads. 
     */
-    const loadingAnimation = <div className='loading' style={{zIndex: 1000}}>*</div>
+    const loadingAnimation = <div className='loading' style={{zIndex: 1000}}></div>
     const loader = isImageLoading ? loadingAnimation : null;
 
     /*
