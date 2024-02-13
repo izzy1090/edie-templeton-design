@@ -35,8 +35,8 @@ import NYTCompressed from '../images/gallery/NYT.webp';
 function ImagesPage () {
 
     const imageArray = [ 
-        {key: 0, highResImage: grammieKitchen, compressedImage: grammieKitchenCompressed, alt: "Edie's grandma's kitchen." }, 
-        {key: 1, highResImage: chineseCabinet, compressedImage: chineseCabinetCompressed, alt: 'Ornate black and gold chinese cabinet.'}, 
+        {key: 0, highResImage: grammieKitchen, compressedImage: grammieKitchenCompressed, width: 1105, height: 1600, alt: "Edie's grandma's kitchen." }, 
+        {key: 1, highResImage: chineseCabinet, compressedImage: chineseCabinetCompressed, width: 1000, height: 1500, alt: 'Ornate black and gold chinese cabinet.'}, 
         {key: 2, highResImage: livingRoom1, compressedImage: livingRoom1Compressed, width: 1800, height: 1200, alt: '72 Clermont Ave shot # 1.'}, 
         {key: 3, highResImage: livingRoom2, compressedImage: livingRoom2Compressed, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 2.'}, 
         {key: 4, highResImage: livingRoom3, compressedImage: livingRoom3Compressed, width: 1200, height: 1800, alt: '72 Clermont Ave shot # 3.'}, 
