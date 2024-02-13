@@ -12,9 +12,18 @@ function Images ( {images} ) {
         setImageToShow(image)
     }
 
-    // window.addEventListener('load', ()=>{
-    //     setIsLoading(false);
-    // });
+    const handleImageLoad = () => {
+        // All images loaded looks for all images in the image container with the applied tag
+            // It uses the spread operator to place them in an array
+            // it then uses .every which sees if everything in the array evaluates to true
+        // After all els of the array evaluates to true, it evaluates if all the imgs in the array are completed loading
+        const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
+        
+        // if they're completed loading, then set loading to false
+        if (allImagesLoaded) {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(()=>{
         const initialGalleryLoad = document.getElementById('initialGalleryLoad');
@@ -22,7 +31,7 @@ function Images ( {images} ) {
         {
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
             imagesSpreadContainer.id = '';
-            setIsLoading(false);
+            setIsLoading(true);
         }
 
         if (!isLoading)
@@ -51,31 +60,28 @@ function Images ( {images} ) {
         } 
     }, [isLoading]);
 
+
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
-        return <div className='imageContainer' key={image.key} onClick={()=>{
-            handleOpenGallery(image);
-            setIsLoading(false);
-            }}>
-            <img 
-                src={image.compressedImage}               
-                alt={image.alt}
-                width={image.width} 
-                height={image.height}/>
+        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
+        <img 
+            src={image.compressedImage}               
+            alt={image.alt}
+            width={image.width} 
+            height={image.height}
+            onLoad={handleImageLoad}/>
         </div>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
-        return <div className='imageContainer' key={image.key} onClick={()=>{
-            setIsLoading(false);
-            handleOpenGallery(image);
-        }}>
+        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img 
                 src={image.compressedImage} 
                 alt={image.alt}
                 width={image.width} 
-                height={image.height}/>
+                height={image.height}
+                onLoad={handleImageLoad}/>
         </div>
     })
 
@@ -89,7 +95,9 @@ function Images ( {images} ) {
             </div>
         </div>
     </>
+
     const loader = <div className='loading' style={{zIndex: 1000}}></div>
+
     return <>{isLoading ? loader : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
