@@ -21,12 +21,19 @@ function Images ( {images} ) {
         
         // if they're completed loading, then set loading to false
         if (allImagesLoaded) {
-            setIsLoading(true);
+            setIsLoading(false);
         }
     };
 
     useEffect(()=>{
         const initialGalleryLoad = document.getElementById('initialGalleryLoad');
+        const body = document.querySelector('*');
+
+        if (isLoading)
+        {
+            body.style.overflow = 'hidden';
+        } 
+
         if (initialGalleryLoad != null)
         {
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
@@ -36,6 +43,7 @@ function Images ( {images} ) {
 
         if (!isLoading)
         {
+            body.style.overflow = ''
             // create an instance of an observer accepts a series of entries
             const observer = new IntersectionObserver((entries)=>{
                 // iterate across those individual entries 
