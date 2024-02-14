@@ -63,26 +63,36 @@ function Images ( {images} ) {
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
-        const imageEls = <img src={image.compressedImage}               
-                            alt={image.alt}
-                            width={image.width} 
-                            height={image.height}
-                            onLoad={handleImageLoad}/>
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            {!isLoading ? imageEls : null}
+            <img src={image.compressedImage}               
+                alt={image.alt}
+                width={image.width} 
+                height={image.height}
+                onLoad={handleImageLoad}/>
         </div>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
-        const imageEls = <img src={image.compressedImage} 
-                            alt={image.alt}
-                            width={image.width} 
-                            height={image.height}
-                            onLoad={handleImageLoad}/>
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            {!isLoading ? imageEls : null}
+            <img src={image.compressedImage} 
+                alt={image.alt}
+                width={image.width} 
+                height={image.height}
+                onLoad={handleImageLoad}/>
         </div>
+    })
+
+    // Skeleton loader to fit the size and positioning of 
+    const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
+        return <div key={image.key} className='skeletonContainer' 
+            style={{width: `${image.width}px`, height: `${image.height}px`}}/>
+    })
+
+    // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
+    const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
+        return <div key={image.key} className='skeletonContainer' 
+            style={{width: `${image.width}px`, height: `${image.height}px`}}/>
     })
 
     const imageSpread = <>
@@ -96,21 +106,7 @@ function Images ( {images} ) {
         </div>
     </>
 
-    // Skeleton loader to fit the size and positioning of 
-    const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
-        const skeletonLoader = <div key={image.key} className='skeletonContainer' style={{width: `${image.width}px`, height: `${image.height}px`}}></div>
-        return <>{isLoading ? skeletonLoader : null}</>
-
-    })
-
-    // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
-    const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
-        const skeletonLoader = <div key={image.key} className='skeletonContainer' style={{width: `${image.width}px`, height: `${image.height}px`}}></div>
-        return <>{isLoading ? skeletonLoader : null}</>
-    })
-
-
-    const skeletonSpread = <>
+    const skeletonSpread = (
         <div className={"imagesSpreadContainer"}>
             <div className={"imagesSpreadColumn1"}>
                 {skeletonContainer1}
@@ -119,7 +115,8 @@ function Images ( {images} ) {
                 {skeletonContainer2}
             </div>
         </div>
-    </>
+    )
+    // {isLoading ? skeletonSpread : null}
     
     return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }

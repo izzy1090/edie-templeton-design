@@ -55,6 +55,13 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .skeletonContainer {
+        background-color: black;
+        margin: 5px;
+        max-width: 90vw;
+        max-height: 30em;
+        margin-top: 5%;
+    }
 
     .imagesSpreadContainer {
         display: flex;
@@ -95,6 +102,13 @@
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
 @media only screen and (min-width: 1000px) {
+    .skeletonContainer {
+        background-color: black;
+        margin: 5px;
+        max-width: 25vw;
+        max-height: 5%;
+    }
+
     .imageContainer > img {
         max-width: 25vw;
         height: auto;
@@ -103,6 +117,12 @@
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {
+    .skeletonContainer {
+        background-color: black;
+        margin: 5px;
+        max-width: 20vw;
+    }
+
     .imageContainer > img {
         max-width: 20vw;
         height: auto;
