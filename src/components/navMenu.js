@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from '../assets/Mark.svg';
 
 function NavMenu( { menuItems } ){
 
-    const { isNavOpen, setIsOpen } = useGlobalStates();
+    const { isNavOpen, setIsNavOpen } = useGlobalStates();
 
     const hamburger = <div className="hamburgerMenu"></div>
     const invertedHamburger = <div className="invertedHamburgerMenu"></div>
@@ -23,7 +23,7 @@ function NavMenu( { menuItems } ){
                 // if the class name is the mobileActiveMenu
                 if (clickedDiv === 'mobileMenu' || event.key === 'Escape'){
                     // close the menu
-                    setIsOpen(false);
+                    setIsNavOpen(false);
                 } 
             }
         
@@ -35,10 +35,10 @@ function NavMenu( { menuItems } ){
                 document.removeEventListener('keydown', handler);
             }
         }
-    }, [setIsOpen, isNavOpen])
+    }, [setIsNavOpen, isNavOpen])
 
     const handleOpenCloseMenu = () => {
-        setIsOpen(!isNavOpen);
+        setIsNavOpen(!isNavOpen);
     }
 
     const mobileLinkAnim = (destination) => {
