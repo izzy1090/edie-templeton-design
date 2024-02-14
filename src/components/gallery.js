@@ -21,7 +21,7 @@ function Images ( {images} ) {
         
         // if they're completed loading, then set loading to false
         if (allImagesLoaded) {
-            setIsLoading(false);
+            setIsLoading(true);
         }
     };
 
@@ -66,8 +66,8 @@ function Images ( {images} ) {
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img src={image.compressedImage}               
                 alt={image.alt}
-                width={image.width} 
-                height={image.height}
+                width={`${image.width}px`} 
+                height={`${image.height}px`}
                 onLoad={handleImageLoad}/>
         </div>
     })
@@ -77,8 +77,8 @@ function Images ( {images} ) {
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
             <img src={image.compressedImage} 
                 alt={image.alt}
-                width={image.width} 
-                height={image.height}
+                width={`${image.width}px`} 
+                height={`${image.height}px`}
                 onLoad={handleImageLoad}/>
         </div>
     })
@@ -86,7 +86,7 @@ function Images ( {images} ) {
     // Skeleton loader to fit the size and positioning of 
     const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div key={image.key} className='skeletonContainer' 
-            style={{width: `${image.width}px`, height: `${image.height}px`}}/>
+        style={{width: `${image.width}px`, height: `${image.height}px`}}/>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
@@ -95,29 +95,24 @@ function Images ( {images} ) {
             style={{width: `${image.width}px`, height: `${image.height}px`}}/>
     })
 
-    const imageSpread = <>
-        <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
-            <div className={"imagesSpreadColumn1"}>
-                {imageContainerColumn1}
-            </div>
-            <div className="imagesSpreadColumn2">
-                {imageContainerColumn2}
-            </div>
+    const imageSpread = <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
+        <div className={"imagesSpreadColumn1"}>
+            {imageContainerColumn1}
         </div>
-    </>
+        <div className="imagesSpreadColumn2">
+            {imageContainerColumn2}
+        </div>
+    </div>
 
-    const skeletonSpread = (
-        <div className={"imagesSpreadContainer"}>
-            <div className={"imagesSpreadColumn1"}>
-                {skeletonContainer1}
-            </div>
-            <div className="imagesSpreadColumn2">
-                {skeletonContainer2}
-            </div>
+    const skeletonSpread = <div className={"imagesSpreadContainer"}>
+        <div className={"imagesSpreadColumn1"}>
+            {skeletonContainer1}
         </div>
-    )
-    // {isLoading ? skeletonSpread : null}
-    
+        <div className="imagesSpreadColumn2">
+            {skeletonContainer2}
+        </div>
+    </div>
+
     return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
