@@ -1,13 +1,30 @@
-.galleryLoading {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
+.skeletonContainer {
+    position: relative;
+    margin: 5px;
+    max-width: 30vw;
+    max-height: 3%;
+    animation: skeletonLoaderAnim 2s ease-in infinite;
 }
 
-.loadingSkeleton {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
-    gap: 16px; /* Adjust the gap between columns */
+@keyframes skeletonLoaderAnim {
+    0% {
+        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 10%);
+        background-color: #F1F1EF;
+    }
+    25% {
+        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 9%);
+    }
+    50% {
+        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 8%);
+        background-color: #ffcba4da;
+    } 
+    75% {
+        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 9%);
+    }
+    100% {
+        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 10%);
+        background-color: #F1F1EF;
+    }
 }
 
 .imagesSpreadContainer {
@@ -60,6 +77,12 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .skeletonContainer {
+        margin: 5px;
+        max-width: 90vw;
+        max-height: 30em;
+        margin-top: 5%;
+    }
 
     .imagesSpreadContainer {
         display: flex;
@@ -100,6 +123,12 @@
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
 @media only screen and (min-width: 1000px) {
+    .skeletonContainer {
+        margin: 5px;
+        max-width: 25vw;
+        max-height: 5%;
+    }
+
     .imageContainer > img {
         max-width: 25vw;
         height: auto;
@@ -108,6 +137,11 @@
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {
+    .skeletonContainer {
+        margin: 5px;
+        max-width: 20vw;
+    }
+
     .imageContainer > img {
         max-width: 20vw;
         height: auto;

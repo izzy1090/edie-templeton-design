@@ -27,6 +27,13 @@ function Images ( {images} ) {
 
     useEffect(()=>{
         const initialGalleryLoad = document.getElementById('initialGalleryLoad');
+        const body = document.querySelector('*');
+
+        if (isLoading)
+        {
+            body.style.overflow = 'hidden';
+        } 
+
         if (initialGalleryLoad != null)
         {
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
@@ -36,6 +43,7 @@ function Images ( {images} ) {
 
         if (!isLoading)
         {
+            body.style.overflow = ''
             // create an instance of an observer accepts a series of entries
             const observer = new IntersectionObserver((entries)=>{
                 // iterate across those individual entries 
@@ -64,41 +72,56 @@ function Images ( {images} ) {
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-        <img 
-            src={image.compressedImage}               
-            alt={image.alt}
-            width={image.width} 
-            height={image.height}
-            onLoad={handleImageLoad}/>
+            <img src={image.compressedImage}               
+                alt={image.alt}
+                width={`${image.width}px`} 
+                height={`${image.height}px`}
+                onLoad={handleImageLoad}/>
         </div>
     })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
         return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img 
-                src={image.compressedImage} 
+            <img src={image.compressedImage} 
                 alt={image.alt}
-                width={image.width} 
-                height={image.height}
+                width={`${image.width}px`} 
+                height={`${image.height}px`}
                 onLoad={handleImageLoad}/>
         </div>
     })
 
-    const imageSpread = <>
-        <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
-            <div className={"imagesSpreadColumn1"}>
-                {imageContainerColumn1}
-            </div>
-            <div className="imagesSpreadColumn2">
-                {imageContainerColumn2}
-            </div>
+    // Skeleton loader to fit the size and positioning of 
+    const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
+        return <div key={image.key} className='skeletonContainer' 
+        style={{width: `${image.width}px`, height: `${image.height}px`}}/>
+    })
+
+    // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
+    const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
+        return <div key={image.key} className='skeletonContainer' 
+            style={{width: `${image.width}px`, height: `${image.height}px`}}/>
+    })
+
+    const imageSpread = <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
+        <div className={"imagesSpreadColumn1"}>
+            {imageContainerColumn1}
         </div>
-    </>
+        <div className="imagesSpreadColumn2">
+            {imageContainerColumn2}
+        </div>
+    </div>
 
-    const loader = <div className='loading' style={{zIndex: 1000}}></div>
+    const skeletonSpread = <div className={"imagesSpreadContainer"}>
+        <div className={"imagesSpreadColumn1"}>
+            {skeletonContainer1}
+        </div>
+        <div className="imagesSpreadColumn2">
+            {skeletonContainer2}
+        </div>
+    </div>
 
-    return <>{isLoading ? loader : null}<Lightbox images={images}/>{imageSpread}</>
+    return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
 export default Images;
