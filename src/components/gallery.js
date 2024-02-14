@@ -21,7 +21,7 @@ function Images ( {images} ) {
         
         // if they're completed loading, then set loading to false
         if (allImagesLoaded) {
-            setIsLoading(true);
+            setIsLoading(false);
         }
     };
 
@@ -34,8 +34,8 @@ function Images ( {images} ) {
             setIsLoading(true);
         }
 
-        // if (!isLoading)
-        // {
+        if (!isLoading)
+        {
             // create an instance of an observer accepts a series of entries
             const observer = new IntersectionObserver((entries)=>{
                 // iterate across those individual entries 
@@ -57,7 +57,7 @@ function Images ( {images} ) {
             
             // disconnect the observer when everything is finished to clean things up
             return () => observer.disconnect();
-        // } 
+        } 
     }, [isLoading]);
 
 
@@ -105,7 +105,7 @@ function Images ( {images} ) {
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
     const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
-        const skeletonLoader = <div key={image.key} className='skeletonContainer'>loading...</div>
+        const skeletonLoader = <div key={image.key} className='skeletonContainer' style={{width: `${image.width}px`, height: `${image.height}px`}}></div>
         return <>{isLoading ? skeletonLoader : null}</>
     })
 
@@ -120,9 +120,8 @@ function Images ( {images} ) {
             </div>
         </div>
     </>
-    const gallery = <><Lightbox images={images}/>{imageSpread}</>
     
-    return <>{isLoading ? skeletonSpread : gallery}</>
+    return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
 export default Images;
