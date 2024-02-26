@@ -6,6 +6,7 @@ function Images ( {images} ) {
 
     const { isNavOpen, setIsLightboxOpen, setImageToShow } = useGlobalStates();
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ hasGalleryLoaded, setHasGalleryLoaded ] = useState(false);
 
     const handleOpenGallery = (image) => {
         setIsLightboxOpen(true);
@@ -36,10 +37,10 @@ function Images ( {images} ) {
 
         if (initialGalleryLoad)
         {
+            console.log('here!')
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
             imagesSpreadContainer.id = '';
             setIsLoading(true);
-            
         }
 
         if (!isLoading)
@@ -67,7 +68,7 @@ function Images ( {images} ) {
             // disconnect the observer when everything is finished to clean things up
             return () => observer.disconnect();
         } 
-    }, [isLoading]);
+    }, [isLoading, hasGalleryLoaded]);
 
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div

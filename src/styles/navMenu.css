@@ -118,8 +118,7 @@
 .menuItems > div {
     text-decoration: none;
     font-size: 25px;
-    font-weight: 100;
-    color: rgba(50, 50, 50, 50);
+    color: rgb(182, 182, 182);
     position: relative; /* Ensure proper positioning of ::after pseudo-element */
     cursor: pointer;
     width: fit-content;
@@ -178,8 +177,7 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 700px) {
-    .logo {
-        
+    .logo { 
         padding: 15px;
     }
     .desktopMenu {
