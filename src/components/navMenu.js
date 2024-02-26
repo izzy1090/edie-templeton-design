@@ -1,15 +1,32 @@
 import { useEffect } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
 import { ReactComponent as Logo } from '../assets/Mark.svg';
+import useNavigation from "../hooks/use-navigation";
 
 function NavMenu( { menuItems } ){
 
     const { isNavOpen, setIsNavOpen } = useGlobalStates();
+    const { currentPath } = useNavigation();
 
     useEffect(()=> {
          
         const menuElements = document.querySelector('.desktopMenu');
         menuElements.classList.add('desktopMenuIntro');
+
+        const homeMenu = document.getElementById('home');
+        const galleryMenu = document.getElementById('gallery');
+        const contactMenu = document.getElementById('contact');
+
+        if (currentPath === '/gallery')
+        {
+            galleryMenu.style.color = 'rgba(50, 50, 50, 50)';
+        } else if (currentPath === '/')
+        {
+            homeMenu.style.color = 'rgba(50, 50, 50, 50)';
+        } else if (currentPath === '/contact')
+        {
+            contactMenu.style.color = 'rgba(50, 50, 50, 50)';
+        }
 
         if (isNavOpen)
         {
@@ -32,7 +49,7 @@ function NavMenu( { menuItems } ){
                 document.removeEventListener('keydown', handler);
             }
         }
-    }, [setIsNavOpen, isNavOpen])
+    }, [setIsNavOpen, isNavOpen, currentPath])
 
     const handleOpenCloseMenu = () => {
         setIsNavOpen(!isNavOpen);
@@ -69,7 +86,7 @@ function NavMenu( { menuItems } ){
 
     const renderedMenuItems = menuItems.map((menuItem)=>{
         return <div key={menuItem.key} style={{padding: '10px'}} 
-            onClick={()=>desktopLinkAnim(menuItem.path)}>
+            onClick={()=>desktopLinkAnim(menuItem.path)} id={menuItem.id}>
                 {menuItem.value}
         </div>
     })
