@@ -6,9 +6,6 @@ function NavMenu( { menuItems } ){
 
     const { isNavOpen, setIsNavOpen } = useGlobalStates();
 
-    const hamburger = <div className="hamburgerMenu"></div>
-    const invertedHamburger = <div className="invertedHamburgerMenu"></div>
-
     useEffect(()=> {
          
         const menuElements = document.querySelector('.desktopMenu');
@@ -82,9 +79,6 @@ function NavMenu( { menuItems } ){
             <Logo className="logo" id="mobileLogo" 
                 style={isNavOpen ? {display: 'none'}: null}
                 onClick={handleOpenCloseMenu} />
-            {/* <span onClick={handleOpenCloseMenu}>
-                {isNavOpen ? invertedHamburger : hamburger}
-            </span> */}
             {isNavOpen ? <div className="mobileMenu">{mobileActiveMenu}</div> : null}
         </div>
         <div className="desktopMenu">
