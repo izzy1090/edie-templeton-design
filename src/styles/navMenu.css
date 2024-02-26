@@ -15,7 +15,7 @@
     border-radius: 2rem;
     height: 1.7rem;
     width: 1.7rem;
-    background-color: #ffcba4;
+    background-color: rgb(188, 191, 163);
     z-index: 3;
     display: none;
 }
@@ -41,7 +41,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #ffcba4;
+    background-color: rgb(188, 191, 163);
     z-index: 2;
 }
 
@@ -50,7 +50,7 @@
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
-    color: black;
+    color: #F1F1EF;
 }
 
 /* This media breakpoint targets screens with hover capabilities */
@@ -75,6 +75,8 @@
 }
 
 .mobileMenuExit {
+    display: flex;
+    justify-content: end;
     animation-name: mobileMenuExitAnim;
     animation-duration: 1s;
 }
@@ -131,7 +133,7 @@
     display: block; 
     width: 100%; /* Initial width to cover entire link */
     height: 2px; /* Height of the underline */
-    background-color: #ffcba4; 
+    background-color: rgb(188, 191, 163); 
     opacity: 0; /* Initial opacity */
     transform: scaleX(0); /* Initial scale transformation */
     transform-origin: center;
@@ -144,7 +146,7 @@
 }
 
 .menuItems > div:hover {
-    color: #ffcba4;
+    color: rgb(188, 191, 163);
 }
 
 .desktopMenuIntro {
@@ -179,6 +181,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .logo {
+        
+        padding: 15px;
+    }
     .desktopMenu {
         display: none;
     }
