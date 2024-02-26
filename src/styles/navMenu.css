@@ -1,35 +1,31 @@
+.logoContainer {
+    display: flex;
+    flex-direction: row;   
+    align-items: center;
+}
+
 .logo {
     width: 4.5em;
     height: 4.5em;
+    flex-shrink: 0;
+    fill: #F1F1EF;
+}
+
+.logoCopy {
+    display: flex;
+    flex-direction: row;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+    font-size: 1.8rem;
+    padding-left: 15px;
+    flex-shrink: 1;
+    color: rgba(50, 50, 50, 50);
+}
+
+.logoCopy > span {
+    padding-right: 5px;
 }
 
 #mobileLogo {
-    display: none;
-}
-
-.hamburgerMenu {
-    position: absolute;
-    right: 3%;
-    top: 2%;
-    cursor: pointer;
-    border-radius: 2rem;
-    height: 1.7rem;
-    width: 1.7rem;
-    background-color: #ffcba4;
-    z-index: 3;
-    display: none;
-}
-
-.invertedHamburgerMenu {
-    position: absolute;
-    right: 3%;
-    top: 2%;
-    cursor: pointer;
-    border-radius: 2rem;
-    height: 1.7rem;
-    width: 1.7rem;
-    background-color: #F1F1EF;
-    z-index: 3;
     display: none;
 }
 
@@ -41,16 +37,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #ffcba4;
+    background-color: rgb(188, 191, 163);
     z-index: 2;
 }
 
 .mobileMenu > div {
-    margin: 5px;
+    margin: 15px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 2rem;
-    color: black;
+    font-size: 28px;
+    color: #F1F1EF;
 }
 
 /* This media breakpoint targets screens with hover capabilities */
@@ -75,6 +71,8 @@
 }
 
 .mobileMenuExit {
+    display: flex;
+    justify-content: end;
     animation-name: mobileMenuExitAnim;
     animation-duration: 1s;
 }
@@ -108,7 +106,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5rem 0 5rem;
+    padding: 1.5rem 2rem 0 2rem;
     opacity: 0;
 }
 
@@ -119,8 +117,10 @@
 
 .menuItems > div {
     text-decoration: none;
-    font-size: 1.3rem;
-    color: rgba(0, 0, 0, 0.704);
+    font-size: 25px;
+    font-weight: 100;
+    color: rgba(50, 50, 50, 50);
+    /* color: rgba(0, 0, 0, 0.704); */
     position: relative; /* Ensure proper positioning of ::after pseudo-element */
     cursor: pointer;
     width: fit-content;
@@ -131,7 +131,7 @@
     display: block; 
     width: 100%; /* Initial width to cover entire link */
     height: 2px; /* Height of the underline */
-    background-color: #ffcba4; 
+    background-color: rgb(188, 191, 163); 
     opacity: 0; /* Initial opacity */
     transform: scaleX(0); /* Initial scale transformation */
     transform-origin: center;
@@ -144,7 +144,7 @@
 }
 
 .menuItems > div:hover {
-    color: #ffcba4;
+    color: rgb(188, 191, 163);
 }
 
 .desktopMenuIntro {
@@ -179,6 +179,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .logo {
+        
+        padding: 15px;
+    }
     .desktopMenu {
         display: none;
     }
@@ -203,7 +207,9 @@
 @media only screen and (min-width: 768px) {}
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
-@media only screen and (min-width: 1000px) {}
+@media only screen and (min-width: 1000px) {
+    
+}
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {}

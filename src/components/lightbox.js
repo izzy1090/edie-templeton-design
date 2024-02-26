@@ -5,7 +5,7 @@ import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 
 function Lightbox ( { images } ) {
 
-    const { isGalleryOpen, setIsGalleryOpen, imageToShow, setImageToShow } = useGlobalStates();
+    const { isLightboxOpen, setIsLightboxOpen, imageToShow, setImageToShow } = useGlobalStates();
     const [ isButtonDisabled, setIsButtonDisabled ] = useState(false);
     const [ isImageLoading, setIsImageLoading ] = useState(false);
 
@@ -23,7 +23,7 @@ function Lightbox ( { images } ) {
             Handles the Escape key to close out the lightbox / gallery
         */
         const keyHandler = (event) => {
-            if (isGalleryOpen)
+            if (isLightboxOpen)
             {
                 if (event.key === "Escape")
                 {                    
@@ -36,7 +36,7 @@ function Lightbox ( { images } ) {
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
-    }, [isGalleryOpen]);
+    }, [isLightboxOpen]);
 
     /*
         This initiates the backward slide transition by transitioning back the current
@@ -119,7 +119,7 @@ function Lightbox ( { images } ) {
         innerContainer.classList.add('lightboxExit');
         lightboxButton.forEach((element)=>element.classList.add("lightboxExit"));
         innerContainer.addEventListener('animationend', ()=>{
-            setIsGalleryOpen(false);
+            setIsLightboxOpen(false);
         })
     }
 
@@ -151,7 +151,7 @@ function Lightbox ( { images } ) {
             </div>
             <div className='innerContainer'>
                 <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
-                    close
+                    Close
                 </div>
                 {loader}
                 <img src={imageToShow.highResImage} 
@@ -226,7 +226,7 @@ function Lightbox ( { images } ) {
     </div>
     </>
 
-    return <>{isGalleryOpen ? renderedGallery : null}</>
+    return <>{isLightboxOpen ? renderedGallery : null}</>
 }
 
 export default Lightbox;

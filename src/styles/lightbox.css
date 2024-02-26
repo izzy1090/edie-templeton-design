@@ -101,12 +101,13 @@
 
 @media (hover:hover){
     .lightboxButton:hover {
-        color: #ffcba4;
+        color: rgb(188, 191, 163);
     }
 }
 
 #closeButton {
     position: absolute;
+    font-size: 1.5rem;
     top: 10px;
 }
 

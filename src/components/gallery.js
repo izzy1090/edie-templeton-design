@@ -4,11 +4,11 @@ import Lightbox from './lightbox';
 
 function Images ( {images} ) {
 
-    const { isNavOpen, setIsGalleryOpen, setImageToShow } = useGlobalStates();
+    const { isNavOpen, setIsLightboxOpen, setImageToShow } = useGlobalStates();
     const [ isLoading, setIsLoading ] = useState(false);
 
     const handleOpenGallery = (image) => {
-        setIsGalleryOpen(true);
+        setIsLightboxOpen(true);
         setImageToShow(image)
     }
 
@@ -34,11 +34,12 @@ function Images ( {images} ) {
             body.style.overflow = 'hidden';
         } 
 
-        if (initialGalleryLoad != null)
+        if (initialGalleryLoad)
         {
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
             imagesSpreadContainer.id = '';
             setIsLoading(true);
+            
         }
 
         if (!isLoading)

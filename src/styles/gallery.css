@@ -4,26 +4,20 @@
     max-width: 30vw;
     max-height: 3%;
     animation: skeletonLoaderAnim 2s ease-in infinite;
+    border-color: rgba(0, 0, 0, 0.387);
+    border-width: 5px;
+    border-style: double;
 }
 
 @keyframes skeletonLoaderAnim {
-    0% {
-        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 10%);
+    0%{
+        background-color: rgb(188, 191, 163);
+    }
+    50%{
         background-color: #F1F1EF;
     }
-    25% {
-        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 9%);
-    }
-    50% {
-        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 8%);
-        background-color: #ffcba4da;
-    } 
-    75% {
-        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 9%);
-    }
-    100% {
-        background: linear-gradient(to right, #dddbdddf 0%, #ffcba48a 10%);
-        background-color: #F1F1EF;
+    100%{
+        background-color: rgb(188, 191, 163);
     }
 }
 
@@ -37,6 +31,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-right: 1.5%;
 }
 
 .imagesSpreadColumn2  {
@@ -126,7 +121,7 @@
     .skeletonContainer {
         margin: 5px;
         max-width: 25vw;
-        max-height: 5%;
+        max-height: 4%;
     }
 
     .imageContainer > img {

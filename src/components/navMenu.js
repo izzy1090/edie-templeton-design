@@ -4,10 +4,7 @@ import { ReactComponent as Logo } from '../assets/Mark.svg';
 
 function NavMenu( { menuItems } ){
 
-    const { isNavOpen, setIsOpen } = useGlobalStates();
-
-    const hamburger = <div className="hamburgerMenu"></div>
-    const invertedHamburger = <div className="invertedHamburgerMenu"></div>
+    const { isNavOpen, setIsNavOpen } = useGlobalStates();
 
     useEffect(()=> {
          
@@ -23,7 +20,7 @@ function NavMenu( { menuItems } ){
                 // if the class name is the mobileActiveMenu
                 if (clickedDiv === 'mobileMenu' || event.key === 'Escape'){
                     // close the menu
-                    setIsOpen(false);
+                    setIsNavOpen(false);
                 } 
             }
         
@@ -35,10 +32,10 @@ function NavMenu( { menuItems } ){
                 document.removeEventListener('keydown', handler);
             }
         }
-    }, [setIsOpen, isNavOpen])
+    }, [setIsNavOpen, isNavOpen])
 
     const handleOpenCloseMenu = () => {
-        setIsOpen(!isNavOpen);
+        setIsNavOpen(!isNavOpen);
     }
 
     const mobileLinkAnim = (destination) => {
@@ -79,14 +76,20 @@ function NavMenu( { menuItems } ){
 
     return <>
         <div className={isNavOpen ? 'mobileMenuIntro' : 'mobileMenuExit'}>
-            <Logo className="logo" id="mobileLogo" style={isNavOpen ? {display: 'none'}: {padding: '15px'}}/>
-            <span onClick={handleOpenCloseMenu}>
-                {isNavOpen ? invertedHamburger : hamburger}
-            </span>
+            <Logo className="logo" id="mobileLogo" 
+                style={isNavOpen ? {display: 'none'}: {cursor: 'pointer'}}
+                onClick={handleOpenCloseMenu}/>
             {isNavOpen ? <div className="mobileMenu">{mobileActiveMenu}</div> : null}
         </div>
         <div className="desktopMenu">
+            <div className="logoContainer">
             <Logo className="logo"/>
+            <div className="logoCopy">
+                <span>Edie</span>
+                <span>Templeton</span>
+                <span>Design</span>
+            </div>
+            </div>
             <div className="menuItemContainer menuItems">{renderedMenuItems}</div>
         </div>
     </>
