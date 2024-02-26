@@ -31,6 +31,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-right: 1.5%;
 }
 
 .imagesSpreadColumn2  {

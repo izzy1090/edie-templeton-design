@@ -77,12 +77,19 @@ function NavMenu( { menuItems } ){
     return <>
         <div className={isNavOpen ? 'mobileMenuIntro' : 'mobileMenuExit'}>
             <Logo className="logo" id="mobileLogo" 
-                style={isNavOpen ? {display: 'none'}: null}
-                onClick={handleOpenCloseMenu} />
+                style={isNavOpen ? {display: 'none'}: {cursor: 'pointer'}}
+                onClick={handleOpenCloseMenu}/>
             {isNavOpen ? <div className="mobileMenu">{mobileActiveMenu}</div> : null}
         </div>
         <div className="desktopMenu">
+            <div className="logoContainer">
             <Logo className="logo"/>
+            <div className="logoCopy">
+                <span>Edie</span>
+                <span>Templeton</span>
+                <span>Design</span>
+            </div>
+            </div>
             <div className="menuItemContainer menuItems">{renderedMenuItems}</div>
         </div>
     </>
