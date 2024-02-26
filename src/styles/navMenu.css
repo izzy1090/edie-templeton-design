@@ -7,32 +7,6 @@
     display: none;
 }
 
-.hamburgerMenu {
-    position: absolute;
-    right: 3%;
-    top: 2%;
-    cursor: pointer;
-    border-radius: 2rem;
-    height: 1.7rem;
-    width: 1.7rem;
-    background-color: rgb(188, 191, 163);
-    z-index: 3;
-    display: none;
-}
-
-.invertedHamburgerMenu {
-    position: absolute;
-    right: 3%;
-    top: 2%;
-    cursor: pointer;
-    border-radius: 2rem;
-    height: 1.7rem;
-    width: 1.7rem;
-    background-color: #F1F1EF;
-    z-index: 3;
-    display: none;
-}
-
 .mobileMenu {
     height: 100%;
     width: 100%;
