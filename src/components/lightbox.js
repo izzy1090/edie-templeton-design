@@ -151,7 +151,7 @@ function Lightbox ( { images } ) {
             </div>
             <div className='innerContainer'>
                 <div className='lightboxButton lightboxEntrance' id='closeButton' onClick={handleCloseGallery}>
-                    close
+                    Close
                 </div>
                 {loader}
                 <img src={imageToShow.highResImage} 
