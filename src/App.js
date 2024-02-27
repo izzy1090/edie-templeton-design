@@ -3,6 +3,7 @@ import NavMenuPage from "./pages/NavMenuPage";
 import HomePage from "./pages/HomePage";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
+import FooterPage from './pages/FooterPage';
 
 function App() {
   return (
@@ -10,14 +11,17 @@ function App() {
     <Route path="/">
       <NavMenuPage/>
       <HomePage/>
+      <FooterPage/>
     </Route>
     <Route path="/gallery">
       <NavMenuPage/>
       <GalleryPage/>
+      <FooterPage/>
     </Route>
     <Route path="/contact">
       <NavMenuPage/>
       <ContactPage/>
+      <FooterPage/>
     </Route>
   </>
   );

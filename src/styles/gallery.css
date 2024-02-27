@@ -1,11 +1,11 @@
 .skeletonContainer {
     position: relative;
-    margin: 5px;
+    margin: 3px;
     max-width: 30vw;
     max-height: 3%;
     animation: skeletonLoaderAnim 2s ease-in infinite;
     border-color: rgba(73, 73, 73, 0.387);
-    border-width: 5px;
+    border-width: 3px;
     border-style: double;
 }
 
@@ -25,13 +25,13 @@
     display: flex;
     justify-content: center;
     margin-top: 5%;
+    margin-bottom: -10%;
 }
 
 .imagesSpreadColumn1  {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-right: 1.5%;
 }
 
 .imagesSpreadColumn2  {
@@ -134,11 +134,12 @@
 @media only screen and (min-width: 1500px) {
     .skeletonContainer {
         margin: 5px;
-        max-width: 20vw;
+        max-width: 30vw;
+        max-height: 7%;
     }
 
     .imageContainer > img {
-        max-width: 20vw;
+        max-width: 30vw;
         height: auto;
     }
 }
