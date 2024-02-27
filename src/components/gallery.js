@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
-import jsCookie from 'js-cookie';
 
 function Images ( {images} ) {
 
@@ -22,7 +21,6 @@ function Images ( {images} ) {
         
         // if they're completed loading, then set loading to false
         if (allImagesLoaded) {
-            jsCookie.set('imagesLoaded', 'true')
             setIsLoading(false);
         }
     };
