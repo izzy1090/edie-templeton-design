@@ -31,7 +31,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-right: 1.5%;
 }
 
 .imagesSpreadColumn2  {
@@ -134,11 +133,12 @@
 @media only screen and (min-width: 1500px) {
     .skeletonContainer {
         margin: 5px;
-        max-width: 20vw;
+        max-width: 30vw;
+        max-height: 7%;
     }
 
     .imageContainer > img {
-        max-width: 20vw;
+        max-width: 30vw;
         height: auto;
     }
 }

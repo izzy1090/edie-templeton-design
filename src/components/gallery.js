@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
+import jsCookie from 'js-cookie';
 
 function Images ( {images} ) {
 
     const { isNavOpen, setIsLightboxOpen, setImageToShow } = useGlobalStates();
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ hasGalleryLoaded, setHasGalleryLoaded ] = useState(false);
 
     const handleOpenGallery = (image) => {
         setIsLightboxOpen(true);
@@ -22,6 +22,7 @@ function Images ( {images} ) {
         
         // if they're completed loading, then set loading to false
         if (allImagesLoaded) {
+            jsCookie.set('imagesLoaded', 'true')
             setIsLoading(false);
         }
     };
@@ -37,7 +38,6 @@ function Images ( {images} ) {
 
         if (initialGalleryLoad)
         {
-            console.log('here!')
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
             imagesSpreadContainer.id = '';
             setIsLoading(true);
@@ -68,7 +68,7 @@ function Images ( {images} ) {
             // disconnect the observer when everything is finished to clean things up
             return () => observer.disconnect();
         } 
-    }, [isLoading, hasGalleryLoaded]);
+    }, [isLoading]);
 
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
