@@ -1,8 +1,11 @@
 import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
-import { ReactComponent as LinkedInLogo } from '../assets/linkedin.svg'
+import { ReactComponent as LinkedInLogo } from '../assets/linkedin.svg';
+import useGlobalStates from '../hooks/use-globalStates';
 
 function FooterPage () {
-    return <div className='footer'>
+  const { isNavOpen } = useGlobalStates(); 
+
+    return <div className='footer' style={isNavOpen ? { display: 'none'} : null}>
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <div className="socialLogos">
           <a href='https://www.instagram.com/templetweed/' 
