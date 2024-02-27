@@ -1,11 +1,11 @@
 .skeletonContainer {
     position: relative;
-    margin: 5px;
+    margin: 3px;
     max-width: 30vw;
     max-height: 3%;
     animation: skeletonLoaderAnim 2s ease-in infinite;
     border-color: rgba(73, 73, 73, 0.387);
-    border-width: 5px;
+    border-width: 3px;
     border-style: double;
 }
 
