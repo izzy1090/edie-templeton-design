@@ -20,7 +20,8 @@ function Images ( {images} ) {
         const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
         
         // if they're completed loading, then set loading to false
-        if (allImagesLoaded) {
+        if (allImagesLoaded) 
+        {
             setIsLoading(false);
         }
     };
@@ -29,17 +30,17 @@ function Images ( {images} ) {
         const initialGalleryLoad = document.getElementById('initialGalleryLoad');
         const body = document.querySelector('*');
 
-        if (isLoading)
-        {
-            body.style.overflow = 'hidden';
-        } 
-
         if (initialGalleryLoad)
         {
             const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
             imagesSpreadContainer.id = '';
             setIsLoading(true);
         }
+
+        if (isLoading)
+        {
+            body.style.overflow = 'hidden';
+        } 
 
         if (!isLoading)
         {
