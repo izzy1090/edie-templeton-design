@@ -13,10 +13,8 @@ function Gallery ( { images } ) {
     }
 
     const handleImageLoad = () => {
-        // All images loaded looks for all images in the image container with the applied tag
-            // It uses the spread operator to place them in an array
-            // it then uses .every which sees if everything in the array evaluates to true
-        // After all els of the array evaluates to true, it evaluates if all the imgs in the array are completed loading
+        // Uses the spread operator to push ELs into an array
+        // then .every sees if everything in the array evaluates to true
         const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
         
         // if they're completed loading, then set loading to false
@@ -26,16 +24,24 @@ function Gallery ( { images } ) {
         }
     };
 
-    useEffect(()=>{
-        const initialGalleryLoad = document.getElementById('initialGalleryLoad');
-        const body = document.querySelector('*');
+    // This invokes on the first render
+    // It waits 50 ms to see if all images are completed loading
+    useEffect(() => {
+        const loadingTimeout = setTimeout(() => {
+          const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
+          if (!allImagesLoaded) 
+          {
+            setIsLoading(true); 
+          }
+        }, 50); 
+        
+        // This clears the timeout stamp to prevent memory leakage
+        // Also prevents timeout being used after the component unmounts
+        return () => clearTimeout(loadingTimeout); // Clear timeout on cleanup
+      }, []);
 
-        if (initialGalleryLoad)
-        {
-            const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
-            imagesSpreadContainer.id = '';
-            setIsLoading(true);
-        }
+    useEffect(()=>{
+        const body = document.querySelector('*');
 
         if (isLoading)
         {
