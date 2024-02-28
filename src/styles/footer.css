@@ -5,7 +5,7 @@
 .footer {
     min-height: 40vh;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
     padding: 50px 50px 20px 50px;
 }
