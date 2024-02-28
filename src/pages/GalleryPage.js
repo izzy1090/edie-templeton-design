@@ -34,7 +34,7 @@ import NYTCompressed from '../images/gallery/NYT.webp';
 
 function ImagesPage () {
 
-    const imageArray = [ 
+    const images = [ 
         {key: 0, highResImage: grammieKitchen, compressedImage: grammieKitchenCompressed, width: 1105, height: 1600, alt: "Edie's grandma's kitchen." }, 
         {key: 1, highResImage: chineseCabinet, compressedImage: chineseCabinetCompressed, width: 1000, height: 1500, alt: 'Ornate black and gold chinese cabinet.'}, 
         {key: 2, highResImage: livingRoom1, compressedImage: livingRoom1Compressed, width: 1800, height: 1200, alt: '72 Clermont Ave shot # 1.'}, 
@@ -51,7 +51,7 @@ function ImagesPage () {
         {key: 13, highResImage: NYT, compressedImage: NYTCompressed, width: 1800, height: 1200, alt: 'Copy of the NYT laid out on a dining room table.'} 
     ]
 
-    return <Images images={imageArray}/>
+    return <Images images={images}/>
 }
 
 export default ImagesPage;

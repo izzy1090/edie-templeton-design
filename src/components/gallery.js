@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
 
-function Images ( {images} ) {
+function Gallery ( { images } ) {
 
     const { isNavOpen, setIsLightboxOpen, setImageToShow } = useGlobalStates();
     const [ isLoading, setIsLoading ] = useState(false);
 
     const handleOpenGallery = (image) => {
         setIsLightboxOpen(true);
-        setImageToShow(image)
+        setImageToShow(image);
     }
 
     const handleImageLoad = () => {
@@ -104,7 +104,8 @@ function Images ( {images} ) {
             style={{width: `${image.width}px`, height: `${image.height}px`}}/>
     })
 
-    const imageSpread = <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
+    const imageSpread = <div className={"imagesSpreadContainer"} 
+        style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
         <div className={"imagesSpreadColumn1"}>
             {imageContainerColumn1}
         </div>
@@ -125,4 +126,4 @@ function Images ( {images} ) {
     return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
-export default Images;
+export default Gallery;

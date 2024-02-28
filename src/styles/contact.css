@@ -1,0 +1,23 @@
+.contactContainer {
+    min-height: 40vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 10%;
+}
+
+.contactForms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formsContainer {
+    box-sizing: border-box;
+}
+
+.formsContainer > input {
+    padding: 20px;
+    margin: 10px;
+}
