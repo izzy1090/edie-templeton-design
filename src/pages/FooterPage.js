@@ -6,7 +6,7 @@ function FooterPage () {
   const { isNavOpen } = useGlobalStates(); 
 
     return <div className='footer' style={isNavOpen ? { display: 'none'} : null}>
-      <div style={{display: 'flex', flexDirection: 'column'}}>
+      <div className='contentContainer'>
         <div className="socialLogos">
           <a href='https://www.instagram.com/templetweed/' 
             target='_blank' rel="noreferrer">

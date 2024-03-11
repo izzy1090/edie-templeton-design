@@ -3,11 +3,16 @@
 }
 
 .footer {
-    min-height: 40vh;
+    min-height: 30vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     padding: 50px 50px 20px 50px;
+}
+
+.contentContainer {
+    display: 'flex'; 
+    flex-direction: 'column';
 }
 
 .socialLogos {
