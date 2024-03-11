@@ -22,10 +22,6 @@
     padding: 15px;
 }
 
-.socialLogos:hover {
-    fill: rgba(101, 101, 101, 0.402);
-}
-
 .socialLogos > a > svg  {
     margin-left: 3px;
     margin-right: 3px;
@@ -33,10 +29,18 @@
     height: 20px;
 }
 
-.socialLogos > a > svg:hover  {
-    fill: #000000;
-}
-
 .llc {
     font-size: medium;
+}
+
+@media (hover:hover){
+    .socialLogos:hover {
+        fill: rgba(101, 101, 101, 0.402);
+        transition: fill 500ms ease;
+    }
+
+    .socialLogos > a > svg:hover  {
+        fill: #000000;
+        
+    }
 }
