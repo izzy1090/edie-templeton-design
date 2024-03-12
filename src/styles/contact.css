@@ -22,8 +22,14 @@
     flex-direction: row;
 }
 
-.formContainer > input {
-    width: 100%;
+.formContainer {
+    display: flex;
     height: 2rem;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+}
+
+.formContainer > input {
     margin-top: 10px;
+    padding: 10px;
 }

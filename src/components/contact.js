@@ -24,11 +24,13 @@ function Contact ( { contactForms } ) {
                 </div>
             </div>
             </>
-        } else if (contactArray[i].id === 'contactInfo') 
+        } else if (contactArray[i].id === 'generalDetails') 
         {
-            return <div className="formContainer">
-                {contactArray[i].label}
-                <input/>
+            return <div className="generalDetailsContainer">
+                <div className="formContainer">
+                    {contactArray[i].label}
+                    <input/>
+                </div>
             </div>
         }
 
