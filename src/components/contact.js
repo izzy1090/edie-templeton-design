@@ -1,21 +1,41 @@
 function Contact ( { contactForms } ) {
+    const contactArray = [];
+    // eslint-disable-next-line
+    const taggedForms = contactForms.map((form, i)=>{
 
-    const taggedForms = contactForms.map((form)=>{
-        const isName = form.id === 'name';
-        const nameArray = []
-        if (isName) nameArray.push(form);
-        return <div style={{display: 'flex', flexDirection: 'row'}}><span id={form.id}>{nameArray[0]}{nameArray}</span></div>
-        // else return <span id="contactInfo">{form.label}</span>
+        const isLast = form.label === 'Last Name';
+        contactArray.push(form);
+
+        if (isLast) 
+        {
+            return <>
+            <div className="nameContainer">
+                <div key={contactArray[0].key} 
+                    id={contactArray[0].id}
+                    className="formContainer">
+                        {contactArray[0].label}
+                        <input/>
+                </div>
+                <div key={contactArray[1].key} 
+                    id={contactArray[1].id}
+                    className="formContainer">
+                        {contactArray[1].label}
+                        <input/>
+                </div>
+            </div>
+            </>
+        } else if (contactArray[i].id === 'contactInfo') 
+        {
+            return <div className="formContainer">
+                {contactArray[i].label}
+                <input/>
+            </div>
+        }
+
     });
-
-    // const fullName = document.querySelectorAll('#name');
-    // const contactInfo = document.querySelectorAll('#contactInfo');
-
-
     
-
     return <div className="contactContainer">
-        <div className="contactForms">
+        <div className="contactBody">
             {taggedForms}
         </div>
     </div>

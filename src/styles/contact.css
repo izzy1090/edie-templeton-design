@@ -1,23 +1,29 @@
 .contactContainer {
-    min-height: 40vh;
+    min-height: 50vh;
     display: flex;
     justify-content: center;
+    align-content: center;
     margin: 10%;
 }
 
-.contactForms {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.contactBody {
+    display: block;
+    margin: auto;
 }
 
-.formsContainer {
-    box-sizing: border-box;
+.formContainer {
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 
-.formsContainer > input {
-    width: 500px;
+.nameContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.formContainer > input {
+    width: 100%;
+    height: 2rem;
+    margin-top: 10px;
 }
