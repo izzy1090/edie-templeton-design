@@ -8,8 +8,7 @@ function Contact ( { contactForms } ) {
 
         if (isLast) 
         {
-            return <>
-            <div className="nameContainer">
+            return <div key={i} className="nameContainer">
                 <div key={contactArray[0].key} 
                     id={contactArray[0].id}
                     className="formContainer">
@@ -23,14 +22,13 @@ function Contact ( { contactForms } ) {
                         <input/>
                 </div>
             </div>
-            </>
         } else if (contactArray[i].id === 'generalDetails') 
         {
-            return <div className="generalDetailsContainer">
-                <div className="formContainer">
+            return <div key={contactArray[i].key}
+                id={contactArray[i].id} 
+                className="formContainer">
                     {contactArray[i].label}
-                    <input/>
-                </div>
+                <input/>
             </div>
         }
 

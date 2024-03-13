@@ -40,10 +40,6 @@
     margin: 10px 0px 0px 0px;
 }
 
-.generalDetailsContainer > .formContainer {
-    width: 100%;
-}
-
 @media only screen and (max-width: 600px) {
     .contactBody {
         width: 100%;
