@@ -22,7 +22,10 @@ function Contact ( { contactForms } ) {
                         <input/>
                 </div>
             </div>
-        } else if (contactArray[i].id === 'generalDetails') 
+        } else if (
+            contactArray[i].id === 'email' || 
+            contactArray[i].id==='subject' || 
+            contactArray[i].id === 'message') 
         {
             return <div key={contactArray[i].key}
                 id={contactArray[i].id} 

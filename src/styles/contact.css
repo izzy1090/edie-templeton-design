@@ -40,6 +40,11 @@
     margin: 10px 0px 0px 0px;
 }
 
+#message > input {
+    
+}
+
+
 @media only screen and (max-width: 600px) {
     .contactBody {
         width: 100%;
