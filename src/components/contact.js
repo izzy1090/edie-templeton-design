@@ -22,16 +22,23 @@ function Contact ( { contactForms } ) {
                         <input/>
                 </div>
             </div>
-        } else if (
-            contactArray[i].id === 'email' || 
-            contactArray[i].id==='subject' || 
-            contactArray[i].id === 'message') 
+        } else if (contactArray[i].id === 'email' || contactArray[i].id === 'subject') 
         {
             return <div key={contactArray[i].key}
                 id={contactArray[i].id} 
                 className="formContainer">
                     {contactArray[i].label}
                 <input/>
+            </div>
+        } else if (contactArray[i].id === 'message')
+        {
+            return <div key={contactArray[i].key}
+                id={contactArray[i].id} 
+                className="formContainer">
+                    {contactArray[i].label}
+                <form>
+                    <textarea/>
+                </form>
             </div>
         }
 
