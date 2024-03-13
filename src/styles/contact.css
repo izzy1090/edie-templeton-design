@@ -3,12 +3,14 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 10%;
+    margin-top: 10%;
+    margin-bottom: 5%;
 }
 
 .contactBody {
     display: block;
     margin: auto;
+    width: 90vw;
 }
 
 .formContainer {
@@ -22,14 +24,34 @@
     flex-direction: row;
 }
 
+.nameContainer > .formContainer {
+    width: 100%;
+}
+
 .formContainer {
-    display: flex;
-    height: 2rem;
-    margin: 10px 0px 10px 0px;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    box-sizing: border-box;
 }
 
 .formContainer > input {
-    margin-top: 10px;
+    box-sizing: border-box;
     padding: 10px;
+    margin: 10px 0px 0px 0px;
 }
+
+.generalDetailsContainer > .formContainer {
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .contactBody {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 769px)  {
+    .contactBody {
+        width: 60vw;
+    }
+}   
