@@ -1,6 +1,6 @@
 import Route from './components/route';
 import NavMenuPage from "./pages/NavMenuPage";
-import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import FooterPage from './pages/FooterPage';
@@ -10,7 +10,7 @@ function App() {
   <>
     <Route path="/">
       <NavMenuPage/>
-      <HomePage/>
+      <AboutPage/>
       <FooterPage/>
     </Route>
     <Route path="/gallery">
