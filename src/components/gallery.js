@@ -2,44 +2,51 @@ import { useEffect, useState } from 'react';
 import useGlobalStates from '../hooks/use-globalStates';
 import Lightbox from './lightbox';
 
-function Images ( {images} ) {
+function Gallery ( { images } ) {
 
     const { isNavOpen, setIsLightboxOpen, setImageToShow } = useGlobalStates();
     const [ isLoading, setIsLoading ] = useState(false);
 
     const handleOpenGallery = (image) => {
         setIsLightboxOpen(true);
-        setImageToShow(image)
+        setImageToShow(image);
     }
 
     const handleImageLoad = () => {
-        // All images loaded looks for all images in the image container with the applied tag
-            // It uses the spread operator to place them in an array
-            // it then uses .every which sees if everything in the array evaluates to true
-        // After all els of the array evaluates to true, it evaluates if all the imgs in the array are completed loading
+        // Uses the spread operator to push ELs into an array
+        // then .every sees if everything in the array evaluates to true
         const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
         
         // if they're completed loading, then set loading to false
-        if (allImagesLoaded) {
+        if (allImagesLoaded) 
+        {
             setIsLoading(false);
         }
     };
 
+    // This invokes on the first render
+    // It waits 50 ms to see if all images are completed loading
+    useEffect(() => {
+        const loadingTimeout = setTimeout(() => {
+          const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
+          if (!allImagesLoaded) 
+          {
+            setIsLoading(true); 
+          }
+        }, 50); 
+        
+        // This clears the timeout stamp to prevent memory leakage
+        // Also prevents timeout being used after the component unmounts
+        return () => clearTimeout(loadingTimeout); // Clear timeout on cleanup
+      }, []);
+
     useEffect(()=>{
-        const initialGalleryLoad = document.getElementById('initialGalleryLoad');
         const body = document.querySelector('*');
 
         if (isLoading)
         {
             body.style.overflow = 'hidden';
         } 
-
-        if (initialGalleryLoad)
-        {
-            const imagesSpreadContainer = document.querySelector('.imagesSpreadContainer');
-            imagesSpreadContainer.id = '';
-            setIsLoading(true);
-        }
 
         if (!isLoading)
         {
@@ -103,7 +110,8 @@ function Images ( {images} ) {
             style={{width: `${image.width}px`, height: `${image.height}px`}}/>
     })
 
-    const imageSpread = <div className={"imagesSpreadContainer"} style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
+    const imageSpread = <div className={"imagesSpreadContainer"} 
+        style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
         <div className={"imagesSpreadColumn1"}>
             {imageContainerColumn1}
         </div>
@@ -124,4 +132,4 @@ function Images ( {images} ) {
     return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
-export default Images;
+export default Gallery;

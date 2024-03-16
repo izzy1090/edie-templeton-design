@@ -3,11 +3,16 @@
 }
 
 .footer {
-    min-height: 40vh;
+    min-height: 30vh;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
     padding: 50px 50px 20px 50px;
+}
+
+.contentContainer {
+    display: 'flex'; 
+    flex-direction: 'column';
 }
 
 .socialLogos {
@@ -17,10 +22,6 @@
     padding: 15px;
 }
 
-.socialLogos:hover {
-    fill: rgba(101, 101, 101, 0.402);
-}
-
 .socialLogos > a > svg  {
     margin-left: 3px;
     margin-right: 3px;
@@ -28,10 +29,17 @@
     height: 20px;
 }
 
-.socialLogos > a > svg:hover  {
-    fill: #000000;
-}
-
 .llc {
     font-size: medium;
+}
+
+@media (hover:hover){
+    .socialLogos:hover {
+        fill: rgba(101, 101, 101, 0.402);
+        transition: fill 500ms ease;
+    }
+
+    .socialLogos > a > svg:hover  {
+        fill: #000000;
+    }
 }
