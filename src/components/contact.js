@@ -1,7 +1,10 @@
 import { useState } from "react";
+import useGlobalStates from "../hooks/use-globalStates";
 
 function Contact ( { contactForms } ) {
 
+    const { isNavOpen } = useGlobalStates();
+    const [result, setResult] = useState("");
     const [ submissionText, setSubmissionText ] = useState({
         First: '',
         Last: '',
@@ -23,9 +26,31 @@ function Contact ( { contactForms } ) {
         })
     }
 
-    const handleSubmit = (event) =>{
-        event.preventDefault()
-        console.log(submissionText);
+    // Includes instructions to send the email using Web3Forms
+    const handleSubmit = async (event) =>{
+        event.preventDefault();
+        setResult("Sending....");
+        const formData = new FormData(event.target);
+
+        formData.append("access_key", "e3b608b7-d6d8-4e89-93a2-93fff94922be");
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) 
+        {
+            setResult("Form Submitted Successfully");
+            event.target.reset();
+        } else 
+        {
+            console.log("Error", data);
+            setResult(data.message);
+        }
+        // Resets the submission form back to it's original values
         setSubmissionText({
             First: '',
             Last: '',
@@ -95,11 +120,18 @@ function Contact ( { contactForms } ) {
         }
     });
     
-    return <div className="contactContainer">
+    return <div className="contactContainer" style={isNavOpen ? { display: 'none'} : null}>
         <div className="contactBody">
+        <div className="contactIntro">
+            Need help with your home? Let's chat! 
+            Shoot me an email or fill out the contact form.
+            <a className="email" href="mailto:ediesnyder@gmail.com?">
+                ediesnyder@gmail.com
+            </a>
+        </div>
             <form onSubmit={handleSubmit}> 
                 {taggedForms}
-                <button type="submit">Submit</button>
+                <button className="submitButton" type="submit">Submit</button>
             </form>
         </div>
     </div>
