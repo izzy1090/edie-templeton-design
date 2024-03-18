@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
-import { ReactComponent as Line } from '../assets/line.svg';
 
 function Contact ( { contactForms } ) {
 
