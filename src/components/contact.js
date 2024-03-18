@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
+import { ReactComponent as Line } from '../assets/line.svg';
 
 function Contact ( { contactForms } ) {
 
@@ -130,6 +131,7 @@ function Contact ( { contactForms } ) {
                 target="_blank" rel="noreferrer">
                 ediesnyder@gmail.com
             </a>
+            <div className="line"></div>
         </div>
             <form onSubmit={handleSubmit}> 
                 {taggedForms}

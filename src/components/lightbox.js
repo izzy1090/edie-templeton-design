@@ -36,6 +36,7 @@ function Lightbox ( { images } ) {
         return () => {
             document.removeEventListener('keydown', keyHandler);
         }
+    // eslint-disable-next-line
     }, [isLightboxOpen]);
 
     /*
