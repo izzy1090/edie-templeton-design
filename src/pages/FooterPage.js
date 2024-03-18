@@ -6,9 +6,13 @@ import useGlobalStates from '../hooks/use-globalStates';
 function FooterPage () {
   const { isNavOpen } = useGlobalStates(); 
 
-    return <div className='footer' style={isNavOpen ? { display: 'none'} : null}>
+  return <div className='footer' style={isNavOpen ? { display: 'none'} : null}>
       <div className='contentContainer'>
         <div className="socialLogos">
+          <a href='mailto:ediesnyder@gmail.com'
+            target='_blank' rel='noreferrer'>
+            <EmailLogo id="emailLogo"/>
+          </a>
           <a href='https://www.instagram.com/templetweed/' 
             target='_blank' rel="noreferrer">
             <InstagramLogo id='instagram'/>
@@ -17,10 +21,6 @@ function FooterPage () {
             target='_blank' rel='noreferrer'>
             <LinkedInLogo id="linkedin"/>
           </a>
-          {/* <a href='mailto:ediesnyder@gmail.com?'
-            target='_blank' rel='noreferrer'>
-            <EmailLogo id="emailLogo"/>
-          </a> */}
         </div>
         <div className='llc'>Edie Templeton Design, LLC © 2024</div>
     </div>

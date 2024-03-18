@@ -1,7 +1,6 @@
 import useGlobalStates from "../hooks/use-globalStates";
-import Homepage from '../images/Homepage-hight-quality.jpg';
 
-function HomePage (){
+function AboutPage (){
     const { isNavOpen } = useGlobalStates();
 
     return <>
@@ -14,4 +13,4 @@ function HomePage (){
     </>
 }
 
-export default HomePage;
+export default AboutPage;

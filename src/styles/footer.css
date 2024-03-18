@@ -3,11 +3,10 @@
 }
 
 .footer {
-    min-height: 30vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 50px 50px 20px 50px;
+    padding: 50px;
 }
 
 .contentContainer {
