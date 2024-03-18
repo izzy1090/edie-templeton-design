@@ -4,6 +4,7 @@ import useGlobalStates from "../hooks/use-globalStates";
 function Contact ( { contactForms } ) {
 
     const { isNavOpen } = useGlobalStates();
+    // eslint-disable-next-line
     const [result, setResult] = useState("");
     const [ submissionText, setSubmissionText ] = useState({
         First: '',
@@ -125,7 +126,8 @@ function Contact ( { contactForms } ) {
         <div className="contactIntro">
             Need help with your home? Let's chat! 
             Shoot me an email or fill out the contact form.
-            <a className="email" href="mailto:ediesnyder@gmail.com?">
+            <a className="email" href="mailto:ediesnyder@gmail.com" 
+                target="_blank" rel="noreferrer">
                 ediesnyder@gmail.com
             </a>
         </div>
