@@ -1,5 +1,6 @@
 import './styles/index.css';
 import './styles/navMenu.css';
+import './styles/about.css';
 import './styles/gallery.css';
 import './styles/lightbox.css';
 import './styles/home.css';
