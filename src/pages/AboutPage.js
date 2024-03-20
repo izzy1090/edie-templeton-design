@@ -1,13 +1,13 @@
 import useGlobalStates from "../hooks/use-globalStates";
-import Banner from '../images/Homepage-high-quality.jpg';
+import BannerImage from '../images/Homepage-high-quality.jpg';
 
 function AboutPage (){
     const { isNavOpen } = useGlobalStates();
 
     return <>
         <div style={isNavOpen ? { display: 'none'} : null}>
-            <div className="banner">
-                <img src={Banner} 
+            <div preload='auto' className="banner">
+                <img src={BannerImage} 
                     width={1333} 
                     height={2000}
                     className="bannerImage"
