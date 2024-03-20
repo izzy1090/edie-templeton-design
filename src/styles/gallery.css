@@ -138,7 +138,7 @@
     }
 
     .imageContainer > img {
-        max-width: 30vw;
+        max-width: 20vw;
         height: auto;
     }
 }

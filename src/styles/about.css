@@ -1,0 +1,58 @@
+.banner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 5% 0px 10px 0px;
+    justify-items: center;
+}
+
+.banner > img {
+    width: 30vw;
+    height: auto;
+    padding: 0px 10px 0px 10px;
+}
+
+#chair-and-rug {
+    justify-self: end;
+}
+
+#snyder-living-room {
+    justify-self: baseline;
+}
+
+.bio {
+    font-size: 1.3em;
+    text-align:justify;
+    padding: 5% 10% 5% 10%;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .banner > img {
+        width: 40vw;
+    }
+
+    .bio {
+        font-size: 1.1em;
+        padding: 20% 10% 10% 10%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {} */
+
+/* Extra large devices (large laptops and desktops, 1000px and up) */
+/* @media only screen and (min-width: 1000px) {} */
+
+/* Extra large devices (large laptops and desktops, 1500px and up) */
+@media only screen and (min-width: 1500px) {
+    .banner > img {
+        width: 20vw;
+    }
+
+    .bio {
+        padding: 5% 20% 5% 20%;
+    }
+}

@@ -1,8 +1,8 @@
 import './styles/index.css';
 import './styles/navMenu.css';
+import './styles/about.css';
 import './styles/gallery.css';
 import './styles/lightbox.css';
-import './styles/home.css';
 import './styles/footer.css';
 import './styles/contact.css';
 import React from 'react';
