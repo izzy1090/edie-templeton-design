@@ -13,14 +13,14 @@ function NavMenu( { menuItems } ){
         const menuElements = document.querySelector('.desktopMenu');
         menuElements.classList.add('desktopMenuIntro');
 
-        const homeMenu = document.getElementById('home');
+        const homeMenu = document.getElementById('about');
         const galleryMenu = document.getElementById('gallery');
         const contactMenu = document.getElementById('contact');
 
-        if (currentPath === '/gallery')
+        if (currentPath === '/')
         {
             galleryMenu.style.color = 'rgba(50, 50, 50, 50)';
-        } else if (currentPath === '/')
+        } else if (currentPath === '/about')
         {
             homeMenu.style.color = 'rgba(50, 50, 50, 50)';
         } else if (currentPath === '/contact')

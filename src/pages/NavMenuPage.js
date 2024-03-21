@@ -1,6 +1,6 @@
 import NavMenu from "../components/navMenu";
 
-function NavMenuPage(){
+function NavMenuPage() {
 
     const menuItems = [
         {key: 0, value: 'about', path: '/about', id: 'about'},

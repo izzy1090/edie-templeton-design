@@ -8,12 +8,12 @@ import FooterPage from './pages/FooterPage';
 function App() {
   return (
   <>
-    <Route path="/">
+    <Route path="/about">
       <NavMenuPage/>
       <AboutPage/>
       <FooterPage/>
     </Route>
-    <Route path="/gallery">
+    <Route path="/">
       <NavMenuPage/>
       <GalleryPage/>
       <FooterPage/>
