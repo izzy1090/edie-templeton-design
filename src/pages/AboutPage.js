@@ -1,11 +1,11 @@
 import About from "../components/about";
-import ChairAndRug from '../images/chair-and-rug_high-quality.jpg';
-import SnyderLivingRoom from '../images/snyder-living-room_high-quality.jpg';
+import ChairAndRug from '../images/chair-and-rug.webp';
+import SnyderLivingRoom from '../images/snyder-living-room.webp';
 
 function AboutPage (){
     const images = [
         { key: 0, image: ChairAndRug, width: 1333, height: 2000, alt: "Multiple shelves with books and various items along with a multi-colored rug.", id: "chair-and-rug" },
-        { key: 1, image: SnyderLivingRoom, width: 3437, height: 5155, alt: "Multiple shelves with books and various items along with a multi-colored rug.", id: "snyder-living-room" }
+        { key: 1, image: SnyderLivingRoom, width: 1333, height: 2000, alt: "Multiple shelves with books and various items along with a multi-colored rug.", id: "snyder-living-room" }
     ]
 
     const bios = [
