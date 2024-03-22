@@ -33,7 +33,7 @@ function Gallery ( { images } ) {
           {
             setIsLoading(true); 
           }
-        }, 100); 
+        }, 55); 
         
         // This clears the timeout stamp to prevent memory leakage
         // Also prevents timeout being used after the component unmounts

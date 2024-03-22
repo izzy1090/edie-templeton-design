@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
 
 function Contact ( { contactForms, contactText } ) {
@@ -13,13 +13,11 @@ function Contact ( { contactForms, contactText } ) {
         Message: ''
     });
 
-
-        window.addEventListener('load', ()=>{
-            const contactContainer = document.querySelector('.contactContainer');
-            contactContainer.style.opacity = 1;
-            contactContainer.style.transition = 'opacity 1s ease';
-        })
-
+    useEffect(()=>{
+        const contactContainer = document.querySelector('.contactContainer');
+        contactContainer.style.opacity = 1;
+        contactContainer.style.transition = 'opacity 1s ease';
+    }, []);
 
     const handleChange = (event)=>{
         event.preventDefault();
