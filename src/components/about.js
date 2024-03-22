@@ -1,30 +1,27 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
 
 function About ( { images, bios } ) {
     const { isNavOpen } = useGlobalStates();
-    const [ isLoading, setIsLoading ] = useState(false);
     
-    const handleImageLoad = () => {
-        // Uses the spread operator to push ELs into an array
-        // then .every sees if everything in the array evaluates to true
-        const allImagesLoaded = [...document.querySelectorAll('img')].every(img => img.complete);
-        console.log('hey')
-        // if they're completed loading, then set loading to false
-        if (allImagesLoaded) 
-        {
-            setIsLoading(false);
-        }
-    };
-
+    useEffect(()=>{
+        window.addEventListener("load", ()=>{
+            setTimeout(()=>{
+                const bio = document.querySelector('#about-content');
+                bio.style.opacity = 1;
+                bio.style.transform = 'translateY(-2px)';
+                bio.style.transition = 'opacity 1s ease, transform 1s ease';
+            }, 200);
+        })
+    }, []);
+    
     const renderedImages = images.map((image)=>{
         return <img key={image.key}
             src={image.image} 
             width={`${image.width}px`} 
             height={`${image.height}px`}
             id={image.id}
-            alt={image.alt}
-            onLoad={handleImageLoad}/>
+            alt={image.alt}/>
     })
 
     const renderedBios = bios.map((bio)=>{
@@ -36,9 +33,9 @@ function About ( { images, bios } ) {
     })
 
     return <>
-        <div id="about-content" style={isNavOpen ? { display: 'none'} : null}>
+        <div id="about-content" style={isNavOpen ? { display: 'none'} : {opacity: 0}}>
             <div className="banner">
-                {!isLoading ? renderedImages : null}
+                {renderedImages}
             </div>
             <div className="bio">
                 {renderedBios}
