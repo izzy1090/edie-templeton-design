@@ -9,7 +9,9 @@ function ContactPage () {
         { key: 4, label: 'Message', id: 'message' } 
     ];
 
-    return <Contact contactForms={contactForms}/>
+    const contactText = {email: 'ediesnyder@gmail.com', intro: "Need help with your home? Let's chat! Shoot me an email or fill out the contact form."};
+
+    return <Contact contactForms={contactForms} contactText={contactText}/>
 }
 
 export default ContactPage;

@@ -9,7 +9,6 @@ function About ( { images, bios } ) {
             setTimeout(()=>{
                 const bio = document.querySelector('#about-content');
                 bio.style.opacity = 1;
-                bio.style.transform = 'translateY(-2px)';
                 bio.style.transition = 'opacity 1s ease, transform 1s ease';
             }, 200);
         })

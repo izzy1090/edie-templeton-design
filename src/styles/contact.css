@@ -35,6 +35,12 @@
     margin: 20px;
 }
 
+.email {
+    display: block;
+    margin: auto;
+    width: fit-content;
+}
+
 .formContainer {
     display: flex;
     flex-direction: column;
