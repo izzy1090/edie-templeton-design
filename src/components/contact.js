@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
 
 function Contact ( { contactForms, contactText } ) {
