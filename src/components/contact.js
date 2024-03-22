@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGlobalStates from "../hooks/use-globalStates";
 
-function Contact ( { contactForms } ) {
-
+function Contact ( { contactForms, contactText } ) {
     const { isNavOpen } = useGlobalStates();
     // eslint-disable-next-line
     const [result, setResult] = useState("");
@@ -13,6 +12,14 @@ function Contact ( { contactForms } ) {
         Subject: '',
         Message: ''
     });
+
+
+        window.addEventListener('load', ()=>{
+            const contactContainer = document.querySelector('.contactContainer');
+            contactContainer.style.opacity = 1;
+            contactContainer.style.transition = 'opacity 1s ease';
+        })
+
 
     const handleChange = (event)=>{
         event.preventDefault();
@@ -121,20 +128,21 @@ function Contact ( { contactForms } ) {
         }
     });
     
-    return <div className="contactContainer" style={isNavOpen ? { display: 'none'} : null}>
+    return <div className="contactContainer" style={isNavOpen ? { display: 'none'} : {opacity: 0}}>
         <div className="contactBody">
         <div className="contactIntro">
-            Need help with your home? Let's chat! 
-            Shoot me an email or fill out the contact form.
+            {contactText.intro}
             <a className="email" href="mailto:ediesnyder@gmail.com" 
                 target="_blank" rel="noreferrer">
-                ediesnyder@gmail.com
+                {contactText.email}
             </a>
             <div className="line"></div>
         </div>
             <form onSubmit={handleSubmit}> 
                 {taggedForms}
-                <button className="submitButton" type="submit">Submit</button>
+                <button className="submitButton" type="submit">
+                    Submit
+                </button>
             </form>
         </div>
     </div>
