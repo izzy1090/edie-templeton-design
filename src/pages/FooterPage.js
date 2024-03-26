@@ -13,10 +13,10 @@ function FooterPage () {
             target='_blank' rel='noreferrer'>
             <EmailLogo id="emailLogo"/>
           </a>
-          <a href='https://www.instagram.com/templetweed/' 
+          {/* <a href='https://www.instagram.com/templetweed/' 
             target='_blank' rel="noreferrer">
             <InstagramLogo id='instagram'/>
-          </a>
+          </a> */}
           <a href='https://www.linkedin.com/in/edie-snyder-28b4b92b/'
             target='_blank' rel='noreferrer'>
             <LinkedInLogo id="linkedin"/>
