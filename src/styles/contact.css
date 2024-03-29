@@ -63,6 +63,8 @@
 }
 
 .formContainer > input {
+    font-size: inherit;
+    font-family: inherit;
     box-sizing: border-box;
     padding: 10px;
     margin: 10px 0px 0px 0px;
@@ -70,12 +72,13 @@
 }
 
 .formContainer > textarea {
+    font-family: inherit;
+    font-size: inherit;
     box-sizing: border-box;
     width: inherit;
     height: 150px;
     padding: 10px;
     margin: 10px 0px 0px 0px;
-    font-family: inherit;
     border: 1px solid rgba(128, 128, 128, 0.578);
 }
 
