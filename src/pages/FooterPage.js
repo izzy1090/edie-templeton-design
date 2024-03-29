@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
 import { ReactComponent as LinkedInLogo } from '../assets/linkedin.svg';
 import { ReactComponent as EmailLogo } from '../assets/email.svg';
@@ -13,10 +14,10 @@ function FooterPage () {
             target='_blank' rel='noreferrer'>
             <EmailLogo id="emailLogo"/>
           </a>
-          <a href='https://www.instagram.com/templetweed/' 
+          {/* <a href='https://www.instagram.com/templetweed/' 
             target='_blank' rel="noreferrer">
             <InstagramLogo id='instagram'/>
-          </a>
+          </a> */}
           <a href='https://www.linkedin.com/in/edie-snyder-28b4b92b/'
             target='_blank' rel='noreferrer'>
             <LinkedInLogo id="linkedin"/>
