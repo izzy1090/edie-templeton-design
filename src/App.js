@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import FooterPage from './pages/FooterPage';
+import InstagramPage from './pages/InstagramPage';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
       <NavMenuPage/>
       <ContactPage/>
       <FooterPage/>
+    </Route>
+    <Route path="/instagram">
+      <InstagramPage/>
     </Route>
   </>
   );
