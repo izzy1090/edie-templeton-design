@@ -50,7 +50,7 @@ function Gallery ( { images } ) {
 
         if (!isLoading)
         {
-            body.style.overflow = ''
+            body.style.overflow = '';
             // create an instance of an observer accepts a series of entries
             const observer = new IntersectionObserver((entries)=>{
                 // iterate across those individual entries 
@@ -64,7 +64,7 @@ function Gallery ( { images } ) {
                 })
             }, { rootMargin: "-100px"})
 
-            const imagesToObserve = document.querySelectorAll('.imageContainer')
+            const imagesToObserve = document.querySelectorAll('.imageContainer');
             // iterate across the imageContainers to observe which ones intersect with our observer from above
             imagesToObserve.forEach((image)=>{
                 observer.observe(image);
@@ -77,59 +77,59 @@ function Gallery ( { images } ) {
 
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
-    const imageContainerColumn1 = images.filter((image)=> image.key < 7).map((image)=>{
-        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img src={image.compressedImage}               
-                alt={image.alt}
-                width={`${image.width}px`} 
-                height={`${image.height}px`}
-                onLoad={handleImageLoad}/>
+    const imageContainer = images.filter((image)=> image.key).map((image)=>{
+        return <div className='imageContainer' 
+                    key={image.key} 
+                    onClick={()=>handleOpenGallery(image)}>
+                    <img src={image.compressedImage}               
+                        alt={image.alt}
+                        width={`${image.width}px`} 
+                        height={`${image.height}px`}
+                        onLoad={handleImageLoad}/>
         </div>
-    })
+    });
+
+    const imageSpread = <div className={"imageSpread"} 
+        style={isNavOpen ? {display: 'none'} : null} 
+        id="initialGalleryLoad">
+            {imageContainer}
+    </div>
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
-    const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
-        return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
-            <img src={image.compressedImage} 
-                alt={image.alt}
-                width={`${image.width}px`} 
-                height={`${image.height}px`}
-                onLoad={handleImageLoad}/>
-        </div>
-    })
+    // const imageContainerColumn2 = images.filter((image)=> image.key >= 7).map((image)=>{
+    //     return <div className='imageContainer' key={image.key} onClick={()=>handleOpenGallery(image)}>
+    //         <img src={image.compressedImage} 
+    //             alt={image.alt}
+    //             width={`${image.width}px`} 
+    //             height={`${image.height}px`}
+    //             onLoad={handleImageLoad}/>
+    //     </div>
+    // })
 
     // Skeleton loader to fit the size and positioning of 
-    const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
-        return <div key={image.key} className='skeletonContainer' 
-        style={{width: `${image.width}px`, height: `${image.height}px`}}/>
-    })
+    // const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
+    //     return <div key={image.key} className='skeletonContainer' 
+    //     style={{width: `${image.width}px`, height: `${image.height}px`}}/>
+    // })
 
     // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
-    const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
-        return <div key={image.key} className='skeletonContainer' 
-            style={{width: `${image.width}px`, height: `${image.height}px`}}/>
-    })
+    // const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
+    //     return <div key={image.key} className='skeletonContainer' 
+    //         style={{width: `${image.width}px`, height: `${image.height}px`}}/>
+    // })
 
-    const imageSpread = <div className={"imagesSpreadContainer"} 
-        style={isNavOpen ? {display: 'none'} : null} id="initialGalleryLoad">
-        <div className={"imagesSpreadColumn1"}>
-            {imageContainerColumn1}
-        </div>
-        <div className="imagesSpreadColumn2">
-            {imageContainerColumn2}
-        </div>
-    </div>
 
-    const skeletonSpread = <div className={"imagesSpreadContainer"}>
-        <div className={"imagesSpreadColumn1"}>
-            {skeletonContainer1}
-        </div>
-        <div className="imagesSpreadColumn2">
-            {skeletonContainer2}
-        </div>
-    </div>
 
-    return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
+    // const skeletonSpread = <div className={"imagesSpreadContainer"}>
+    //     <div className={"imagesSpreadColumn1"}>
+    //         {skeletonContainer1}
+    //     </div>
+    //     <div className="imagesSpreadColumn2">
+    //         {skeletonContainer2}
+    //     </div>
+    // </div>
+    return <><Lightbox images={images}/>{imageSpread}</>
+    // return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
 export default Gallery;
