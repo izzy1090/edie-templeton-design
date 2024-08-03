@@ -1,4 +1,4 @@
-.skeletonContainer {
+/* .skeletonContainer {
     position: relative;
     margin: 3px;
     max-width: 30vw;
@@ -19,37 +19,38 @@
     100%{
         background-color: rgb(188, 191, 163);
     }
-}
+} */
 
-.imagesSpreadContainer {
+/* .imagesSpreadContainer {
     display: flex;
     justify-content: center;
     margin-top: 5%;
-}
+} */
 
-.imagesSpreadColumn1  {
+/* .imagesSpreadColumn1  {
     display: flex;
     align-items: center;
     flex-direction: column;
-}
+} */
 
-.imagesSpreadColumn2  {
+/* .imagesSpreadColumn2  {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 100px;
-}
+} */
 
-.imageContainer {
-    position: relative;
-    cursor: pointer;
-    margin: 5px;
-    opacity: 0;
+.imageSpread {
+    display: grid;
+    max-width: fit-content;
+    margin: auto;
+    grid-template-columns: auto auto;
 }
 
 /* This media breakpoint targets screens with hover capabilities */
 @media (hover:hover){
     .imageContainer > img {
+        cursor: pointer;
         max-width: 30vw;
         height: auto;
         transform: translateY(0px);
@@ -71,30 +72,30 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .skeletonContainer {
+    /* .skeletonContainer {
         margin: 5px;
         max-width: 90vw;
         max-height: 30em;
         margin-top: 5%;
-    }
+    } */
 
-    .imagesSpreadContainer {
+    /* .imagesSpreadContainer {
         display: flex;
         flex-direction: column;
         margin-top: 25%; 
-    }
+    } */
 
-    .imagesSpreadColumn1  {
+    /* .imagesSpreadColumn1  {
         display: block;
         flex-direction: column;
         margin: auto; 
-    }
+    } */
     
-    .imagesSpreadColumn2  {
+    /* .imagesSpreadColumn2  {
         display: block;
         flex-direction: column;
         margin: auto;
-    }
+    } */
 
     .imageContainer > img {
         max-width: 90vw;
@@ -104,9 +105,9 @@
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
         padding-top: 5%;
     }
-    .imageContainer:nth-last-child(-n + 1){
+    /* .imageContainer:nth-last-child(-n + 1){
         padding-bottom: 5%;
-    }
+    } */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -117,11 +118,11 @@
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
 @media only screen and (min-width: 1000px) {
-    .skeletonContainer {
+    /* .skeletonContainer {
         margin: 5px;
         max-width: 25vw;
         max-height: 4%;
-    }
+    } */
 
     .imageContainer > img {
         max-width: 25vw;
@@ -131,11 +132,11 @@
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {
-    .skeletonContainer {
+    /* .skeletonContainer {
         margin: 5px;
         max-width: 20vw;
         
-    }
+    } */
 
     .imageContainer > img {
         max-width: 20vw;
