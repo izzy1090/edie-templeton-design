@@ -21,45 +21,47 @@
     }
 } */
 
-/* .imagesSpreadContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-} */
-
-/* .imagesSpreadColumn1  {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-} */
-
-/* .imagesSpreadColumn2  {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 100px;
-} */
-
 .imageSpread {
     display: grid;
-    max-width: fit-content;
-    margin: auto;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center; 
+    align-items: center; 
+}
+
+.imageContainer {
+    box-sizing: content-box;
+    opacity: 0;
+    padding: 10px;
+}
+
+.imageContainer > img {
+    max-width: 30vw;
+    height: auto;
+}
+
+.imageContainer:nth-child(odd) {
+    grid-row: span 2;
+}
+
+.imageContainer:nth-last-child(-n + 1) {
+   grid-column: span 3;
+}
+
+.imageContainer:nth-last-child(-n + 1) > img {
+    max-width: 55vw;
 }
 
 /* This media breakpoint targets screens with hover capabilities */
 @media (hover:hover){
     .imageContainer > img {
         cursor: pointer;
-        max-width: 30vw;
-        height: auto;
         transform: translateY(0px);
         clip-path: circle(100%);
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
     }
     
-    .imageContainer:hover > img {
-        transform: translateY(-1.5px);
+    .imageContainer > img:hover {
+        transform: translateY(-0.9px);
         clip-path: circle(35%);
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
     }
@@ -79,23 +81,11 @@
         margin-top: 5%;
     } */
 
-    /* .imagesSpreadContainer {
+    .imageSpread {
         display: flex;
         flex-direction: column;
         margin-top: 25%; 
-    } */
-
-    /* .imagesSpreadColumn1  {
-        display: block;
-        flex-direction: column;
-        margin: auto; 
-    } */
-    
-    /* .imagesSpreadColumn2  {
-        display: block;
-        flex-direction: column;
-        margin: auto;
-    } */
+    }
 
     .imageContainer > img {
         max-width: 90vw;
@@ -103,7 +93,6 @@
         transform: translateY(0px);
         clip-path: circle(100%);
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
-        padding-top: 5%;
     }
     /* .imageContainer:nth-last-child(-n + 1){
         padding-bottom: 5%;

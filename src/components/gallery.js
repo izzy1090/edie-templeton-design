@@ -78,13 +78,12 @@ function Gallery ( { images } ) {
 
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainer = images.filter((image)=> image.key).map((image)=>{
-        return <div className='imageContainer' 
-                    key={image.key} 
-                    onClick={()=>handleOpenGallery(image)}>
+        return <div className='imageContainer' key={image.key}>
                     <img src={image.compressedImage}               
                         alt={image.alt}
                         width={`${image.width}px`} 
                         height={`${image.height}px`}
+                        onClick={()=>handleOpenGallery(image)}
                         onLoad={handleImageLoad}/>
         </div>
     });
