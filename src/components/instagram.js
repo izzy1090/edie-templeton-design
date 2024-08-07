@@ -1,1 +1,1 @@
-import InstagramPage from "../pages/InstagramPage";
+import InstagramPage from "../pages/InstagramPage.js";

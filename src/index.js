@@ -7,10 +7,10 @@ import './styles/footer.css';
 import './styles/contact.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { NavigationProvider } from './context/navigation';
-import { GlobalStatesProvider } from './context/globalStates';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals.js';
+import { NavigationProvider } from './context/navigation.js';
+import { GlobalStatesProvider } from './context/globalStates.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

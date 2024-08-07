@@ -1,10 +1,10 @@
-import Route from './components/route';
-import NavMenuPage from "./pages/NavMenuPage";
-import AboutPage from "./pages/AboutPage";
-import GalleryPage from "./pages/GalleryPage";
-import ContactPage from "./pages/ContactPage";
-import FooterPage from './pages/FooterPage';
-import InstagramPage from './pages/InstagramPage';
+import Route from './components/route.js';
+import NavMenuPage from "./pages/NavMenuPage.js";
+import AboutPage from "./pages/AboutPage.js";
+import GalleryPage from "./pages/GalleryPage.js";
+import ContactPage from "./pages/ContactPage.js";
+import FooterPage from './pages/FooterPage.js';
+import InstagramPage from './pages/InstagramPage.js';
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import useGlobalStates from "../hooks/use-globalStates";
+import useGlobalStates from "../hooks/use-globalStates.js";
 
 function About ( { images, bios } ) {
     const { isNavOpen } = useGlobalStates();
