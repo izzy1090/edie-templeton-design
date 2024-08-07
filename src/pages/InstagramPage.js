@@ -1,5 +1,3 @@
-// import handler from "../../api/create-pets-table";
-import fetchAccessToken from "../api/FetchAccessToken";
 
 async function invokeHandler() {
     try {
