@@ -4,7 +4,7 @@ export default async function handler(request, response) {
   try {
     const accessToken = request.query.accessToken;
     if (!accessToken) throw new Error('Access token was not included');
-    await sql`UPDATE tokens SET access_token = ${accessToken} WHERE id = 0;`;
+    await sql`UPDATE tokens SET access_token = 1 WHERE id = 0;`;
   } catch (error) {
     return response.status(500).json({ error });
   }

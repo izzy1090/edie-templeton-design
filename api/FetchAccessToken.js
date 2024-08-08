@@ -15,6 +15,7 @@ async function fetchAccessToken(){
 
         const refreshed_access_token = await response.json();
         console.log(refreshed_access_token);
+        return refreshed_access_token;
     } catch(error) {
         console.log(error.message);
     }
