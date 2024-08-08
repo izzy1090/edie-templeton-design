@@ -1,8 +1,8 @@
 {
     "crons": [
         {
-            "path": "/api/update-token?accessToken=0",
-            "schedule": "58 20 * 8 4"
+            "path": "/api/update-token",
+            "schedule": "04 21 * 8 4"
         }
     ]
 }
