@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useGlobalStates from '../hooks/use-globalStates';
+import useGlobalStates from '../hooks/use-globalStates.js';
 import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
 import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 

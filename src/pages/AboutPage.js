@@ -1,4 +1,4 @@
-import About from "../components/about";
+import About from "../components/about.js";
 import ChairAndRug from '../images/chair-and-rug.webp';
 import SnyderLivingRoom from '../images/snyder-living-room.webp';
 

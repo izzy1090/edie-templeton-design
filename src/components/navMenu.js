@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import useGlobalStates from "../hooks/use-globalStates";
+import useGlobalStates from "../hooks/use-globalStates.js";
 import { ReactComponent as Logo } from '../assets/Mark.svg';
-import useNavigation from "../hooks/use-navigation";
+import useNavigation from "../hooks/use-navigation.js";
 
 function NavMenu( { menuItems } ){
 

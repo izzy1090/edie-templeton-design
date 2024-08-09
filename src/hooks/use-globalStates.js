@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import GlobalStatesContext from "../context/globalStates";
+import GlobalStatesContext from "../context/globalStates.js";
 
 function useGlobalStates(){
     return useContext(GlobalStatesContext);

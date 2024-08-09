@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import useGlobalStates from '../hooks/use-globalStates';
-import Lightbox from './lightbox';
+import useGlobalStates from '../hooks/use-globalStates.js';
+import Lightbox from './lightbox.js';
 
 function Gallery ( { images } ) {
 

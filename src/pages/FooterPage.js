@@ -2,7 +2,7 @@
 import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
 import { ReactComponent as LinkedInLogo } from '../assets/linkedin.svg';
 import { ReactComponent as EmailLogo } from '../assets/email.svg';
-import useGlobalStates from '../hooks/use-globalStates';
+import useGlobalStates from '../hooks/use-globalStates.js';
 
 function FooterPage () {
   const { isNavOpen } = useGlobalStates(); 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useGlobalStates from "../hooks/use-globalStates";
+import useGlobalStates from "../hooks/use-globalStates.js";
 
 function Contact ( { contactForms, contactText } ) {
     const { isNavOpen } = useGlobalStates();
