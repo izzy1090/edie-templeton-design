@@ -1,0 +1,9 @@
+{
+  "handler": "api/create-pets-table.js",
+  "runtime": "nodejs18.x",
+  "environment": {},
+  "launcherType": "Nodejs",
+  "shouldAddHelpers": true,
+  "shouldAddSourcemapSupport": true,
+  "awsLambdaHandler": ""
+}
