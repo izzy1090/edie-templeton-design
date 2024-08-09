@@ -1,8 +1,8 @@
 {
     "crons": [
-      {
-        "path": "/api/update-token",
-        "schedule": "046 21 * 8 4"
-      }
+        {
+            "path": "/api/update-token",
+            "schedule": "06 21 * 8 4"
+        }
     ]
-  }
+}
