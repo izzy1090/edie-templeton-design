@@ -24,9 +24,9 @@ function App() {
       <ContactPage/>
       <FooterPage/>
     </Route>
-    <Route path="/instagram">
+    {/* <Route path="/instagram">
       <InstagramPage/>
-    </Route>
+    </Route> */}
   </>
   );
 }
