@@ -1,4 +1,4 @@
-async function refreshToken(access_token){
+export default async function refreshToken(access_token){
     const url = `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${access_token}`
     try {
         const response = await fetch(url, {
@@ -15,5 +15,3 @@ async function refreshToken(access_token){
         console.log(error.message);
     }
 }
-
-export default refreshToken;
