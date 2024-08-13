@@ -1,7 +1,7 @@
 {
     "crons": [
         {
-            "path": "/src/internal-api/exchange-token",
+            "path": "/api/",
             "schedule": "0 00 * * *"
         }
     ]
