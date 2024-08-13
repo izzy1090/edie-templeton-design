@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage.js";
 import GalleryPage from "./pages/GalleryPage.js";
 import ContactPage from "./pages/ContactPage.js";
 import FooterPage from './pages/FooterPage.js';
+import InstagramPage from './pages/InstagramPage.js';
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
     <Route path="/contact">
       <NavMenuPage/>
       <ContactPage/>
+      <FooterPage/>
+    </Route>
+    <Route path="/instagram">
+      <NavMenuPage/>
+      <InstagramPage/>
       <FooterPage/>
     </Route>
   </>
