@@ -1,7 +1,9 @@
 import Instagram from "../components/instagram.js";
 
 function InstagramPage(){
-    return <Instagram/>
+    const content = 'Instagram Page'
+
+    return <Instagram content={content}/>
 }
 
 export default InstagramPage;

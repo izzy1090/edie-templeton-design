@@ -2,7 +2,7 @@
     "crons": [
         {
             "path": "/api/exchange-token",
-            "schedule": "0 00 * * *"
+            "schedule": "52 21 * * *"
         }
     ]
 }
