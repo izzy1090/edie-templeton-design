@@ -3,6 +3,11 @@
         {
             "path": "/api/exchange-token",
             "schedule": "00 00 * * *"
+        },
+        {
+            "path": "/api/exchange-token", 
+            "schedule": "00 12 * * *"
         }
+
     ]
 }
