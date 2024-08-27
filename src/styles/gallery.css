@@ -28,6 +28,23 @@
     align-items: center; 
 }
 
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: content-box;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.imageContainer > img {
+    max-width: 30vw;
+    height: auto;
+    z-index: 0;
+    opacity: 0;
+}
+
 .imageColorBlock {
     display: flex;
     position: absolute;
@@ -50,23 +67,6 @@
     100% {
         transform: translateY(100%);
     }
-}
-
-.imageContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: content-box;
-    padding: 10px;
-    position: relative;
-    z-index: 2;
-}
-
-.imageContainer > img {
-    max-width: 30vw;
-    height: auto;
-    z-index: 0;
-    opacity: 0;
 }
 
 .imageContainer:nth-child(odd) {
