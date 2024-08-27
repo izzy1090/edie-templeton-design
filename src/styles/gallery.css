@@ -28,15 +28,45 @@
     align-items: center; 
 }
 
-.imageContainer {
+.imageColorBlock {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     box-sizing: content-box;
+    background-color: #F1F1EF;
+    transform: translateY(0%);
+    z-index: 1;
     opacity: 0;
+    pointer-events: none;
+}
+
+.swipeUpAnim {
+    animation: swipeUp 1s ease;
+    opacity: 1;
+}
+
+@keyframes swipeUp {
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
     padding: 10px;
+    position: relative;
+    z-index: 2;
 }
 
 .imageContainer > img {
     max-width: 30vw;
     height: auto;
+    z-index: 0;
+    opacity: 0;
 }
 
 .imageContainer:nth-child(odd) {
@@ -53,23 +83,18 @@
 
 /* This media breakpoint targets screens with hover capabilities */
 @media (hover:hover){
-    .imageContainer > img {
+    .imageContainer {
         cursor: pointer;
         transform: translateY(0px);
         clip-path: circle(100%);
-        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+        transition: clip-path 500ms ease-in-out 150ms, transform 500ms ease-in-out 150ms;
     }
     
-    .imageContainer > img:hover {
+    .imageContainer:hover {
         transform: translateY(-0.9px);
         clip-path: circle(35%);
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
     }
-}
-
-.fadeInImage {
-    transition: opacity 1000ms;
-    opacity: 1;
 }
 
 /* Extra small devices (phones, 600px and down) */

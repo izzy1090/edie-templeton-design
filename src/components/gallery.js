@@ -58,13 +58,20 @@ function Gallery ( { images } ) {
                     // If the entry is intersecting with the observer
                     if (entry.isIntersecting){
                         // add the class if they're intersecting 
-                        entry.target.classList.add('fadeInImage');
+                        entry.target.classList.add('swipeUpAnim');
+                        entry.target.parentElement.children[1].style.opacity = 1;
+                        entry.target.parentElement.children[1].style.transition = 'opacity 1.5s ease';
+                        entry.target.style.opacity = 1;
+                        entry.target.addEventListener('animationend', ()=>{
+                            entry.target.style.opacity = 0;
+                            entry.target.remove();
+                        })
                         observer.unobserve(entry.target);
                     }
                 })
             }, { rootMargin: "-100px"})
 
-            const imagesToObserve = document.querySelectorAll('.imageContainer');
+            const imagesToObserve = document.querySelectorAll('.imageColorBlock');
             // iterate across the imageContainers to observe which ones intersect with our observer from above
             imagesToObserve.forEach((image)=>{
                 observer.observe(image);
@@ -79,12 +86,14 @@ function Gallery ( { images } ) {
     // if an image's index is less than 7, map it to the first imageContainerColumn div
     const imageContainer = images.filter((image)=> image.key).map((image)=>{
         return <div className='imageContainer' key={image.key}>
-                    <img src={image.compressedImage}               
-                        alt={image.alt}
-                        width={`${image.width}px`} 
-                        height={`${image.height}px`}
-                        onClick={()=>handleOpenGallery(image)}
-                        onLoad={handleImageLoad}/>
+            <div className='imageColorBlock'></div>
+            <img src={image.compressedImage} 
+                id='images'              
+                alt={image.alt}
+                width={`${image.width}px`} 
+                height={`${image.height}px`}
+                onClick={()=>handleOpenGallery(image)}
+                onLoad={handleImageLoad}/>
         </div>
     });
 
