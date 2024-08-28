@@ -1,4 +1,4 @@
-.skeletonContainer {
+/* .skeletonContainer {
     position: relative;
     margin: 3px;
     max-width: 30vw;
@@ -19,94 +19,109 @@
     100%{
         background-color: rgb(188, 191, 163);
     }
-}
+} */
 
-.imagesSpreadContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-}
-
-.imagesSpreadColumn1  {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.imagesSpreadColumn2  {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 100px;
+.imageSpread {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center; 
+    align-items: center; 
 }
 
 .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    cursor: pointer;
-    margin: 5px;
+    box-sizing: content-box;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.imageContainer > img {
+    max-width: 30vw;
+    height: auto;
+    z-index: 0;
     opacity: 0;
+}
+
+.imageColorBlock {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    background-color: #F1F1EF;
+    transform: translateY(0%);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.swipeUpAnim {
+    animation: swipeUp 1.3s ease;
+    opacity: 1;
+}
+
+@keyframes swipeUp {
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.imageContainer:nth-child(odd) {
+    grid-row: span 2;
+}
+
+.imageContainer:nth-last-child(-n + 1) {
+   grid-column: span 2;
+}
+
+.imageContainer:nth-last-child(-n + 1) > img {
+    max-width: 100%;
 }
 
 /* This media breakpoint targets screens with hover capabilities */
 @media (hover:hover){
-    .imageContainer > img {
-        max-width: 30vw;
-        height: auto;
+    .imageContainer {
+        cursor: pointer;
         transform: translateY(0px);
         clip-path: circle(100%);
-        transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
+        transition: clip-path 500ms ease-in-out 150ms, transform 500ms ease-in-out 150ms;
     }
     
-    .imageContainer:hover > img {
-        transform: translateY(-1.5px);
+    .imageContainer:hover {
+        transform: translateY(-0.9px);
         clip-path: circle(35%);
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
     }
 }
 
-.fadeInImage {
-    transition: opacity 1000ms;
-    opacity: 1;
-}
-
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .skeletonContainer {
+    /* .skeletonContainer {
         margin: 5px;
         max-width: 90vw;
         max-height: 30em;
         margin-top: 5%;
-    }
+    } */
 
-    .imagesSpreadContainer {
+    .imageSpread {
         display: flex;
         flex-direction: column;
         margin-top: 25%; 
     }
 
-    .imagesSpreadColumn1  {
-        display: block;
-        flex-direction: column;
-        margin: auto; 
-    }
-    
-    .imagesSpreadColumn2  {
-        display: block;
-        flex-direction: column;
-        margin: auto;
-    }
-
     .imageContainer > img {
-        max-width: 90vw;
+        max-width: 90vw !important;
         height: auto;
         transform: translateY(0px);
         clip-path: circle(100%);
         transition: clip-path 500ms ease-in-out, transform 500ms ease-in-out;
-        padding-top: 5%;
     }
-    .imageContainer:nth-last-child(-n + 1){
+    /* .imageContainer:nth-last-child(-n + 1){
         padding-bottom: 5%;
-    }
+    } */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -116,29 +131,17 @@
 /* @media only screen and (min-width: 768px) {} */
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
-@media only screen and (min-width: 1000px) {
-    .skeletonContainer {
-        margin: 5px;
-        max-width: 25vw;
-        max-height: 4%;
-    }
-
-    .imageContainer > img {
-        max-width: 25vw;
-        height: auto;
-    }
-}
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {
-    .skeletonContainer {
+    /* .skeletonContainer {
         margin: 5px;
         max-width: 20vw;
         
-    }
+    } */
 
     .imageContainer > img {
-        max-width: 20vw;
+        max-width: 30vw;
         height: auto;
     }
 }
