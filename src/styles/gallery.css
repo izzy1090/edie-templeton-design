@@ -59,7 +59,7 @@
 }
 
 .swipeUpAnim {
-    animation: swipeUp 1s ease;
+    animation: swipeUp 1.3s ease;
     opacity: 1;
 }
 
@@ -74,11 +74,11 @@
 }
 
 .imageContainer:nth-last-child(-n + 1) {
-   grid-column: span 3;
+   grid-column: span 2;
 }
 
 .imageContainer:nth-last-child(-n + 1) > img {
-    max-width: 55vw;
+    max-width: 100%;
 }
 
 /* This media breakpoint targets screens with hover capabilities */
@@ -113,7 +113,7 @@
     }
 
     .imageContainer > img {
-        max-width: 90vw;
+        max-width: 90vw !important;
         height: auto;
         transform: translateY(0px);
         clip-path: circle(100%);
@@ -131,18 +131,6 @@
 /* @media only screen and (min-width: 768px) {} */
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
-@media only screen and (min-width: 1000px) {
-    /* .skeletonContainer {
-        margin: 5px;
-        max-width: 25vw;
-        max-height: 4%;
-    } */
-
-    .imageContainer > img {
-        max-width: 25vw;
-        height: auto;
-    }
-}
 
 /* Extra large devices (large laptops and desktops, 1500px and up) */
 @media only screen and (min-width: 1500px) {
@@ -153,7 +141,7 @@
     } */
 
     .imageContainer > img {
-        max-width: 20vw;
+        max-width: 30vw;
         height: auto;
     }
 }
