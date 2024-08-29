@@ -1,11 +1,16 @@
 import InstagramPosts from "../components/instagramPosts.js";
+import useGlobalStates from "../hooks/use-globalStates.js";
 
 function InstagramPage(){
-
+    
+    const { isNavOpen } = useGlobalStates();
 
     return <>
-        Inspiration Page
-        <InstagramPosts/>
+        <div style={isNavOpen ? {display: 'none'} : null}>
+            Inspiration Page
+            <InstagramPosts/>
+        </div>
+        
     </>
 }
 

@@ -24,7 +24,7 @@ function App() {
       <ContactPage/>
       <FooterPage/>
     </Route>
-    <Route path="/instagram">
+    <Route path="/inspiration">
       <NavMenuPage/>
       <InspirationPage/>
       <FooterPage/>
