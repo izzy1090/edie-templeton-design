@@ -7,7 +7,6 @@ function InstagramPage(){
 
     return <>
         <div style={isNavOpen ? {display: 'none'} : null}>
-            Inspiration Page
             <InstagramPosts/>
         </div>
         

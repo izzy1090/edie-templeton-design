@@ -1,0 +1,18 @@
+.postSpread {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center; 
+    align-items: center; 
+    width: 100%;
+}
+
+.postContainer {
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.postContainer > img {
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+}

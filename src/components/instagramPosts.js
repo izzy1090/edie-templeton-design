@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import fetchPosts from "../api/fetch-posts.js";
+import Carousel from "./carousel.js";
 
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
@@ -23,14 +24,18 @@ function InstagramPosts ( ){
             console.log(posts.data)
             setRenderedPosts(
                 posts.data.map((post)=>{
+                    const isCarouselAlbum = post.media_type === 'CAROUSEL_ALBUM';
+
                     return <>
-                        <div key={post.id}>
-                            <img 
-                                src={post.media_url} 
+                        {isCarouselAlbum ?
+                        (<Carousel post={post}/>) 
+                        : 
+                        (<div key={post.id} className="postContainer">
+                            <img src={post.media_url} 
                                 alt={post.caption} 
-                                width={500}
                             />
-                        </div>
+                        </div>)
+                        }
                     
                     </>
                 })
@@ -38,7 +43,7 @@ function InstagramPosts ( ){
         }
     },[posts]);
 
-    return <>{renderedPosts}</>
+    return <div className="postSpread">{renderedPosts}</div>
 }
 
 export default InstagramPosts;
