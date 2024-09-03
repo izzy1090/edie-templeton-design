@@ -28,12 +28,11 @@ function InstagramPosts ( ){
 
                     return <>
                         {isCarouselAlbum ?
-                        (<Carousel post={post}/>) 
+                        (<Carousel post={post} caption={post.caption}/>) 
                         : 
                         (<div key={post.id} className="postContainer">
                             <img src={post.media_url} 
-                                alt={post.caption} 
-                            />
+                                alt={post.caption}/>
                         </div>)
                         }
                     

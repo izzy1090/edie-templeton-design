@@ -6,13 +6,13 @@
     width: 100%;
 }
 
-.postContainer {
+.postContainer, .carouselContainer {
     box-sizing: border-box;
     padding: 10px;
 }
 
-.postContainer > img {
-    cursor: pointer;
+.postContainer > img, .carouselContainer > img {
     display: flex;
+    cursor: pointer;
     width: 100%;
 }
