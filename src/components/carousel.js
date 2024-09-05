@@ -28,14 +28,16 @@ function Carousel({post}){
     };
 
     return <div className='carouselContainer'>
-        <div id='backArrow' className='arrowContainer'>
+        <div id='backArrow' className='arrowContainer'
+            style={postCounter === 0 ? {display: 'none'} : null}>
             <BackArrow id="arrow"
                 style={{width: "1.5em", height: '1.5em'}}
                 onClick={handlePreviousPost}/>
         </div>
         <img src={currentPost}
             alt={post.caption}/>
-        <div id='forwardArrow' className='arrowContainer'>
+        <div id='forwardArrow' className='arrowContainer'
+            style={postCounter === post.children.data.length - 1 ? {display: 'none'} : null}>
             <ForwardArrow id="arrow" 
                 style={{width: "1.5em", height: '1.5em'}}
                 onClick={handleNextPost}/>
