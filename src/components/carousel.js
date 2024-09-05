@@ -28,13 +28,18 @@ function Carousel({post}){
     };
 
     return <div className='carouselContainer'>
-        <BackArrow id='backArrow' style={{width: "2em", height: '2em'}}
-            onClick={handlePreviousPost}/>
- 
-            <img src={currentPost}
-                alt={post.caption}/>
-        <ForwardArrow id='forwardArrow' style={{width: "2em", height: '2em'}}
-            onClick={handleNextPost}/>
+        <div id='backArrow' className='arrowContainer'>
+            <BackArrow id="arrow"
+                style={{width: "1.5em", height: '1.5em'}}
+                onClick={handlePreviousPost}/>
+        </div>
+        <img src={currentPost}
+            alt={post.caption}/>
+        <div id='forwardArrow' className='arrowContainer'>
+            <ForwardArrow id="arrow" 
+                style={{width: "1.5em", height: '1.5em'}}
+                onClick={handleNextPost}/>
+        </div>
     </div>
 }
 

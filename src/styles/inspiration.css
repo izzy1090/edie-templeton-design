@@ -7,12 +7,45 @@
 }
 
 .postContainer, .carouselContainer {
+    position: relative;
     box-sizing: border-box;
     padding: 10px;
 }
 
 .postContainer > img, .carouselContainer > img {
     display: flex;
-    cursor: pointer;
     width: 100%;
+}
+
+.arrowContainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translate(0%, -50%);
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    background-color: #F1F1EF;
+    opacity: 0.5;
+    padding: 2px;
+    margin: 5px;
+}
+
+.arrowContainer:hover, #arrow:hover {
+    opacity: 1;
+}
+
+#backArrow {
+    left: 5%;
+}
+
+#forwardArrow {
+    right: 5%;
+}
+
+#arrow {
+    opacity: 0.5;
+    cursor: pointer;
 }
