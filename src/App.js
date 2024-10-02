@@ -24,11 +24,11 @@ function App() {
       <ContactPage/>
       <FooterPage/>
     </Route>
-    <Route path="/inspiration">
+    {/* <Route path="/inspiration">
       <NavMenuPage/>
       <InspirationPage/>
       <FooterPage/>
-    </Route>
+    </Route> */}
   </>
   );
 }
