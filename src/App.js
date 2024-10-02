@@ -4,7 +4,7 @@ import AboutPage from "./pages/AboutPage.js";
 import GalleryPage from "./pages/GalleryPage.js";
 import ContactPage from "./pages/ContactPage.js";
 import FooterPage from './pages/FooterPage.js';
-import InstagramPage from './pages/InstagramPage.js';
+import InspirationPage from './pages/InspirationPage.js'
 
 function App() {
   return (
@@ -24,11 +24,11 @@ function App() {
       <ContactPage/>
       <FooterPage/>
     </Route>
-    <Route path="/instagram">
+    {/* <Route path="/inspiration">
       <NavMenuPage/>
-      <InstagramPage/>
+      <InspirationPage/>
       <FooterPage/>
-    </Route>
+    </Route> */}
   </>
   );
 }

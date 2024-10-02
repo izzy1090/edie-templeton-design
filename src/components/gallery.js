@@ -12,15 +12,12 @@ function Gallery ( { images } ) {
         setImageToShow(image);
     }
 
+    // Possibly remove the loading component
     const handleImageLoad = () => {
         // Uses the spread operator to push ELs into an array
         // then .every sees if everything in the array evaluates to true
         const allImagesLoaded = [...document.querySelectorAll('.imageContainer > img')].every(img => img.complete);
-        let counter = 0;
-        setTimeout(()=>{
-            counter++
-            console.log(counter)
-        }, 500 )
+        
         // if they're completed loading, then set loading to false
         if (allImagesLoaded) 
         {

@@ -3,6 +3,7 @@ import './styles/navMenu.css';
 import './styles/about.css';
 import './styles/gallery.css';
 import './styles/lightbox.css';
+import './styles/inspiration.css';
 import './styles/footer.css';
 import './styles/contact.css';
 import React from 'react';
@@ -14,13 +15,13 @@ import { GlobalStatesProvider } from './context/globalStates.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <GlobalStatesProvider>
       <NavigationProvider>
           <App/>
       </NavigationProvider>
     </GlobalStatesProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

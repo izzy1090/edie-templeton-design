@@ -15,18 +15,24 @@ function NavMenu( { menuItems } ){
 
         const homeMenu = document.getElementById('about');
         const galleryMenu = document.getElementById('gallery');
+        const inspirationMenu = document.getElementById('inspiration');
         const contactMenu = document.getElementById('contact');
+
+        const activeMenuColor = 'rgba(50, 50, 50, 50)';
 
         if (currentPath === '/')
         {
-            galleryMenu.style.color = 'rgba(50, 50, 50, 50)';
+            galleryMenu.style.color = activeMenuColor;
         } else if (currentPath === '/about')
         {
-            homeMenu.style.color = 'rgba(50, 50, 50, 50)';
+            homeMenu.style.color = activeMenuColor;
+        } else if (currentPath === '/inspiration')
+        {
+            inspirationMenu.style.color = activeMenuColor;
         } else if (currentPath === '/contact')
         {
-            contactMenu.style.color = 'rgba(50, 50, 50, 50)';
-        }
+            contactMenu.style.color = activeMenuColor;
+        } 
 
         if (isNavOpen)
         {
