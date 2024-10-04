@@ -5,7 +5,6 @@ export default async function updatePosts(
     request,
     response
 ){
-
     try {
         const latestPosts = await fetchPosts();
         const requestLatestTimestamp = await sql`SELECT post_timestamp from ig_data order by post_timestamp::timestamp desc limit 1;`
