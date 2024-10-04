@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import fetchPosts from './fetch-posts.js';
+import fetchPosts from './ig-fetch-posts.js';
 
 export const config = {
     maxDuration: 60,

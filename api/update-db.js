@@ -1,4 +1,4 @@
-import fetchPosts from './fetch-posts.js';
+import fetchPosts from './ig-fetch-posts.js';
 import { sql } from '@vercel/postgres';
 
 export default async function updatePosts(

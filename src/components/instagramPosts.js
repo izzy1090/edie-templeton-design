@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import { sql } from "@vercel/postgres";
-// import fetchPosts from "../../api/fetch-posts.js";
 import Carousel from "./carousel.js";
-// import updateDatabase from "../../api/update-database.js";
 
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
@@ -10,14 +7,9 @@ function InstagramPosts ( ){
 
     const handleFetchPosts = async () => {
         try {
-            const result = await sql`SELECT * from ig_data limit 25;`
-            console.log(result)
-            // const request = await fetchPosts();
-            // const test = await updateDatabase();
-            // // console.log(`testing: ${test}`);
-            // // const test = await fetch(`/api/update-ig_data?${request}`)
-            // // console.log(test)
-            // setPosts(request)
+            const request = await fetch(`/api/db-fetch-posts`);
+            const result = await request.json();
+            setPosts(result);
         } catch (error) {
             console.log(error)
         }
@@ -30,16 +22,16 @@ function InstagramPosts ( ){
     useEffect(()=>{
         if (posts !== null){
             setRenderedPosts(
-                posts.data.map((post)=>{
-                    const isCarouselAlbum = post.media_type === 'CAROUSEL_ALBUM';
+                posts.result.map((post)=>{
+                    const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
 
                     return <>
                         {isCarouselAlbum ?
-                        (<Carousel post={post} caption={post.caption}/>) 
+                        (<Carousel post={post} caption={post.post_caption}/>) 
                         : 
-                        (<div key={post.id} className="postContainer">
-                            <img src={post.media_url} 
-                                alt={post.caption}/>
+                        (<div key={post.post_id} className="postContainer">
+                            <img src={post.post_media_url} 
+                                alt={post.post_caption}/>
                         </div>)
                         }
                     

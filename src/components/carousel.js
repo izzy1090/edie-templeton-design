@@ -2,16 +2,16 @@ import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
 import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 import { useState } from 'react';
 
-function Carousel({post}){
+function Carousel({post, caption}){
 
-    const [ currentPost, setCurrentPost ] = useState(post.children.data[0].media_url);
+    const [ currentPost, setCurrentPost ] = useState(post.children.data[0].post_media_url);
     const [ postCounter, setPostCounter ] = useState(0);
 
     const handleNextPost = () => {
         if (postCounter < post.children.data.length - 1) { 
             setPostCounter((currentCounter) => {
                 const newCounter = currentCounter + 1;
-                setCurrentPost(post.children.data[newCounter].media_url); 
+                setCurrentPost(post.children.data[newCounter].post_media_url); 
                 return newCounter;
             });
         }
@@ -21,7 +21,7 @@ function Carousel({post}){
         if (postCounter > 0) {
             setPostCounter((currentCounter) => {
                 const newCounter = currentCounter - 1;
-                setCurrentPost(post.children.data[newCounter].media_url); 
+                setCurrentPost(post.children.data[newCounter].post_media_url); 
                 return newCounter;
             });
         }
@@ -35,7 +35,7 @@ function Carousel({post}){
                 onClick={handlePreviousPost}/>
         </div>
         <img src={currentPost}
-            alt={post.caption}/>
+            alt={caption}/>
         <div id='forwardArrow' className='arrowContainer'
             style={postCounter === post.children.data.length - 1 ? {display: 'none'} : null}>
             <ForwardArrow id="arrow" 
