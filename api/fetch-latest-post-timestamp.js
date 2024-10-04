@@ -6,7 +6,7 @@ export default async function handler(
 ) {
   try {
     const result =
-      await sql`SELECT post_timestamp from ig_data order by id desc limit 1;`;
+      await sql`SELECT post_timestamp from ig_data order by post_timestamp::timestamp desc limit 1;`;
       return response.status(200).json({ result })
 
   } catch (error) {

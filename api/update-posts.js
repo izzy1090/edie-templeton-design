@@ -1,32 +1,35 @@
 import fetchPosts from './fetch-posts.js';
 import { sql } from '@vercel/postgres';
 
-export default async function updatePosts(){
+export default async function updatePosts(
+    request,
+    response
+){
+
     try {
         const request = await fetchPosts();
-        const latestTimestamp = await fetch('https://edietempletondesign.com/api/fetch-latest-post-timestamp');
-        console.log(latestTimestamp)
+        // const latestTimestamp = await fetch('https://edietempletondesign.com/api/fetch-latest-post-timestamp');
+        // console.log(latestTimestamp)
         // const latestPostTimestamp = request.data[0].timestamp
         // check if there is a timestamp in your request results
             // if not don't make a comparison to instagram's api timestamp
             // if there is a timestamp
         for (const post of request.data){
-            
-            
             await sql`INSERT INTO ig_data 
                 (post_id, post_timestamp, post_username, post_caption, post_media_type, post_media_url, post_permalink) 
                 VALUES (${post.id}, ${post.timestamp}, ${post.username}, ${post.caption}, ${post.media_type}, ${post.media_url}, ${post.permalink});`
             
             if (post.media_type === 'CAROUSEL_ALBUM'){
-                for (const child of request.data.children){
+                for (const child of post.children.data){
                     await sql `INSERT INTO ig_children
                         (post_child_id, post_media_url, post_id) 
                         VALUES (${child.id}, ${child.media_url}, ${post.id})`;
                 }
             }
+            console.log(`record id: ${post.id}, has been added!`)
             
         };
-
+        return response.status(200).json({message: `The new instagram posts have been added to the database. Here's a list for reference: ${request} `})
     } catch (error) {
         console.log(error)
     }
