@@ -1,4 +1,4 @@
-export default async function fetchPosts(){
+export default async function fetchPosts(request,response){
     try {
         const request = await fetch('https://edietempletondesign.com/api/fetch-sql-token');
         const currentToken = await request.json();
