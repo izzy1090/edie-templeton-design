@@ -102,30 +102,7 @@ function Gallery ( { images } ) {
             {imageContainer}
     </div>
 
-    // Skeleton loader to fit the size and positioning of 
-    // const skeletonContainer1 = images.filter((image)=> image.key < 7).map((image)=>{
-    //     return <div key={image.key} className='skeletonContainer' 
-    //     style={{width: `${image.width}px`, height: `${image.height}px`}}/>
-    // })
-
-    // if an image's index is greater than or equal to 7, map it to the first imageContainerColumn div
-    // const skeletonContainer2 = images.filter((image)=>image.key >= 7).map((image)=>{
-    //     return <div key={image.key} className='skeletonContainer' 
-    //         style={{width: `${image.width}px`, height: `${image.height}px`}}/>
-    // })
-
-
-
-    // const skeletonSpread = <div className={"imagesSpreadContainer"}>
-    //     <div className={"imagesSpreadColumn1"}>
-    //         {skeletonContainer1}
-    //     </div>
-    //     <div className="imagesSpreadColumn2">
-    //         {skeletonContainer2}
-    //     </div>
-    // </div>
     return <><Lightbox images={images}/>{imageSpread}</>
-    // return <>{isLoading ? skeletonSpread : null}<Lightbox images={images}/>{imageSpread}</>
 }
 
 export default Gallery;

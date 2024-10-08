@@ -27,7 +27,7 @@ function Carousel({post, caption}){
         }
     };
 
-    return <div className='carouselContainer'>
+    return <div key={post.children.data.post_child_id} className='carouselContainer'>
         <div id='backArrow' className='arrowContainer'
             style={postCounter === 0 ? {display: 'none'} : null}>
             <BackArrow id="arrow"

@@ -25,7 +25,7 @@ function InstagramPosts ( ){
                 posts.result.map((post)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
 
-                    return <>
+                    return <div id='post'>
                         {isCarouselAlbum ?
                         (<Carousel post={post} caption={post.post_caption}/>) 
                         : 
@@ -34,14 +34,37 @@ function InstagramPosts ( ){
                                 alt={post.post_caption}/>
                         </div>)
                         }
-                    
-                    </>
+                    </div>
                 })
             )
         }
     },[posts]);
 
-    return <div className="postSpread">{renderedPosts}</div>
+    useEffect(()=>{
+        if (renderedPosts !== null){
+            const options = {
+                rootMargin: "-100px",
+                threshold: 1.0,
+                };
+        
+            const observer = new IntersectionObserver((entries)=>{
+                entries.forEach((entry)=>{
+                    if(entry.isIntersecting){
+                        console.log(entry)
+                    } 
+                })
+            }, options);
+        
+            const postContainers = document.querySelectorAll('#post');
+            postContainers.forEach((postContainer)=>{
+                observer.observe(postContainer)
+            });
+
+            return ()=>observer.disconnect()
+        }
+    }, [renderedPosts]);
+
+    return <>{renderedPosts}</>
 }
 
 export default InstagramPosts;
