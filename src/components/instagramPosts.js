@@ -4,6 +4,7 @@ import Carousel from "./carousel.js";
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
     const [ renderedPosts, setRenderedPosts ] = useState(null);
+    const [ isImageLoaded, setIsImageLoaded ] = useState(0);
 
     const handleFetchPosts = async () => {
         try {
@@ -19,19 +20,26 @@ function InstagramPosts ( ){
         handleFetchPosts();
     }, []);
 
+    const handleImageLoaded = () => {
+        setIsImageLoaded((currentCounter)=>{
+            const newCounter = 1;
+            return currentCounter+=newCounter;
+        })
+    }
+
     useEffect(()=>{
         if (posts !== null){
             setRenderedPosts(
                 posts.result.map((post)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
-
                     return <div id='post'>
                         {isCarouselAlbum ?
-                        (<Carousel post={post} caption={post.post_caption}/>) 
+                        (<Carousel loaded={handleImageLoaded} post={post} caption={post.post_caption}/>) 
                         : 
                         (<div key={post.post_id} className="postContainer">
-                            <img src={post.post_media_url} 
-                                alt={post.post_caption}/>
+                            <img id="image" src={post.post_media_url} 
+                                alt={post.post_caption}
+                                onLoad={handleImageLoaded}/>
                         </div>)
                         }
                     </div>
@@ -41,28 +49,38 @@ function InstagramPosts ( ){
     },[posts]);
 
     useEffect(()=>{
-        if (renderedPosts !== null){
+        if (renderedPosts !== null & isImageLoaded === 25){
             const options = {
                 rootMargin: "-100px",
-                threshold: 1.0,
-                };
+            };
         
             const observer = new IntersectionObserver((entries)=>{
-                entries.forEach((entry)=>{
-                    if(entry.isIntersecting){
-                        console.log(entry)
-                    } 
+                entries.forEach((entry, index)=>{
+                    setTimeout(()=>{
+                        if (entry.isIntersecting){
+                            const parentContainer = entry.target.parentElement; 
+                            parentContainer.style.transform = "translateY(0%)";
+                            parentContainer.style.opacity = 1;
+                            parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
+                            observer.unobserve(entry.target);
+                        }
+                    }, 300 * index)
                 })
             }, options);
         
-            const postContainers = document.querySelectorAll('#post');
-            postContainers.forEach((postContainer)=>{
-                observer.observe(postContainer)
+            const images = document.querySelectorAll('#image');
+            images.forEach((image)=>{
+                observer.observe(image)
             });
 
-            return ()=>observer.disconnect()
+            return () => {
+                images.forEach((image)=>{
+                    observer.unobserve(image)
+                });
+                observer.disconnect();
+            }
         }
-    }, [renderedPosts]);
+    }, [renderedPosts, isImageLoaded]);
 
     return <>{renderedPosts}</>
 }

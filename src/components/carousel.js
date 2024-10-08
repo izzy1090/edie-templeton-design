@@ -2,7 +2,7 @@ import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
 import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 import { useState } from 'react';
 
-function Carousel({post, caption}){
+function Carousel({post, caption, loaded}){
 
     const [ currentPost, setCurrentPost ] = useState(post.children.data[0].post_media_url);
     const [ postCounter, setPostCounter ] = useState(0);
@@ -34,8 +34,9 @@ function Carousel({post, caption}){
                 style={{width: "1.5em", height: '1.5em'}}
                 onClick={handlePreviousPost}/>
         </div>
-        <img src={currentPost}
-            alt={caption}/>
+        <img id="image" src={currentPost}
+            alt={caption} 
+            onLoad={loaded}/>
         <div id='forwardArrow' className='arrowContainer'
             style={postCounter === post.children.data.length - 1 ? {display: 'none'} : null}>
             <ForwardArrow id="arrow" 
