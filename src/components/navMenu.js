@@ -9,7 +9,6 @@ function NavMenu( { menuItems } ){
     const { currentPath } = useNavigation();
 
     useEffect(()=> {
-         
         const menuElements = document.querySelector('.desktopMenu');
         menuElements.classList.add('desktopMenuIntro');
 

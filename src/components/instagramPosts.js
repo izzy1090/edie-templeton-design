@@ -1,55 +1,88 @@
 import { useEffect, useState } from "react";
-// import fetchPosts from "../../api/fetch-posts.js";
 import Carousel from "./carousel.js";
-// import updateDatabase from "../../api/update-database.js";
 
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
     const [ renderedPosts, setRenderedPosts ] = useState(null);
+    const [ isImageLoaded, setIsImageLoaded ] = useState(0);
 
-    // const handleFetchPosts = async () => {
-    //     try {
-    //         const request = await fetchPosts();
-    //         const test = await updateDatabase();
-    //         // console.log(`testing: ${test}`);
-    //         // const test = await fetch(`/api/update-ig_data?${request}`)
-    //         // console.log(test)
-    //         setPosts(request)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    const handleFetchPosts = async () => {
+        try {
+            const request = await fetch(`/api/db-fetch-posts`);
+            const result = await request.json();
+            setPosts(result);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(()=>{
-        // handleFetchPosts();
-        // http://localhost:3000/api/fetch-posts?data=1
-        
+        handleFetchPosts();
     }, []);
+
+    const handleImageLoaded = () => {
+        setIsImageLoaded((currentCounter)=>{
+            const newCounter = 1;
+            return currentCounter+=newCounter;
+        })
+    }
 
     useEffect(()=>{
         if (posts !== null){
-            // console.log(posts.data)
             setRenderedPosts(
-                posts.data.map((post)=>{
-                    const isCarouselAlbum = post.media_type === 'CAROUSEL_ALBUM';
-
-                    return <>
+                posts.result.map((post)=>{
+                    const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
+                    return <div id='post'>
                         {isCarouselAlbum ?
-                        (<Carousel post={post} caption={post.caption}/>) 
+                        (<Carousel loaded={handleImageLoaded} post={post} caption={post.post_caption}/>) 
                         : 
-                        (<div key={post.id} className="postContainer">
-                            <img src={post.media_url} 
-                                alt={post.caption}/>
+                        (<div key={post.post_id} className="postContainer">
+                            <img id="image" src={post.post_media_url} 
+                                alt={post.post_caption}
+                                onLoad={handleImageLoaded}/>
                         </div>)
                         }
-                    
-                    </>
+                    </div>
                 })
             )
         }
     },[posts]);
 
-    return <div className="postSpread">{renderedPosts}</div>
+    useEffect(()=>{
+        if (renderedPosts !== null & isImageLoaded === 25){
+            const options = {
+                rootMargin: "-100px",
+            };
+        
+            const observer = new IntersectionObserver((entries)=>{
+                entries.forEach((entry, index)=>{
+                    setTimeout(()=>{
+                        if (entry.isIntersecting){
+                            const parentContainer = entry.target.parentElement; 
+                            parentContainer.style.transform = "translateY(0%)";
+                            parentContainer.style.opacity = 1;
+                            parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
+                            observer.unobserve(entry.target);
+                        }
+                    }, 300 * index)
+                })
+            }, options);
+        
+            const images = document.querySelectorAll('#image');
+            images.forEach((image)=>{
+                observer.observe(image)
+            });
+
+            return () => {
+                images.forEach((image)=>{
+                    observer.unobserve(image)
+                });
+                observer.disconnect();
+            }
+        }
+    }, [renderedPosts, isImageLoaded]);
+
+    return <>{renderedPosts}</>
 }
 
 export default InstagramPosts;

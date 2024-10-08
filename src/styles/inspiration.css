@@ -10,6 +10,8 @@
     position: relative;
     box-sizing: border-box;
     padding: 10px;
+    opacity: 0;
+    transform: translateY(70%);
 }
 
 .postContainer > img, .carouselContainer > img {

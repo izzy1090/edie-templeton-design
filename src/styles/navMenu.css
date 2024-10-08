@@ -5,8 +5,8 @@
 }
 
 .logo {
-    width: 4.5em;
-    height: 4.5em;
+    width: 2em;
+    height: 2em;
     flex-shrink: 0;
     fill: #F1F1EF;
 }
@@ -15,8 +15,8 @@
     display: flex;
     flex-direction: row;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
-    font-size: 1.8rem;
-    padding-left: 15px;
+    font-size: 1.3rem;
+    padding-left: 0.5em;
     flex-shrink: 1;
     color: rgba(50, 50, 50, 50);
 }
@@ -45,7 +45,7 @@
     margin: 15px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 28px;
+    font-size: 25px;
     color: #F1F1EF;
 }
 
@@ -53,6 +53,10 @@
 @media (hover:hover){
     .mobileMenu div:hover {
         color: #F1F1EF;
+    }
+
+    .logo:hover {
+        fill: white;
     }
 }
 
@@ -106,7 +110,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem 0 2rem;
+    padding: 1.5em 1.5em 0 1.5em;
     opacity: 0;
 }
 
@@ -117,7 +121,7 @@
 
 .menuItems > div {
     text-decoration: none;
-    font-size: 25px;
+    font-size: 1.3em;
     color: rgb(182, 182, 182);
     position: relative; /* Ensure proper positioning of ::after pseudo-element */
     cursor: pointer;
@@ -176,14 +180,15 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 600px) {
     .logo { 
-        padding: 15px;
+        width: 3em;
+        height: 3em;
+        margin: 15px;
     }
     .desktopMenu {
         display: none;
     }
-
     #mobileLogo {
         display: block;
     }

@@ -6,7 +6,7 @@ function InstagramPage(){
     const { isNavOpen } = useGlobalStates();
 
     return <>
-        <div style={isNavOpen ? {display: 'none'} : null}>
+        <div className="postSpread" style={isNavOpen ? {display: 'none'} : null}>
             <InstagramPosts/>
         </div>
         

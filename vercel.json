@@ -1,7 +1,7 @@
 {
     "crons": [
         {
-            "path": "/api/exchange-token",
+            "path": "/api/build-db",
             "schedule": "00 00 * * *"
         },
         {
