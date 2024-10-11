@@ -6,15 +6,51 @@ function InstagramPosts ( ){
     const [ renderedPosts, setRenderedPosts ] = useState(null);
     const [ isImageLoaded, setIsImageLoaded ] = useState(0);
 
-    const handleFetchPosts = async () => {
+    const handleFetchPosts = async (postBatch) => {
         try {
-            const request = await fetch(`/api/db-fetch-posts`);
-            const result = await request.json();
-            setPosts(result);
+            // two bugs to figure out
+                // Prevent from undefined being set to post.results
+                // Figure out a better way to test if this is the first time the page is being loaded
+            console.log(postBatch)
+            if (postBatch === undefined){
+                console.log('fetching posts...');
+                const request = await fetch(`/api/db-fetch-posts`);
+                const result = await request.json();
+                setPosts(result);
+            } 
+            // else 
+            //     console.log('fetching posts...');
+            //     const request = await fetch(`/api/db-fetch-posts?offset=25`);
+            //     const result = await request.json();
+            //     console.log(result);
+            //     setPosts(result);
         } catch (error) {
             console.log(error)
         }
     }
+
+    const handleScroll = () => {
+
+        // Use window.innerHeight + window.scrollY to determine bottom position and check if .offsetHeight is lower (i.e. it won't work).
+        const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+    
+        if (bottom) {
+        //   figure out how to pass the next interval in a postBatch
+        //   handleFetchPosts(25);
+        }
+    };
+
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+            console.log('React app DOM is fully loaded.');
+                window.addEventListener('scroll', handleScroll, {
+                passive: true
+            });
+
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    });
+
 
     useEffect(()=>{
         handleFetchPosts();
@@ -29,14 +65,15 @@ function InstagramPosts ( ){
 
     useEffect(()=>{
         if (posts !== null){
+            // Find a better way to update posts.result below so the posts already rendered don't get replaced, just merely added on
             setRenderedPosts(
-                posts.result.map((post)=>{
+                posts.result.map((post, index)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
-                    return <div id='post'>
+                    return <div id='post' index={index} key={post.post_id}>
                         {isCarouselAlbum ?
                         (<Carousel loaded={handleImageLoaded} post={post} caption={post.post_caption}/>) 
                         : 
-                        (<div key={post.post_id} className="postContainer">
+                        (<div className="postContainer">
                             <img id="image" src={post.post_media_url} 
                                 alt={post.post_caption}
                                 onLoad={handleImageLoaded}/>
@@ -47,13 +84,12 @@ function InstagramPosts ( ){
             )
         }
     },[posts]);
-
+    
     useEffect(()=>{
         if (renderedPosts !== null & isImageLoaded === 25){
             const options = {
                 rootMargin: "-100px",
             };
-        
             const observer = new IntersectionObserver((entries)=>{
                 entries.forEach((entry, index)=>{
                     setTimeout(()=>{

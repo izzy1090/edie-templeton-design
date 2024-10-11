@@ -39,7 +39,7 @@ export default async function handler(
         next = nextResult.paging.next;
     }
     
-    return response.status(200).json({ request });
+    return response.status(200).json({ database });
   } catch (error) {
     return response.status(500).json({ error });
   }
