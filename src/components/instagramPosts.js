@@ -4,7 +4,7 @@ import Carousel from "./carousel.js";
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
     const [ renderedPosts, setRenderedPosts ] = useState(null);
-    const [ isImageLoaded, setIsImageLoaded ] = useState(0);
+    const [ latestPosts, setLatestPosts ] = useState(false);
 
     const handleFetchPosts = async (postBatch) => {
         try {
@@ -12,18 +12,20 @@ function InstagramPosts ( ){
                 // Prevent from undefined being set to post.results
                 // Figure out a better way to test if this is the first time the page is being loaded
             console.log(postBatch)
-            if (postBatch === undefined){
+            if (latestPosts & postBatch === undefined){
                 console.log('fetching posts...');
                 const request = await fetch(`/api/db-fetch-posts`);
                 const result = await request.json();
                 setPosts(result);
+                setLatestPosts(false);
             } 
-            // else 
-            //     console.log('fetching posts...');
-            //     const request = await fetch(`/api/db-fetch-posts?offset=25`);
-            //     const result = await request.json();
-            //     console.log(result);
-            //     setPosts(result);
+            else if (!latestPosts & postBatch !== undefined){
+                console.log('fetching posts...');
+                const request = await fetch(`/api/db-fetch-posts?offset=25`);
+                const result = await request.json();
+                console.log(result);
+                setPosts(result);
+            }
         } catch (error) {
             console.log(error)
         }
@@ -36,7 +38,8 @@ function InstagramPosts ( ){
     
         if (bottom) {
         //   figure out how to pass the next interval in a postBatch
-        //   handleFetchPosts(25);
+        handleFetchPosts(25);
+        console.log('reached the bottom')
         }
     };
 
@@ -46,21 +49,27 @@ function InstagramPosts ( ){
                 window.addEventListener('scroll', handleScroll, {
                 passive: true
             });
-
+            
             return () => window.removeEventListener('scroll', handleScroll);
         }
     });
 
 
     useEffect(()=>{
-        handleFetchPosts();
+        setLatestPosts(true);
     }, []);
 
+    useEffect(()=>{
+        if (latestPosts){
+            handleFetchPosts();
+        }
+    }, [latestPosts])
+
     const handleImageLoaded = () => {
-        setIsImageLoaded((currentCounter)=>{
-            const newCounter = 1;
-            return currentCounter+=newCounter;
-        })
+        // setIsImageLoaded((currentCounter)=>{
+        //     const newCounter = 1;
+        //     return currentCounter+=newCounter;
+        // })
     }
 
     useEffect(()=>{
@@ -86,7 +95,7 @@ function InstagramPosts ( ){
     },[posts]);
     
     useEffect(()=>{
-        if (renderedPosts !== null & isImageLoaded === 25){
+        if (renderedPosts !== null){
             const options = {
                 rootMargin: "-100px",
             };
@@ -116,7 +125,7 @@ function InstagramPosts ( ){
                 observer.disconnect();
             }
         }
-    }, [renderedPosts, isImageLoaded]);
+    }, [renderedPosts]);
 
     return <>{renderedPosts}</>
 }
