@@ -4,88 +4,57 @@ import Carousel from "./carousel.js";
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
     const [ renderedPosts, setRenderedPosts ] = useState(null);
-    const [ latestPosts, setLatestPosts ] = useState(false);
+    const [ isLatestPostBatch, setIsLatestPostBatch ] = useState(true);
 
     const handleFetchPosts = async (postBatch) => {
         try {
-            // two bugs to figure out
-                // Prevent from undefined being set to post.results
-                // Figure out a better way to test if this is the first time the page is being loaded
-            console.log(postBatch)
-            if (latestPosts & postBatch === undefined){
-                console.log('fetching posts...');
+            // This handles the first time the page loads
+            if (isLatestPostBatch & postBatch === undefined)
+            {
+                console.log('fetching posts for the first time');
                 const request = await fetch(`/api/db-fetch-posts`);
                 const result = await request.json();
-                setPosts(result);
-                setLatestPosts(false);
+                setPosts(result.result);
+                setIsLatestPostBatch(false);
             } 
-            else if (!latestPosts & postBatch !== undefined){
-                console.log('fetching posts...');
-                const request = await fetch(`/api/db-fetch-posts?offset=25`);
+            // This is for every subsequent post fetch
+            else if (!isLatestPostBatch & postBatch !== undefined)
+            {
+                console.log('fetching subsequent posts...');
+                const request = await fetch(`/api/db-fetch-posts?offset=${postBatch}`);
                 const result = await request.json();
-                console.log(result);
-                setPosts(result);
-            }
+                setPosts((prevPosts)=>{
+                    if (result !== undefined){
+                        return [...prevPosts, ...result.result]
+                    }                    
+                })
+            }  
+    
         } catch (error) {
             console.log(error)
         }
     }
 
-    const handleScroll = () => {
-
-        // Use window.innerHeight + window.scrollY to determine bottom position and check if .offsetHeight is lower (i.e. it won't work).
-        const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
-    
-        if (bottom) {
-        //   figure out how to pass the next interval in a postBatch
-        handleFetchPosts(25);
-        console.log('reached the bottom')
-        }
-    };
-
-    document.addEventListener('readystatechange', function() {
-        if (document.readyState === 'complete') {
-            console.log('React app DOM is fully loaded.');
-                window.addEventListener('scroll', handleScroll, {
-                passive: true
-            });
-            
-            return () => window.removeEventListener('scroll', handleScroll);
+    useEffect(()=>{
+        if (isLatestPostBatch){
+            handleFetchPosts();
         }
     });
 
-
-    useEffect(()=>{
-        setLatestPosts(true);
-    }, []);
-
-    useEffect(()=>{
-        if (latestPosts){
-            handleFetchPosts();
-        }
-    }, [latestPosts])
-
-    const handleImageLoaded = () => {
-        // setIsImageLoaded((currentCounter)=>{
-        //     const newCounter = 1;
-        //     return currentCounter+=newCounter;
-        // })
-    }
-
     useEffect(()=>{
         if (posts !== null){
+            
             // Find a better way to update posts.result below so the posts already rendered don't get replaced, just merely added on
             setRenderedPosts(
-                posts.result.map((post, index)=>{
+                posts.map((post, index)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
                     return <div id='post' index={index} key={post.post_id}>
                         {isCarouselAlbum ?
-                        (<Carousel loaded={handleImageLoaded} post={post} caption={post.post_caption}/>) 
+                        (<Carousel post={post} caption={post.post_caption}/>) 
                         : 
                         (<div className="postContainer">
                             <img id="image" src={post.post_media_url} 
-                                alt={post.post_caption}
-                                onLoad={handleImageLoaded}/>
+                                alt={post.post_caption}/>
                         </div>)
                         }
                     </div>
@@ -97,19 +66,26 @@ function InstagramPosts ( ){
     useEffect(()=>{
         if (renderedPosts !== null){
             const options = {
-                rootMargin: "-100px",
+                rootMargin: "0px", 
+                threshold: 0.7
             };
             const observer = new IntersectionObserver((entries)=>{
+                const postList = document.querySelectorAll('#image');
+                const lastPost = postList.item(postList.length - 1);
                 entries.forEach((entry, index)=>{
-                    setTimeout(()=>{
-                        if (entry.isIntersecting){
-                            const parentContainer = entry.target.parentElement; 
-                            parentContainer.style.transform = "translateY(0%)";
-                            parentContainer.style.opacity = 1;
-                            parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
-                            observer.unobserve(entry.target);
-                        }
-                    }, 300 * index)
+                    if (entry.isIntersecting)
+                    {
+                        if (entry.target === lastPost){
+                            handleFetchPosts(postList.length)
+                        } else
+                            setTimeout(()=>{
+                                const parentContainer = entry.target.parentElement; 
+                                parentContainer.style.transform = "translateY(0%)";
+                                parentContainer.style.opacity = 1;
+                                parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
+                                observer.unobserve(entry.target);
+                            }, 300 * index)
+                    } 
                 })
             }, options);
         
