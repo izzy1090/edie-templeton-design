@@ -29,7 +29,6 @@ function InstagramPosts ( ){
                     }                    
                 })
             }  
-    
         } catch (error) {
             console.log(error)
         }
@@ -43,20 +42,22 @@ function InstagramPosts ( ){
 
     useEffect(()=>{
         if (posts !== null){
-            
-            // Find a better way to update posts.result below so the posts already rendered don't get replaced, just merely added on
             setRenderedPosts(
                 posts.map((post, index)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
-                    return <div id='post' index={index} key={post.post_id}>
-                        {isCarouselAlbum ?
-                        (<Carousel post={post} caption={post.post_caption}/>) 
-                        : 
-                        (<div className="postContainer">
-                            <img id="image" src={post.post_media_url} 
-                                alt={post.post_caption}/>
-                        </div>)
-                        }
+                    return <div id='post' key={post.post_id}>
+                        
+                            {isCarouselAlbum ?
+                            (<Carousel post={post} caption={post.post_caption}/>)  
+                            : 
+                            (<div className="postContainer">
+                                
+                                    <img id="media" src={post.post_media_url} 
+                                        alt={post.post_caption}/>
+
+                            </div>)
+                            }
+                        
                     </div>
                 })
             )
@@ -67,10 +68,10 @@ function InstagramPosts ( ){
         if (renderedPosts !== null){
             const options = {
                 rootMargin: "0px", 
-                threshold: 0.7
+                // threshold: 0.3
             };
             const observer = new IntersectionObserver((entries)=>{
-                const postList = document.querySelectorAll('#image');
+                const postList = document.querySelectorAll('#media');
                 const lastPost = postList.item(postList.length - 1);
                 entries.forEach((entry, index)=>{
                     if (entry.isIntersecting)
@@ -89,18 +90,19 @@ function InstagramPosts ( ){
                 })
             }, options);
         
-            const images = document.querySelectorAll('#image');
-            images.forEach((image)=>{
-                observer.observe(image)
+            const medias = document.querySelectorAll('#media');
+            medias.forEach((media)=>{
+                observer.observe(media)
             });
 
             return () => {
-                images.forEach((image)=>{
-                    observer.unobserve(image)
+                medias.forEach((media)=>{
+                    observer.unobserve(media)
                 });
                 observer.disconnect();
             }
         }
+    // eslint-disable-next-line
     }, [renderedPosts]);
 
     return <>{renderedPosts}</>
