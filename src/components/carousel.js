@@ -29,9 +29,24 @@ function Carousel({post, caption, loaded}){
         setVideoImage(()=>handleMedia(currentPost))
     // eslint-disable-next-line
     }, [currentPost])
+
+    const handleNextPostAnim = async (event) => {
+        // const test = document.querySelector(`img[src="${currentPost}"]`)
+        const test = event.target.closest('.carouselContainer').children[1].children[0]
+        console.log(test)
+        if (test){
+            test.style.opacity = 0;
+            test.style.transition = "opacity 200ms ease-in"
+            test.addEventListener('transitionend', ()=>{
+                test.style.opacity = 1;
+                handleNextPost()
+            }, {once: true})
+        }
+    }
     
 
     const handleNextPost = () => {
+        console.log('firing')
         if (postCounter < post.children.data.length - 1) { 
             setPostCounter((currentCounter) => {
                 const newCounter = currentCounter + 1;
@@ -65,7 +80,7 @@ function Carousel({post, caption, loaded}){
                 style={postCounter === post.children.data.length - 1 ? {display: 'none'} : null}>
                 <ForwardArrow id="arrow" 
                     style={{width: "1.5em", height: '1.5em'}}
-                    onClick={handleNextPost}/>
+                    onClick={(event)=>handleNextPostAnim(event)}/>
             </div>
     </div>
 }
