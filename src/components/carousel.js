@@ -40,10 +40,8 @@ function Carousel({post, caption, loaded}){
             const video = document.querySelector(`video source[src="${currentPost}"]`);
             const forwardAnim = document.querySelector('#forward');
             const backwardAnim = document.querySelector('#backward');
-            
             if (image && forwardAnim)
             {              
-
                 image.classList.add('nextCarouselPost');
                 image.addEventListener('animationend', ()=>{
                     // Allows you to use the arrow again
@@ -64,7 +62,8 @@ function Carousel({post, caption, loaded}){
                     backwardAnim.id = '';
                     image.classList.remove('previousCarouselPost');
                 })
-            } else if (video && forwardAnim){
+            } else if (video && forwardAnim)
+            {
                 video.parentElement.classList.add('nextCarouselPost');
                 video.parentElement.addEventListener('animationend', ()=>{
                     video.style.transition = '';
@@ -73,7 +72,16 @@ function Carousel({post, caption, loaded}){
                     forwardAnim.id = '';
                     video.parentElement.classList.remove('nextCarouselPost');
                 })
-                console.log(video.parentElement)
+            } else if (video && backwardAnim)
+            {
+                video.parentElement.classList.add('previousCarouselPost');
+                video.parentElement.addEventListener('animationend', ()=>{
+                    video.style.transition = '';
+                    video.style.transform = '';
+                    video.closest('.carouselContainer').children[0].style.pointerEvents = 'auto';
+                    backwardAnim.id = '';
+                    video.parentElement.classList.remove('previousCarouselPost');
+                });
             }
         }
     }, [isLoaded, currentPost]);
@@ -83,7 +91,7 @@ function Carousel({post, caption, loaded}){
         event.target.closest('.arrowContainer').style.pointerEvents = 'none';
         currentPost.style.transform = "translateX(-110%)";
         currentPost.style.transition = "transform 400ms ease-in";
-        currentPost.id = 'forward';
+        currentPost.parentElement.id = 'forward';
         setIsLoaded(false);
         currentPost.addEventListener('transitionend', ()=>{
             currentPost.style.transition = 'none';
@@ -107,7 +115,7 @@ function Carousel({post, caption, loaded}){
         event.target.closest('.arrowContainer').style.pointerEvents = 'none';
         currentPost.style.transform = "translateX(110%)";
         currentPost.style.transition = "transform 400ms ease-in";
-        currentPost.id = 'backward';
+        currentPost.parentElement.id = 'backward';
         setIsLoaded(false);
         currentPost.addEventListener('transitionend', ()=>{
             currentPost.style.transition = 'none';
