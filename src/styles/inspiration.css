@@ -25,6 +25,30 @@
     width: 100%;
 }
 
+.nextCarouselPost {
+    animation: nextCarouselPostAnim 400ms ease-in;
+}
+
+@keyframes nextCarouselPostAnim {
+    0%{
+        transform: translateX(110%);
+    } 100% {
+        transform: translateX(0%);
+    }
+}
+
+.previousCarouselPost {
+    animation: previousCarouselPostAnim 400ms ease-in;
+}
+
+@keyframes previousCarouselPostAnim {
+    0%{
+        transform: translateX(-110%);
+    } 100% {
+        transform: translateX(0%);
+    }
+}
+
 .arrowContainer{
     position: absolute;
     display: flex;
@@ -39,6 +63,7 @@
     opacity: 0.5;
     padding: 2px;
     margin: 5px;
+    z-index: 100;
 }
 
 .arrowContainer:hover, #arrow:hover {

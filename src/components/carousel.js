@@ -6,19 +6,21 @@ function Carousel({post, caption, loaded}){
 
     const [ currentPost, setCurrentPost ] = useState(post.children.data[0].post_media_url);
     const [ postCounter, setPostCounter ] = useState(0);
+    const [ isLoaded, setIsLoaded ] = useState(null);
 
     const handleMedia = (media) => {
         if (media.match(".mp4"))
         {
             return <>
-                <video autoPlay loop muted>
-                    <source src={media} type="video/mp4"></source>
+                <video autoPlay loop muted onLoadedData={() => setIsLoaded(true)}>
+                    <source src={media} type="video/mp4" onL></source>
                 </video>
             </>
         } else {
             return <>
                 <img src={media}
-                    alt={caption}/>
+                    alt={caption}
+                    onLoad={()=>setIsLoaded(true)}/>
             </>
         }
     }
@@ -26,13 +28,91 @@ function Carousel({post, caption, loaded}){
     const [ videoImage, setVideoImage ] = useState(()=>handleMedia(currentPost));
 
     useEffect(()=>{
-        setVideoImage(()=>handleMedia(currentPost))
+        setVideoImage(()=>handleMedia(currentPost));
+        setIsLoaded(false);
     // eslint-disable-next-line
     }, [currentPost])
-    
+
+    useEffect(()=>{
+        if (isLoaded)
+        {
+            const image = document.querySelector(`img[src="${currentPost}"]`);
+            const video = document.querySelector(`video source[src="${currentPost}"]`);
+            const forwardAnim = document.getElementById('media forward');
+            const backwardAnim = document.getElementById('media backward');
+            
+            const nextSlideAnim = (media, className, childIndex, direction) => {
+                media.classList.add(className);
+                media.addEventListener('animationend', ()=>{
+                    // Targets the arrow container
+                    media.closest('.carouselContainer').children[childIndex].style.pointerEvents = 'auto';
+                    media.style.transition = '';
+                    media.style.transform = '';
+                    direction.id = 'media';
+                    media.classList.remove(className);
+                }, {once: true});
+            }
+
+            if (image && forwardAnim) 
+                nextSlideAnim(
+                    image, 
+                    "nextCarouselPost", 
+                    2, 
+                    forwardAnim
+                );  
+            else if (image && backwardAnim) 
+                nextSlideAnim(
+                    image, 
+                    "previousCarouselPost", 
+                    0, 
+                    backwardAnim
+                );
+            else if (video && forwardAnim) {
+                console.log(video.parentElement)
+                nextSlideAnim(
+                    video.parentElement, 
+                    "nextCarouselPost", 
+                    2, 
+                    forwardAnim
+                ); 
+            }
+            else if (video && backwardAnim) 
+                nextSlideAnim(
+                    video.parentElement, 
+                    "previousCarouselPost", 
+                    0, 
+                    backwardAnim
+                ); 
+        }
+    }, [isLoaded, currentPost]);
+
+    const currentSlideAnim = (event, transform, transition, id, handleSlideDir) => {
+        const currentPost = event.target.closest(".carouselContainer").children[1].children[0];
+        // Targets the arrow container
+        event.target.closest('.arrowContainer').style.pointerEvents = 'none';
+        currentPost.style.transform = transform;
+        currentPost.style.transition = transition;
+        currentPost.parentElement.id = `media ${id}`;
+        setIsLoaded(false);
+        currentPost.addEventListener('transitionend', ()=>{
+            currentPost.style.transition = 'none';
+            handleSlideDir();
+        }, {once: true})
+    }
+
+    const nextPostTransition = (event) =>{
+        currentSlideAnim(
+            event, 
+            "translateX(-110%)", 
+            "transform 400ms ease-in", 
+            "forward",
+            handleNextPost
+        );
+    }
 
     const handleNextPost = () => {
-        if (postCounter < post.children.data.length - 1) { 
+        if (postCounter < post.children.data.length - 1) 
+        { 
             setPostCounter((currentCounter) => {
                 const newCounter = currentCounter + 1;
                 setCurrentPost(post.children.data[newCounter].post_media_url); 
@@ -41,8 +121,19 @@ function Carousel({post, caption, loaded}){
         }
     };
 
+    const previousPostTransition = (event) => {
+        currentSlideAnim(
+            event, 
+            "translateX(110%)", 
+            "transform 400ms ease-in", 
+            "backward", 
+            handlePreviousPost
+        );
+    }
+
     const handlePreviousPost = () => {
-        if (postCounter > 0) {
+        if (postCounter > 0) 
+        {
             setPostCounter((currentCounter) => {
                 const newCounter = currentCounter - 1;
                 setCurrentPost(post.children.data[newCounter].post_media_url); 
@@ -56,7 +147,7 @@ function Carousel({post, caption, loaded}){
                 style={postCounter === 0 ? {display: 'none'} : null}>
                 <BackArrow id="arrow"
                     style={{width: "1.5em", height: '1.5em'}}
-                    onClick={handlePreviousPost}/>
+                    onClick={previousPostTransition}/>
             </div>
             <div id='media'>
                 {videoImage}
@@ -65,7 +156,7 @@ function Carousel({post, caption, loaded}){
                 style={postCounter === post.children.data.length - 1 ? {display: 'none'} : null}>
                 <ForwardArrow id="arrow" 
                     style={{width: "1.5em", height: '1.5em'}}
-                    onClick={handleNextPost}/>
+                    onClick={(event)=>nextPostTransition(event)}/>
             </div>
     </div>
 }
