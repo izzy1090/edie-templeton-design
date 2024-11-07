@@ -5,8 +5,9 @@ export default async function handler(
   response,
 ) {
   try {
-    const requestParent = await sql`SELECT * from ig_data order by post_timestamp::timestamp desc limit 25;`;
-    const result = [...requestParent.rows]
+    const postBatch = request.query.offset;
+    const requestParent = await sql`SELECT * from ig_data order by post_timestamp::timestamp desc limit 25 OFFSET ${postBatch};`;
+    const result = [...requestParent.rows];
     for (const post of requestParent.rows){
         if (post.post_media_type === "CAROUSEL_ALBUM"){
             const requestChildren = await sql`SELECT * FROM ig_children WHERE post_id = ${post.post_id}`;

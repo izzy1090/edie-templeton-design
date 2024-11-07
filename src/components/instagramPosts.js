@@ -4,83 +4,107 @@ import Carousel from "./carousel.js";
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
     const [ renderedPosts, setRenderedPosts ] = useState(null);
-    const [ isImageLoaded, setIsImageLoaded ] = useState(0);
+    const [ isLatestPostBatch, setIsLatestPostBatch ] = useState(true);
 
-    const handleFetchPosts = async () => {
+    const handleFetchPosts = async (postBatch) => {
         try {
-            const request = await fetch(`/api/db-fetch-posts`);
-            const result = await request.json();
-            setPosts(result);
+            // This handles the first time the page loads
+            if (isLatestPostBatch & postBatch === undefined)
+            {
+                console.log('fetching posts for the first time');
+                const request = await fetch(`/api/db-fetch-posts`);
+                const result = await request.json();          
+                setPosts(result.result);
+                setIsLatestPostBatch(false);
+            } 
+            // This is for every subsequent post fetch
+            else if (!isLatestPostBatch & postBatch !== undefined)
+            {
+                console.log('fetching subsequent posts...');
+                const request = await fetch(`/api/db-fetch-posts?offset=${postBatch}`);
+                const result = await request.json();
+                if (result.length > 0) {
+                    setPosts((prevPosts)=>{
+                        if (result !== undefined){
+                            return [...prevPosts, ...result.result]
+                        }                    
+                    })
+                }
+            }  
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(()=>{
-        handleFetchPosts();
-    }, []);
-
-    const handleImageLoaded = () => {
-        setIsImageLoaded((currentCounter)=>{
-            const newCounter = 1;
-            return currentCounter+=newCounter;
-        })
-    }
+        if (isLatestPostBatch){
+            handleFetchPosts();
+        }
+    });
 
     useEffect(()=>{
         if (posts !== null){
             setRenderedPosts(
-                posts.result.map((post)=>{
+                posts.map((post)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
-                    return <div id='post'>
-                        {isCarouselAlbum ?
-                        (<Carousel loaded={handleImageLoaded} post={post} caption={post.post_caption}/>) 
-                        : 
-                        (<div key={post.post_id} className="postContainer">
-                            <img id="image" src={post.post_media_url} 
-                                alt={post.post_caption}
-                                onLoad={handleImageLoaded}/>
-                        </div>)
-                        }
+                    return <div id='post' key={post.post_id}>
+                            {isCarouselAlbum ?
+                            (<Carousel post={post} caption={post.post_caption}/>)  
+                            : 
+                            (<div className="postContainer">
+                                <img id="media" src={post.post_media_url} 
+                                    alt={post.post_caption}/>
+                            </div>)}
                     </div>
                 })
             )
         }
     },[posts]);
-
+    
     useEffect(()=>{
-        if (renderedPosts !== null & isImageLoaded === 25){
+        if (renderedPosts !== null){
             const options = {
-                rootMargin: "-100px",
+                rootMargin: "0px", 
+                threshold: 1
             };
-        
             const observer = new IntersectionObserver((entries)=>{
-                entries.forEach((entry, index)=>{
+                const postList = document.querySelectorAll('#media');
+                const lastPost = postList.item(postList.length - 1);
+                const postAnim = (entry, index) => {
                     setTimeout(()=>{
-                        if (entry.isIntersecting){
-                            const parentContainer = entry.target.parentElement; 
-                            parentContainer.style.transform = "translateY(0%)";
-                            parentContainer.style.opacity = 1;
-                            parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
-                            observer.unobserve(entry.target);
-                        }
+                        const parentContainer = entry.target.parentElement; 
+                        parentContainer.style.transform = "translateY(0%)";
+                        parentContainer.style.opacity = 1;
+                        parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
+                        observer.unobserve(entry.target);
                     }, 300 * index)
+                }
+                entries.forEach((entry, index)=>{
+                    if (entry.isIntersecting)
+                    {
+                        if (entry.target === lastPost) {
+                            handleFetchPosts(postList.length);
+                            postAnim(entry, index)
+                        } else
+                            postAnim(entry, index);
+                    } 
                 })
             }, options);
         
-            const images = document.querySelectorAll('#image');
-            images.forEach((image)=>{
-                observer.observe(image)
+            const medias = document.querySelectorAll('#media');
+            medias.forEach((media)=>{
+                observer.observe(media)
             });
 
             return () => {
-                images.forEach((image)=>{
-                    observer.unobserve(image)
+                medias.forEach((media)=>{
+                    observer.unobserve(media)
                 });
                 observer.disconnect();
             }
-        }
-    }, [renderedPosts, isImageLoaded]);
+        } 
+    // eslint-disable-next-line
+    }, [renderedPosts]);
 
     return <>{renderedPosts}</>
 }

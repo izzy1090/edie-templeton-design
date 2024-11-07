@@ -1,22 +1,52 @@
 .postSpread {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-items: center; 
-    align-items: center; 
-    width: 100%;
+    width: fit-content;
+    margin: auto;
+}
+
+#post {
+    margin: 10px;
 }
 
 .postContainer, .carouselContainer {
+    width: 300px;
+    height: 290px;
     position: relative;
     box-sizing: border-box;
-    padding: 10px;
     opacity: 0;
-    transform: translateY(70%);
+    overflow: hidden; 
+    transform: translateY(70%); 
+    place-self: center;
 }
 
-.postContainer > img, .carouselContainer > img {
+.postContainer img, .carouselContainer img, .carouselContainer video {
     display: flex;
     width: 100%;
+}
+
+.nextCarouselPost {
+    animation: nextCarouselPostAnim 400ms ease-in;
+}
+
+@keyframes nextCarouselPostAnim {
+    0%{
+        transform: translateX(110%);
+    } 100% {
+        transform: translateX(0%);
+    }
+}
+
+.previousCarouselPost {
+    animation: previousCarouselPostAnim 400ms ease-in;
+}
+
+@keyframes previousCarouselPostAnim {
+    0%{
+        transform: translateX(-110%);
+    } 100% {
+        transform: translateX(0%);
+    }
 }
 
 .arrowContainer{
@@ -33,6 +63,7 @@
     opacity: 0.5;
     padding: 2px;
     margin: 5px;
+    z-index: 100;
 }
 
 .arrowContainer:hover, #arrow:hover {
@@ -50,4 +81,24 @@
 #arrow {
     opacity: 0.5;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 960px) {
+    .postSpread {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .postSpread {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .postContainer, .carouselContainer {
+        width: 100vw;
+        height: 100%;
+    }
+
+    #post {
+        margin: 10px 0px 10px 0px;
+    }
 }
