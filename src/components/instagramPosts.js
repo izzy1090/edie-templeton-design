@@ -23,11 +23,13 @@ function InstagramPosts ( ){
                 console.log('fetching subsequent posts...');
                 const request = await fetch(`/api/db-fetch-posts?offset=${postBatch}`);
                 const result = await request.json();
-                setPosts((prevPosts)=>{
-                    if (result !== undefined){
-                        return [...prevPosts, ...result.result]
-                    }                    
-                })
+                if (result.length > 0) {
+                    setPosts((prevPosts)=>{
+                        if (result !== undefined){
+                            return [...prevPosts, ...result.result]
+                        }                    
+                    })
+                }
             }  
         } catch (error) {
             console.log(error)
@@ -62,25 +64,29 @@ function InstagramPosts ( ){
     useEffect(()=>{
         if (renderedPosts !== null){
             const options = {
-                rootMargin: "-10px", 
+                rootMargin: "100px", 
                 threshold: 0.3
             };
             const observer = new IntersectionObserver((entries)=>{
                 const postList = document.querySelectorAll('#media');
                 const lastPost = postList.item(postList.length - 1);
+                const postIntroAnim = (entry, index) => {
+                    setTimeout(()=>{
+                        const parentContainer = entry.target.parentElement; 
+                        parentContainer.style.transform = "translateY(0%)";
+                        parentContainer.style.opacity = 1;
+                        parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
+                        observer.unobserve(entry.target);
+                    }, 300 * index)
+                }
                 entries.forEach((entry, index)=>{
                     if (entry.isIntersecting)
                     {
                         if (entry.target === lastPost){
-                            handleFetchPosts(postList.length)
+                            postIntroAnim(entry, index);
+                            handleFetchPosts(postList.length);
                         } else
-                            setTimeout(()=>{
-                                const parentContainer = entry.target.parentElement; 
-                                parentContainer.style.transform = "translateY(0%)";
-                                parentContainer.style.opacity = 1;
-                                parentContainer.style.transition = 'opacity 1s ease, transform 1s ease';
-                                observer.unobserve(entry.target);
-                            }, 300 * index)
+                            postIntroAnim(entry, index);
                     } 
                 })
             }, options);
@@ -98,7 +104,7 @@ function InstagramPosts ( ){
             }
         } 
     // eslint-disable-next-line
-    }, [renderedPosts]);
+    });
 
     return <>{renderedPosts}</>
 }
