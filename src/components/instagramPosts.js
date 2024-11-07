@@ -64,13 +64,13 @@ function InstagramPosts ( ){
     useEffect(()=>{
         if (renderedPosts !== null){
             const options = {
-                rootMargin: "100px", 
-                threshold: 0.3
+                rootMargin: "0px", 
+                threshold: 1
             };
             const observer = new IntersectionObserver((entries)=>{
                 const postList = document.querySelectorAll('#media');
                 const lastPost = postList.item(postList.length - 1);
-                const postIntroAnim = (entry, index) => {
+                const postAnim = (entry, index) => {
                     setTimeout(()=>{
                         const parentContainer = entry.target.parentElement; 
                         parentContainer.style.transform = "translateY(0%)";
@@ -82,11 +82,11 @@ function InstagramPosts ( ){
                 entries.forEach((entry, index)=>{
                     if (entry.isIntersecting)
                     {
-                        if (entry.target === lastPost){
-                            postIntroAnim(entry, index);
+                        if (entry.target === lastPost) {
                             handleFetchPosts(postList.length);
+                            postAnim(entry, index)
                         } else
-                            postIntroAnim(entry, index);
+                            postAnim(entry, index);
                     } 
                 })
             }, options);
@@ -104,7 +104,7 @@ function InstagramPosts ( ){
             }
         } 
     // eslint-disable-next-line
-    });
+    }, [renderedPosts]);
 
     return <>{renderedPosts}</>
 }
