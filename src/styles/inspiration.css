@@ -14,10 +14,10 @@
     height: 290px;
     position: relative;
     box-sizing: border-box;
-    padding: 10px;
     opacity: 0;
     overflow: hidden; 
     transform: translateY(70%); 
+    place-self: center;
 }
 
 .postContainer img, .carouselContainer img, .carouselContainer video {
@@ -81,4 +81,24 @@
 #arrow {
     opacity: 0.5;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 960px) {
+    .postSpread {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .postSpread {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .postContainer, .carouselContainer {
+        width: 100vw;
+        height: 100%;
+    }
+
+    #post {
+        margin: 10px 0px 10px 0px;
+    }
 }

@@ -2,7 +2,7 @@ import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
 import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 import { useEffect, useState } from 'react';
 
-function Carousel({post, caption, loaded}){
+function Carousel({post, caption}){
 
     const [ currentPost, setCurrentPost ] = useState(post.children.data[0].post_media_url);
     const [ postCounter, setPostCounter ] = useState(0);
@@ -13,7 +13,7 @@ function Carousel({post, caption, loaded}){
         {
             return <>
                 <video autoPlay loop muted onLoadedData={() => setIsLoaded(true)}>
-                    <source src={media} type="video/mp4" onL></source>
+                    <source src={media} type="video/mp4"></source>
                 </video>
             </>
         } else {

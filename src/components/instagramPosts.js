@@ -13,7 +13,7 @@ function InstagramPosts ( ){
             {
                 console.log('fetching posts for the first time');
                 const request = await fetch(`/api/db-fetch-posts`);
-                const result = await request.json();
+                const result = await request.json();          
                 setPosts(result.result);
                 setIsLatestPostBatch(false);
             } 
@@ -43,21 +43,16 @@ function InstagramPosts ( ){
     useEffect(()=>{
         if (posts !== null){
             setRenderedPosts(
-                posts.map((post, index)=>{
+                posts.map((post)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
                     return <div id='post' key={post.post_id}>
-                        
                             {isCarouselAlbum ?
                             (<Carousel post={post} caption={post.post_caption}/>)  
                             : 
                             (<div className="postContainer">
-                                
-                                    <img id="media" src={post.post_media_url} 
-                                        alt={post.post_caption}/>
-
-                            </div>)
-                            }
-                        
+                                <img id="media" src={post.post_media_url} 
+                                    alt={post.post_caption}/>
+                            </div>)}
                     </div>
                 })
             )
@@ -67,8 +62,8 @@ function InstagramPosts ( ){
     useEffect(()=>{
         if (renderedPosts !== null){
             const options = {
-                rootMargin: "0px", 
-                // threshold: 0.3
+                rootMargin: "-10px", 
+                threshold: 0.3
             };
             const observer = new IntersectionObserver((entries)=>{
                 const postList = document.querySelectorAll('#media');
@@ -101,7 +96,7 @@ function InstagramPosts ( ){
                 });
                 observer.disconnect();
             }
-        }
+        } 
     // eslint-disable-next-line
     }, [renderedPosts]);
 
