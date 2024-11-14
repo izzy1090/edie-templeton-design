@@ -2,7 +2,7 @@ import { ReactComponent as BackArrow } from '../assets/chevron-left.svg';
 import { ReactComponent as ForwardArrow } from '../assets/chevron-right.svg';
 import { useEffect, useState } from 'react';
 
-function Carousel({post, caption}){
+function Carousel({post, caption, instagram_link}){
 
     const [ currentPost, setCurrentPost ] = useState(post.children.data[0].post_media_url);
     const [ postCounter, setPostCounter ] = useState(0);
@@ -143,6 +143,7 @@ function Carousel({post, caption}){
     };
 
     return <div className='carouselContainer'>
+            {instagram_link}
             <div id='backArrow' className='arrowContainer'
                 style={postCounter === 0 ? {display: 'none'} : null}>
                 <BackArrow id="arrow"

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Carousel from "./carousel.js";
+import { ReactComponent as LinkIcon } from '../assets/link-2-svgrepo-com.svg';
 
 function InstagramPosts ( ){
     const [ posts, setPosts ] = useState(null);
     const [ renderedPosts, setRenderedPosts ] = useState(null);
     const [ isLatestPostBatch, setIsLatestPostBatch ] = useState(true);
-
+    
     const handleFetchPosts = async (postBatch) => {
         try {
             // This handles the first time the page loads
@@ -47,11 +48,21 @@ function InstagramPosts ( ){
             setRenderedPosts(
                 posts.map((post)=>{
                     const isCarouselAlbum = post.post_media_type === 'CAROUSEL_ALBUM';
+                    const instagram_link = <>
+                        <div className="linkContainer">
+                            <div className="link">
+                                <a href={post.post_permalink} target="_blank" rel="noreferrer">
+                                    <LinkIcon className="link"/>
+                                </a>
+                            </div>
+                        </div>
+                    </>
                     return <div id='post' key={post.post_id}>
                             {isCarouselAlbum ?
-                            (<Carousel post={post} caption={post.post_caption}/>)  
+                            (<Carousel post={post} caption={post.post_caption} instagram_link={instagram_link}/>)  
                             : 
                             (<div className="postContainer">
+                                {instagram_link}
                                 <img id="media" src={post.post_media_url} 
                                     alt={post.post_caption}/>
                             </div>)}
