@@ -57,14 +57,14 @@ function Carousel({post, caption, instagram_link}){
                 nextSlideAnim(
                     image, 
                     "nextCarouselPost", 
-                    2, 
+                    3, 
                     forwardAnim
                 );  
             else if (image && backwardAnim) 
                 nextSlideAnim(
                     image, 
                     "previousCarouselPost", 
-                    0, 
+                    1, 
                     backwardAnim
                 );
             else if (video && forwardAnim) {
@@ -72,7 +72,7 @@ function Carousel({post, caption, instagram_link}){
                 nextSlideAnim(
                     video.parentElement, 
                     "nextCarouselPost", 
-                    2, 
+                    3, 
                     forwardAnim
                 ); 
             }
@@ -80,14 +80,15 @@ function Carousel({post, caption, instagram_link}){
                 nextSlideAnim(
                     video.parentElement, 
                     "previousCarouselPost", 
-                    0, 
+                    1, 
                     backwardAnim
                 ); 
         }
     }, [isLoaded, currentPost]);
 
     const currentSlideAnim = (event, transform, transition, id, handleSlideDir) => {
-        const currentPost = event.target.closest(".carouselContainer").children[1].children[0];
+        const currentPost = event.target.closest(".carouselContainer").children[2].children[0];
+        console.log(currentPost)
         // Targets the arrow container
         event.target.closest('.arrowContainer').style.pointerEvents = 'none';
         currentPost.style.transform = transform;
@@ -148,7 +149,7 @@ function Carousel({post, caption, instagram_link}){
                 style={postCounter === 0 ? {display: 'none'} : null}>
                 <BackArrow id="arrow"
                     style={{width: "1.5em", height: '1.5em'}}
-                    onClick={previousPostTransition}/>
+                    onClick={(event)=>previousPostTransition(event)}/>
             </div>
             <div id='media'>
                 {videoImage}
