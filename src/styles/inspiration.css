@@ -51,6 +51,27 @@
     }
 }
 
+.linkContainer {
+    position: absolute;
+    right: 0%;
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: #F1F1EF;
+    opacity: 0.5;
+    padding: 2px;
+    margin: 5px;
+}
+
+.link {
+    width: 100%;
+    height: 100%;
+}
+
+.linkContainer:hover {
+    opacity: 1;
+}
+
 .arrowContainer{
     position: absolute;
     display: flex;
@@ -94,12 +115,13 @@
 @media only screen and (max-width: 600px) {
     .postSpread {
         grid-template-columns: repeat(1, 1fr);
+        padding: 0px;
+        padding-bottom: 20px;
     }
     .postContainer, .carouselContainer {
         width: 100vw;
         height: 100%;
     }
-
     #post {
         margin: 10px 0px 10px 0px;
     }
