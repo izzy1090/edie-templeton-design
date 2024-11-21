@@ -24,7 +24,7 @@ function InstagramPosts ( ){
                 console.log('fetching subsequent posts...');
                 const request = await fetch(`/api/db-fetch-posts?offset=${postBatch}`);
                 const result = await request.json();
-                if (result.length > 0) {
+                if (result.result.length > 0) {
                     setPosts((prevPosts)=>{
                         if (result !== undefined){
                             return [...prevPosts, ...result.result]
@@ -76,7 +76,7 @@ function InstagramPosts ( ){
         if (renderedPosts !== null){
             const options = {
                 rootMargin: "-50px", 
-                threshold: 0.1
+                // threshold: 0.1
             };
             const observer = new IntersectionObserver((entries)=>{
                 const postList = document.querySelectorAll('#media');
