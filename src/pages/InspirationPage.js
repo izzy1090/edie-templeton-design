@@ -9,7 +9,6 @@ function InstagramPage(){
         <div className="postSpread" style={isNavOpen ? {display: 'none'} : null}>
             <InstagramPosts/>
         </div>
-        
     </>
 }
 

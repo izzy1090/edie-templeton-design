@@ -1,6 +1,6 @@
 .postSpread {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     width: fit-content;
     margin: auto;
     overflow: hidden;
@@ -106,7 +106,13 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 1500px) {
+    .postSpread {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 970px) {
     .postSpread {
         grid-template-columns: repeat(2, 1fr);
     }

@@ -14,16 +14,19 @@ function FooterPage () {
             target='_blank' rel='noreferrer'>
             <EmailLogo id="emailLogo"/>
           </a>
-          {/* <a href='https://www.instagram.com/templetweed/' 
+          <a href='https://www.instagram.com/interiors_and_such/' 
             target='_blank' rel="noreferrer">
             <InstagramLogo id='instagram'/>
-          </a> */}
+          </a>
           <a href='https://www.linkedin.com/in/edie-snyder-28b4b92b/'
             target='_blank' rel='noreferrer'>
             <LinkedInLogo id="linkedin"/>
           </a>
         </div>
-        <div className='llc'>Edie Templeton Design, LLC © 2024</div>
+        <div className='llc'>
+          <p>Edie Templeton Design, LLC © 2024</p>
+          <p style={{fontSize: "smaller", textAlign: 'center', padding: "5px"}}>378 Myrtle Ave, Brooklyn, NY 11205</p>
+        </div>
     </div>
   </div>
 }

@@ -27,7 +27,7 @@ function App() {
     <Route path="/inspiration">
       <NavMenuPage/>
       <InspirationPage/>
-      {/* <FooterPage/> */}
+      <FooterPage/>
     </Route>
   </>
   );
