@@ -9,7 +9,7 @@ function ContactPage () {
         { key: 4, label: 'Message', id: 'message' } 
     ];
 
-    const contactText = {email: 'ediesnyder@gmail.com', intro: "Need help with your home? Let's chat! Shoot me an email or fill out the contact form."};
+    const contactText = {email: 'ediesnyder@gmail.com', intro: "Looking to learn more about interior design services? Please complete the form below or send me an email at:"};
 
     return <Contact contactForms={contactForms} contactText={contactText}/>
 }
