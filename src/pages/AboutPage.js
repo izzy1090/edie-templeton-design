@@ -1,17 +1,8 @@
 import About from "../components/about.js";
-import ChairAndRug from "../images/chair-and-rug.webp";
 import SnyderLivingRoom from "../images/snyder-living-room.webp";
 
 function AboutPage() {
   const images = [
-    {
-      key: 0,
-      image: ChairAndRug,
-      width: 1333,
-      height: 2000,
-      alt: "Multiple shelves with books and various items along with a multi-colored rug.",
-      id: "chair-and-rug",
-    },
     {
       key: 1,
       image: SnyderLivingRoom,
