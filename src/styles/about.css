@@ -1,12 +1,12 @@
-.banner {
+.profile-picture {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-.banner>img {
-    width: 100%;
+.profile-picture>img {
+    width: 60%;
     height: auto;
 }
 
@@ -18,15 +18,13 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .profile-picture>img {
+        width: 100%;
+        height: auto;
+    }
+
     .bio {
         font-size: 1.1em;
-        padding: 20% 10% 10% 10%;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1500px and up) */
-@media only screen and (min-width: 1500px) {
-    .bio {
-        padding: 5% 20% 5% 20%;
+        padding: 8%;
     }
 }
