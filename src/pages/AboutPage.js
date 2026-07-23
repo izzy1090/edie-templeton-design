@@ -1,14 +1,14 @@
 import About from "../components/about.js";
-import SnyderLivingRoom from "../images/snyder-living-room.webp";
+import profilePicture from "../images/profile-photo.webp";
 
 function AboutPage() {
   const images = [
     {
       key: 1,
-      image: SnyderLivingRoom,
-      width: 1333,
-      height: 2000,
-      alt: "Multiple shelves with books and various items along with a multi-colored rug.",
+      image: profilePicture,
+      width: 1000,
+      height: 1250,
+      alt: "Profile picture of a woman standing near a dresser drawer.",
       id: "snyder-living-room",
     },
   ];
