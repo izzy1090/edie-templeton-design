@@ -2,20 +2,14 @@ import Images from "../components/gallery.js";
 
 // High res images
 import grammieKitchen from "../images/gallery/grammies-kitchen.jpg";
-// import chineseCabinet from "../images/gallery/chinese-cabinet.jpg";
-// import livingRoom1 from "../images/gallery/living-room1.jpg";
-// import livingRoom3 from "../images/gallery/living-room3.jpg";
 import bathroom2 from "../images/gallery/bathroom2.jpg";
 import bathroom3 from "../images/gallery/bathroom3.jpg";
 import bathroom4 from "../images/gallery/bathroom4.jpg";
 import bathroom5 from "../images/gallery/bathroom5.jpg";
-// import flowers from "../images/gallery/flowers.jpg";
-// import diningRoom from "../images/gallery/dining-room.jpg";
 import diningRoom2 from "../images/gallery/dining-room2.jpg";
 import bedroom1 from "../images/gallery/bedroom1.jpg";
 import bedroom2 from "../images/gallery/bedroom2.jpg";
 import bedroom3 from "../images/gallery/bedroom3.jpg";
-// import nightstand1 from "../images/gallery/nightstand1.jpg";
 import nightstand2 from "../images/gallery/nightstand2.jpg";
 import NYT from "../images/gallery/NYT.jpg";
 import nursery from "../images/gallery/nursery.jpg";
@@ -29,20 +23,14 @@ import flowersOnATable from "../images/flowers-on-a-table.jpg";
 
 // Compressed images
 import grammieKitchenCompressed from "../images/gallery/grammies-kitchen.webp";
-// import chineseCabinetCompressed from "../images/gallery/chinese-cabinet.webp";
-// import livingRoom1Compressed from "../images/gallery/living-room1.webp";
-// import livingRoom3Compressed from "../images/gallery/living-room3.webp";
 import bathroom2Compressed from "../images/gallery/bathroom2.webp";
 import bathroom3Compressed from "../images/gallery/bathroom3.webp";
 import bathroom4Compressed from "../images/gallery/bathroom4.webp";
 import bathroom5Compressed from "../images/gallery/bathroom5.webp";
-// import flowersCompressed from "../images/gallery/flowers.webp";
-// import diningRoomCompressed from "../images/gallery/dining-room.webp";
 import diningRoomCompressed2 from "../images/gallery/dining-room2.webp";
 import bedroom1Compressed from "../images/gallery/bedroom1.webp";
 import bedroom2Compressed from "../images/gallery/bedroom2.webp";
 import bedroom3Compressed from "../images/gallery/bedroom3.webp";
-// import nightstand1Compressed from "../images/gallery/nightstand1.webp";
 import nightstand2Compressed from "../images/gallery/nightstand2.webp";
 import NYTCompressed from "../images/gallery/NYT.webp";
 import nurseryCompressed from "../images/gallery/nursery.webp";
